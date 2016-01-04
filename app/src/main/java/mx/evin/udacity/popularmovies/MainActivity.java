@@ -2,7 +2,6 @@ package mx.evin.udacity.popularmovies;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new RetrieveMovies().execute("vote_average");
     }
 
     @Override
@@ -31,12 +32,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.toggle:
                 if (item.getTitle().equals("Order by popularity")){
                     item.setTitle(getString(R.string.menu_toggle_rating));
+//                    queryMovieAPI("popularity");
+                    new RetrieveMovies().execute("popularity");
                 }else{
                     item.setTitle(getString(R.string.menu_toggle_popularity));
+                    new RetrieveMovies().execute("vote_average");
+//                    queryMovieAPI("vote_average");
                 }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void queryMovieAPI(String arg){
+        String query = "http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=" + Constants.MDB_API_KEY;
     }
 }
