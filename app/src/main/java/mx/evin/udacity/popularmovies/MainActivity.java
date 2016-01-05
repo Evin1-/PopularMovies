@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.toggle:
                 if (item.getTitle().equals("Order by popularity")) {
-                    item.setTitle(getString(R.string.menu_toggle_rating));
+                    item.setTitle(getString(R.string.menuToggleRating));
                     queryMovieAPI("popularity");
                     new RetrieveMovies(this).execute("popularity");
                 } else {
-                    item.setTitle(getString(R.string.menu_toggle_popularity));
+                    item.setTitle(getString(R.string.menuTogglePopularity));
                     new RetrieveMovies(this).execute("vote_average");
                     queryMovieAPI("vote_average");
                 }
