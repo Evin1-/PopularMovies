@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import mx.evin.udacity.popularmovies.entities.Result;
@@ -70,7 +72,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView txtPath = viewHolder.txtTitle;
         txtPath.setText(result.getTitle());
 
+        String base_url = "http://image.tmdb.org/t/p/w500/";
         ImageView imgPath = viewHolder.imgPath;
+        Picasso.with(context).load(base_url + result.getBackdropPath()).into(imgPath);
 //        imgPath.setImageResource(result.getPosterPath());
 //        imgPath.setImageResource();
 
