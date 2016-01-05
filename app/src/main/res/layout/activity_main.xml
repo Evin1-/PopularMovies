@@ -9,9 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mx.evin.udacity.popularmovies.MainActivity">
 
+    <!-- TODO put stuff in strings.xml-->
+
     <TextView
-        android:id="@+id/main_id_txt"
+        android:id="@+id/txtMainId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMainResults"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

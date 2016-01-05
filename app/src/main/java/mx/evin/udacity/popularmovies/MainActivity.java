@@ -2,6 +2,10 @@ package mx.evin.udacity.popularmovies;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.toggle:
-                if (item.getTitle().equals("Order by popularity")){
+                if (item.getTitle().equals("Order by popularity")) {
                     item.setTitle(getString(R.string.menu_toggle_rating));
                     queryMovieAPI("popularity");
                     new RetrieveMovies(this).execute("popularity");
-                }else{
+                } else {
                     item.setTitle(getString(R.string.menu_toggle_popularity));
                     new RetrieveMovies(this).execute("vote_average");
                     queryMovieAPI("vote_average");
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void queryMovieAPI(String arg){
+    public void queryMovieAPI(String arg) {
         new RetrieveMovies(this).execute(arg);
     }
 }

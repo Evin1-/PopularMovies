@@ -2,8 +2,13 @@ package mx.evin.udacity.popularmovies;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mx.evin.udacity.popularmovies.entities.Page;
 import mx.evin.udacity.popularmovies.entities.Result;
@@ -11,27 +16,28 @@ import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.http.GET;
-import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
  * Created by evin on 1/3/16.
  */
-public class RetrieveMovies extends AsyncTask<String, String, Void>{
+public class RetrieveMovies extends AsyncTask<String, Result, Void>{
 
     private final String TAG = "PopularMoviesAsyncTAG";
     private AppCompatActivity mActivity;
-    private TextView textView;
+    private TextView mTextView;
+    private ArrayList<Result> mResults;
 
     public RetrieveMovies(AppCompatActivity activity) {
         mActivity = activity;
-        textView = (TextView) mActivity.findViewById(R.id.main_id_txt);
+        mTextView = (TextView) mActivity.findViewById(R.id.txtMainId);
+        mResults = new ArrayList<>();
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        textView.setText("");
+        mTextView.setText("");
     }
 
     @Override
@@ -50,8 +56,10 @@ public class RetrieveMovies extends AsyncTask<String, String, Void>{
         try{
             //TODO: Change this for actual magic
             Page results = listCall.execute().body();
+            Log.d(TAG, results.getResults() + "");
             for (Result result : results.getResults()) {
-                publishProgress(result.getTitle());
+                publishProgress(result);
+
             }
         }catch (Exception e){
             Log.e(TAG, "Error: " + e.toString());
@@ -61,18 +69,25 @@ public class RetrieveMovies extends AsyncTask<String, String, Void>{
     }
 
     @Override
-    protected void onProgressUpdate(String... values) {
+    protected void onProgressUpdate(Result... values) {
         super.onProgressUpdate(values);
-        String text = textView.getText().toString();
-        textView.setText(text + "\n" + values[0]);
+        mResults.add(values[0]);
+        refresh_recycler(mResults);
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        String text = textView.getText().toString();
-        textView.setText(text + "\nFinished!!");
         Log.d(TAG, "Finished");
+    }
+
+    public void refresh_recycler(List<Result> results){
+        RecyclerView recyclerView = (RecyclerView) mActivity.findViewById(R.id.rvMainResults);
+
+        MoviesAdapter adapter = new MoviesAdapter(results);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
+
     }
 
     public interface MovieDBService {
