@@ -25,19 +25,16 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
 
     private static final String TAG = Constants.TAG_ASYNC;
     private AppCompatActivity mActivity;
-    private TextView mTextView;
     private ArrayList<Result> mResults;
 
     public RetrieveMovies(AppCompatActivity activity) {
         mActivity = activity;
-        mTextView = (TextView) mActivity.findViewById(R.id.txtMainId);
         mResults = new ArrayList<>();
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mTextView.setText("");
     }
 
     @Override
