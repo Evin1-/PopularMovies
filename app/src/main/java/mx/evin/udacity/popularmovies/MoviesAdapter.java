@@ -64,7 +64,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         Result result = mResults.get(position);
 
         TextView txtTitle = viewHolder.txtRating;
-        txtTitle.setText(result.getVoteAverage() + "");
+        txtTitle.setText(String.format("%.3f", result.getVoteAverage()));
 
         TextView txtPath = viewHolder.txtTitle;
         txtPath.setText(result.getTitle());
@@ -73,7 +73,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         txtPopularity.setText(result.getPosterPath());
 
         TextView txtRating = viewHolder.txtPopularity;
-        txtRating.setText(result.getPopularity() + "");
+        txtRating.setText(String.format("%.2f", result.getPopularity()));
     }
 
     @Override
