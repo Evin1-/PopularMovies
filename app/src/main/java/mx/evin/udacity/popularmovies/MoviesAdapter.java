@@ -18,7 +18,7 @@ import mx.evin.udacity.popularmovies.entities.Result;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
-    private static final String TAG = "TermAdapterTAG";
+    private static final String TAG = Constants.TAG_ADAPTER;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtTitle;

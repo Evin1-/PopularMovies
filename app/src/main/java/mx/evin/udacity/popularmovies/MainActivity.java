@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String TAG = "PopularMoviesTAG";
+    private static final String TAG = Constants.TAG_MAIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

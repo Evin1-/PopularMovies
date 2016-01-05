@@ -23,7 +23,7 @@ import retrofit.http.Query;
  */
 public class RetrieveMovies extends AsyncTask<String, Result, Void>{
 
-    private final String TAG = "PopularMoviesAsyncTAG";
+    private static final String TAG = Constants.TAG_ASYNC;
     private AppCompatActivity mActivity;
     private TextView mTextView;
     private ArrayList<Result> mResults;
@@ -56,10 +56,9 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         try{
             //TODO: Change this for actual magic
             Page results = listCall.execute().body();
-            Log.d(TAG, results.getResults() + "");
+//            Log.d(TAG, results.getResults() + "");
             for (Result result : results.getResults()) {
                 publishProgress(result);
-
             }
         }catch (Exception e){
             Log.e(TAG, "Error: " + e.toString());
