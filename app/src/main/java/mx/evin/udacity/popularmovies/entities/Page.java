@@ -2,13 +2,11 @@ package mx.evin.udacity.popularmovies.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import mx.evin.udacity.popularmovies.entities.Result;
 
-@Generated("org.jsonschema2pojo")
 public class Page {
 
     @SerializedName("page")
