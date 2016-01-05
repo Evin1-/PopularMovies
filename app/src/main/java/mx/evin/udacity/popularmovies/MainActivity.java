@@ -14,8 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        new RetrieveMovies().execute("vote_average");
+        queryMovieAPI("popularity");
     }
 
     @Override
@@ -32,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.toggle:
                 if (item.getTitle().equals("Order by popularity")){
                     item.setTitle(getString(R.string.menu_toggle_rating));
-//                    queryMovieAPI("popularity");
-                    new RetrieveMovies().execute("popularity");
+                    queryMovieAPI("popularity");
+                    new RetrieveMovies(this).execute("popularity");
                 }else{
                     item.setTitle(getString(R.string.menu_toggle_popularity));
-                    new RetrieveMovies().execute("vote_average");
-//                    queryMovieAPI("vote_average");
+                    new RetrieveMovies(this).execute("vote_average");
+                    queryMovieAPI("vote_average");
                 }
                 return true;
             default:
@@ -46,6 +45,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void queryMovieAPI(String arg){
-        String query = "http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=" + Constants.MDB_API_KEY;
+        new RetrieveMovies(this).execute(arg);
     }
 }
