@@ -6,4 +6,10 @@ package mx.evin.udacity.popularmovies;
 public class Constants {
     //Put your key here
     public static final String MDB_API_KEY = "";
+
+    //Tags
+    public static final String TAG_MAIN = "PopularMoviesTAG_";
+    public static final String TAG_ADAPTER = "TermAdapterTAG_";
+    public static final String TAG_ASYNC = "PopularMoviesAsyncTAG_";
+
 }
