@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,15 +22,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private static final String TAG = Constants.TAG_ADAPTER;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imgPath;
         public TextView txtTitle;
-        public TextView txtPath;
         public TextView txtPopularity;
         public TextView txtRating;
 
         public ViewHolder(View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.rvItemTitle);
-            txtPath = (TextView) itemView.findViewById(R.id.rvItemPath);
+            imgPath = (ImageView) itemView.findViewById(R.id.rvItemPath);
             txtPopularity = (TextView) itemView.findViewById(R.id.rvItemPopularity);
             txtRating = (TextView) itemView.findViewById(R.id.rvItemRating);
 
@@ -69,8 +70,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView txtPath = viewHolder.txtTitle;
         txtPath.setText(result.getTitle());
 
-        TextView txtPopularity = viewHolder.txtPath;
-        txtPopularity.setText(result.getPosterPath());
+        ImageView imgPath = viewHolder.imgPath;
+//        imgPath.setImageResource(result.getPosterPath());
+//        imgPath.setImageResource();
 
         TextView txtRating = viewHolder.txtPopularity;
         txtRating.setText(String.format("%.2f", result.getPopularity()));
