@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PopularMovies</string>
+    <string name="app_name">Popular Movies</string>
     <string name="menuTogglePopularity">Order by popularity</string>
     <string name="menuToggleRating">Order by rating</string>
     <string name="rvItemDescription">Image description</string>
