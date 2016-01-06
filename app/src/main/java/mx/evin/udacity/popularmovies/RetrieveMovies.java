@@ -34,6 +34,11 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         mRecyclerView = (RecyclerView) mActivity.findViewById(R.id.rvMainResults);
     }
 
+    public interface MovieDBService {
+        @GET("/3/discover/movie?vote_count.gte=100")
+        Call<Page> listMovies(@Query("sort_by") String sort_by, @Query("api_key") String api_key);
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -84,10 +89,6 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         mAdapter = new MoviesAdapter(results);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
-    }
-
-    public interface MovieDBService {
-        @GET("/3/discover/movie?vote_count.gte=100")
-        Call<Page> listMovies(@Query("sort_by") String sort_by, @Query("api_key") String api_key);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(5));
     }
 }
