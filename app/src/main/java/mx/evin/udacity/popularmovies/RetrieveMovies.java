@@ -89,6 +89,5 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         mAdapter = new MoviesAdapter(results);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(5));
     }
 }
