@@ -3,4 +3,6 @@
     <string name="menuTogglePopularity">Order by popularity</string>
     <string name="menuToggleRating">Order by rating</string>
     <string name="rvItemDescription">Image description</string>
+    <string name="rvPopularityDescription">Popularity description</string>
+    <string name="rvRatingDescription">Rating description</string>
 </resources>

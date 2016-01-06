@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +25,19 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
     private static final String TAG = Constants.TAG_ASYNC;
     private AppCompatActivity mActivity;
     private ArrayList<Result> mResults;
+    private MoviesAdapter mAdapter;
+    private RecyclerView mRecyclerView;
 
     public RetrieveMovies(AppCompatActivity activity) {
         mActivity = activity;
         mResults = new ArrayList<>();
+        mRecyclerView = (RecyclerView) mActivity.findViewById(R.id.rvMainResults);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        startRecycler(mResults);
     }
 
     @Override
@@ -46,6 +49,7 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
                 .build();
 
         MovieDBService service = retrofit.create(MovieDBService.class);
+
         order = (params.length < 1) ? "popularity.desc" : params[0] + ".desc";
 
         Call<Page> listCall = service.listMovies(order, Constants.MDB_API_KEY);
@@ -53,7 +57,6 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         try{
             //TODO: Change this for actual magic
             Page results = listCall.execute().body();
-//            Log.d(TAG, results.getResults() + "");
             for (Result result : results.getResults()) {
                 publishProgress(result);
             }
@@ -68,7 +71,7 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
     protected void onProgressUpdate(Result... values) {
         super.onProgressUpdate(values);
         mResults.add(values[0]);
-        refresh_recycler(mResults);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -77,13 +80,10 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         Log.d(TAG, "Finished");
     }
 
-    public void refresh_recycler(List<Result> results){
-        RecyclerView recyclerView = (RecyclerView) mActivity.findViewById(R.id.rvMainResults);
-
-        MoviesAdapter adapter = new MoviesAdapter(results);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
-
+    public void startRecycler(List<Result> results){
+        mAdapter = new MoviesAdapter(results);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
     }
 
     public interface MovieDBService {
