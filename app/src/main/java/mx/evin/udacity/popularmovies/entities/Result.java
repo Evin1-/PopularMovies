@@ -1,11 +1,14 @@
 package mx.evin.udacity.popularmovies.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class Result implements Parcelable {
 
     @SerializedName("poster_path")
     @Expose
@@ -302,4 +305,67 @@ public class Result {
         this.voteAverage = voteAverage;
     }
 
+
+    protected Result(Parcel in) {
+        posterPath = in.readString();
+        adult = in.readByte() != 0x00;
+        overview = in.readString();
+        releaseDate = in.readString();
+        if (in.readByte() == 0x01) {
+            genreIds = new ArrayList<Integer>();
+            in.readList(genreIds, Integer.class.getClassLoader());
+        } else {
+            genreIds = null;
+        }
+        id = in.readInt();
+        originalTitle = in.readString();
+        originalLanguage = in.readString();
+        title = in.readString();
+        backdropPath = in.readString();
+        popularity = in.readDouble();
+        voteCount = in.readInt();
+        video = in.readByte() != 0x00;
+        voteAverage = in.readDouble();
+    }
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(posterPath);
+        dest.writeByte((byte) (adult ? 0x01 : 0x00));
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
+        if (genreIds == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(genreIds);
+        }
+        dest.writeInt(id);
+        dest.writeString(originalTitle);
+        dest.writeString(originalLanguage);
+        dest.writeString(title);
+        dest.writeString(backdropPath);
+        dest.writeDouble(popularity);
+        dest.writeInt(voteCount);
+        dest.writeByte((byte) (video ? 0x01 : 0x00));
+        dest.writeDouble(voteAverage);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 }
