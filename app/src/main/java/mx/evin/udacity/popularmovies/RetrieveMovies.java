@@ -23,10 +23,10 @@ import retrofit.http.Query;
 public class RetrieveMovies extends AsyncTask<String, Result, Void>{
 
     private static final String TAG = Constants.TAG_ASYNC;
-    private AppCompatActivity mActivity;
-    private ArrayList<Result> mResults;
+    private final AppCompatActivity mActivity;
+    private final ArrayList<Result> mResults;
     private MoviesAdapter mAdapter;
-    private RecyclerView mRecyclerView;
+    private final RecyclerView mRecyclerView;
 
     public RetrieveMovies(AppCompatActivity activity) {
         mActivity = activity;

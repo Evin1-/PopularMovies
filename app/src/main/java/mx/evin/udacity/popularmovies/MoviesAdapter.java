@@ -25,10 +25,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private static final String TAG = Constants.TAG_ADAPTER;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imgPath;
-        public TextView txtTitle;
-        public TextView txtPopularity;
-        public TextView txtRating;
+        public final ImageView imgPath;
+        public final TextView txtTitle;
+        public final TextView txtPopularity;
+        public final TextView txtRating;
         public Result result;
 
         public ViewHolder(View itemView) {
@@ -53,8 +53,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         }
     }
 
-    private List<Result> mResults;
-    Context context;
+    private final List<Result> mResults;
+    private Context context;
 
     public MoviesAdapter(List<Result> results) {
         mResults = results;
