@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         public TextView txtTitle;
         public TextView txtPopularity;
         public TextView txtRating;
-        public String path;
+        public Result result;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -38,20 +37,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             imgPath = (ImageView) itemView.findViewById(R.id.rvItemPath);
             txtPopularity = (TextView) itemView.findViewById(R.id.rvItemPopularity);
             txtRating = (TextView) itemView.findViewById(R.id.rvItemRating);
-            path = "1";
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d(TAG, "Item clicked " + v.toString());
-                    Log.d(TAG, "Item clicked " + v.toString());
-                    Log.d(TAG, path);
-//                    String url = ((TextView) v.findViewById(R.id.rvItemPath)).getText().toString();
                     Intent intent = new Intent(v.getContext(), DetailsActivity.class);
                     Bundle b = new Bundle();
-//                    b.putInt("key", 1); //Your id
-                    b.putString("key", path);
-                    intent.putExtras(b); //Put your id to your next Intent
+
+                    b.putParcelable("movie", result);
+                    intent.putExtras(b);
                     v.getContext().startActivity(intent);
                 }
             });
@@ -94,7 +88,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView txtRating = viewHolder.txtPopularity;
         txtRating.setText(String.format("%.2f", result.getPopularity()));
 
-        viewHolder.path = base_url + result.getPosterPath();
+        viewHolder.result = result;
 
     }
 

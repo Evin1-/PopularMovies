@@ -7,6 +7,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import mx.evin.udacity.popularmovies.entities.Result;
+
 public class DetailsActivity extends AppCompatActivity {
 
     private static final String TAG = Constants.TAG_DETAILS;
@@ -16,13 +18,19 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        getSupportActionBar().hide();
+        String base_url = "http://image.tmdb.org/t/p/w500/";
+
+        try {
+            getSupportActionBar().hide();
+        } catch (NullPointerException e) {
+            Log.e(TAG, e.toString());
+        }
 
         ImageView imageView = (ImageView) findViewById(R.id.detailsBackgroundImage);
 
         Bundle b = getIntent().getExtras();
-        String url = b.getString("key");
-//        Log.d(TAG, url);
-        Picasso.with(this).load(url).into(imageView);
+        Result movie = b.getParcelable("movie");
+        Log.d(TAG, movie.getTitle());
+        Picasso.with(this).load(base_url + movie.getPosterPath()).into(imageView);
     }
 }
