@@ -11,5 +11,5 @@ public class Constants {
     public static final String TAG_MAIN = "PopularMoviesTAG_";
     public static final String TAG_ADAPTER = "TermAdapterTAG_";
     public static final String TAG_ASYNC = "PopularMoviesAsyncTAG_";
-
+    public static final String TAG_DETAILS = "DetailsTAG_";
 }

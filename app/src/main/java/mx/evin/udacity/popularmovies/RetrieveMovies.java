@@ -66,6 +66,7 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
             }
         }catch (Exception e){
             Log.e(TAG, "Error: " + e.toString());
+            Log.e(TAG, "Make sure you put your API key in Constants.java");
         }
 
         return null;
