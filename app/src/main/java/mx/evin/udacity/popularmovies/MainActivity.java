@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.toggle:
-                if (item.getTitle().equals("Order by popularity")) {
+                if (item.getTitle().equals(getString(R.string.menuTogglePopularity))) {
                     item.setTitle(getString(R.string.menuToggleRating));
                     queryMovieAPI("popularity");
                     new RetrieveMovies(this).execute("popularity");

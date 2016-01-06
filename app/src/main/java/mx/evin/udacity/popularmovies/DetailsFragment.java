@@ -1,6 +1,5 @@
 package mx.evin.udacity.popularmovies;
 
-
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -25,7 +24,6 @@ import mx.evin.udacity.popularmovies.entities.Result;
 public class DetailsFragment extends DialogFragment {
 
     public DetailsFragment() {
-        // Required empty public constructor
     }
 
     public static DetailsFragment newInstance(Result movie) {
@@ -41,7 +39,6 @@ public class DetailsFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_details, container, false);
     }
 
@@ -56,15 +53,15 @@ public class DetailsFragment extends DialogFragment {
         if (movie == null){
             Toast.makeText(getActivity(), "Failed to retrieve movie", Toast.LENGTH_SHORT).show();
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+        }else{
+            ImageView imageView = (ImageView) view.findViewById(R.id.detailsFragmentPoster);
+            Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(imageView);
+
+            ((TextView) view.findViewById(R.id.detailsFragmentTitleTxt)).setText(movie.getTitle());
+            ((TextView) view.findViewById(R.id.detailsFragmentReleaseTxt)).setText(movie.getReleaseDate());
+            ((TextView) view.findViewById(R.id.detailsFragmentVote)).setText(String.format("%.02f", movie.getVoteAverage()));
+            ((TextView) view.findViewById(R.id.detailsFragmentPlot)).setText(movie.getOverview());
         }
-
-        ImageView imageView = (ImageView) view.findViewById(R.id.detailsFragmentPoster);
-        Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(imageView);
-
-        ((TextView) view.findViewById(R.id.detailsFragmentTitleTxt)).setText(movie.getTitle());
-        ((TextView) view.findViewById(R.id.detailsFragmentReleaseTxt)).setText(movie.getReleaseDate());
-        ((TextView) view.findViewById(R.id.detailsFragmentVote)).setText(String.format("%.02f", movie.getVoteAverage()));
-        ((TextView) view.findViewById(R.id.detailsFragmentPlot)).setText(movie.getOverview());
     }
 
     @Override

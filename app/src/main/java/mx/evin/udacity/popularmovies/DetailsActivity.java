@@ -1,8 +1,8 @@
 package mx.evin.udacity.popularmovies;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,11 +19,9 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        try {
-            getSupportActionBar().hide();
-        } catch (NullPointerException e) {
-            Log.e(TAG, e.toString());
-        }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.hide();
 
         ImageView imageView = (ImageView) findViewById(R.id.detailsBackgroundImage);
 
@@ -33,12 +31,11 @@ public class DetailsActivity extends AppCompatActivity {
         if (movie == null){
             Toast.makeText(DetailsActivity.this, "Failed to retrieve movie", Toast.LENGTH_SHORT).show();
             this.finish();
+        }else{
+            Picasso.with(this).load(Constants.BASE_IMG_URL + movie.getPosterPath()).into(imageView);
+
+            DetailsFragment af = DetailsFragment.newInstance(movie);
+            getSupportFragmentManager().beginTransaction().add(af, "about_fragment").commit();
         }
-
-        Picasso.with(this).load(Constants.BASE_IMG_URL + movie.getPosterPath()).into(imageView);
-
-        DetailsFragment af = DetailsFragment.newInstance(movie);
-        getSupportFragmentManager().beginTransaction().add(af, "about_fragment").commit();
-
     }
 }

@@ -3,7 +3,7 @@
     android:id="@+id/card1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:padding="@dimen/recyclerCardPadding"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:id="@+id/rvItemLinear"
@@ -25,30 +25,30 @@
                 android:id="@+id/rvItemTitle"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:padding="5dp"
+                android:padding="@dimen/recyclerTitlePadding"
                 android:background="#39000000"
                 android:layout_alignParentBottom="true"
                 android:textColor="@android:color/white"
-                android:textSize="13sp"
+                android:textSize="@dimen/recyclerTitleSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>
         <LinearLayout
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/recyclerInfoLinearMargin"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp">
             <ImageView
                 android:contentDescription="@string/rvPopularityDescription"
                 android:src="@drawable/elevation_rise"
-                android:layout_margin="2dp"
+                android:layout_margin="@dimen/imageIconMargin"
                 android:layout_gravity="center"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+                android:layout_width="@dimen/imageIconSize"
+                android:layout_height="@dimen/imageIconSize" />
             <TextView
                 android:id="@+id/rvItemPopularity"
-                android:textSize="12sp"
+                android:textSize="@dimen/recyclerInfoSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <LinearLayout
@@ -58,20 +58,19 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/rvItemRating"
-                    android:gravity="end"
                     android:textStyle="bold"
                     android:textColor="@color/colorAccent"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/recyclerInfoSize"
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
                     android:contentDescription="@string/rvRatingDescription"
                     android:src="@drawable/thumb_up"
-                    android:layout_margin="2dp"
+                    android:layout_margin="@dimen/imageIconMargin"
                     android:layout_gravity="center"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp" />
+                    android:layout_width="@dimen/imageIconSize"
+                    android:layout_height="@dimen/imageIconSize" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:padding="@dimen/detailsFragmentPadding"
     android:orientation="vertical"
     tools:context="mx.evin.udacity.popularmovies.DetailsFragment">
 
@@ -10,7 +10,7 @@
         android:id="@+id/detailsFragmentTitleTxt"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="@dimen/detailsFragmentTitleSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -28,7 +28,7 @@
         <TextView
             android:id="@+id/detailsFragmentReleaseTxt"
             android:textColor="@color/colorText"
-            android:textSize="13sp"
+            android:textSize="@dimen/detailsFragmentDateSize"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -41,21 +41,21 @@
                 android:id="@+id/detailsFragmentVote"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:textSize="13sp"
+                android:textSize="@dimen/detailsFragmentRateSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:src="@drawable/thumb_up"
                 android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+                android:layout_margin="@dimen/imageIconMargin"
+                android:layout_width="@dimen/imageIconSize"
+                android:layout_height="@dimen/imageIconSize" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/detailsFragmentPlot"
-        android:textSize="12sp"
+        android:textSize="@dimen/detailsFragmentPlotSize"
         android:textColor="@color/colorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
