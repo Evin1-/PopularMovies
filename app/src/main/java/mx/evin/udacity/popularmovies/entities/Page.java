@@ -5,8 +5,6 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import mx.evin.udacity.popularmovies.entities.Result;
-
 public class Page {
 
     @SerializedName("page")
