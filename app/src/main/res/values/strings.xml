@@ -6,4 +6,5 @@
     <string name="rvPopularityDescription">Popularity description</string>
     <string name="rvRatingDescription">Rating description</string>
     <string name="detailsBackgroundDescription">Background description</string>
+    <string name="detailsPosterDescription">Poster description</string>
 </resources>

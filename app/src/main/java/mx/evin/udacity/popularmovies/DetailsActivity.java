@@ -32,5 +32,10 @@ public class DetailsActivity extends AppCompatActivity {
         Result movie = b.getParcelable("movie");
         Log.d(TAG, movie.getTitle());
         Picasso.with(this).load(base_url + movie.getPosterPath()).into(imageView);
+
+
+        DetailsFragment af = DetailsFragment.newInstance(movie);
+        getSupportFragmentManager().beginTransaction().add(af, "about_fragment").commit();
+
     }
 }
