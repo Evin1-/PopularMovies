@@ -2,9 +2,10 @@ package mx.evin.udacity.popularmovies;
 
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import mx.evin.udacity.popularmovies.entities.Result;
-import retrofit.Retrofit;
 
 
 /**
@@ -38,15 +38,6 @@ public class DetailsFragment extends DialogFragment {
         return fragment;
     }
 
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        Dialog dialog = super.onCreateDialog(savedInstanceState);
-//
-//        // request a window without the title
-//        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-//        return dialog;
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +49,8 @@ public class DetailsFragment extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         Result movie = getArguments().getParcelable("movie");
 
         if (movie == null){
@@ -65,11 +58,10 @@ public class DetailsFragment extends DialogFragment {
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
 
-        getDialog().setTitle(movie.getTitle());
-
         ImageView imageView = (ImageView) view.findViewById(R.id.detailsFragmentPoster);
         Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(imageView);
 
+        ((TextView) view.findViewById(R.id.detailsFragmentTitleTxt)).setText(movie.getTitle());
         ((TextView) view.findViewById(R.id.detailsFragmentReleaseTxt)).setText(movie.getReleaseDate());
         ((TextView) view.findViewById(R.id.detailsFragmentVote)).setText(String.format("%.02f", movie.getVoteAverage()));
         ((TextView) view.findViewById(R.id.detailsFragmentPlot)).setText(movie.getOverview());
@@ -79,5 +71,13 @@ public class DetailsFragment extends DialogFragment {
     public void onDestroyView() {
         super.onDestroyView();
         getActivity().finish();
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
     }
 }
