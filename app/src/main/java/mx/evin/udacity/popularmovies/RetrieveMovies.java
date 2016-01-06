@@ -60,7 +60,6 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
         Call<Page> listCall = service.listMovies(order, Constants.MDB_API_KEY);
 
         try{
-            //TODO: Change this for actual magic
             Page results = listCall.execute().body();
             for (Result result : results.getResults()) {
                 publishProgress(result);
