@@ -18,8 +18,6 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        String base_url = "http://image.tmdb.org/t/p/w500/";
-
         try {
             getSupportActionBar().hide();
         } catch (NullPointerException e) {
@@ -30,9 +28,8 @@ public class DetailsActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         Result movie = b.getParcelable("movie");
-        Log.d(TAG, movie.getTitle());
-        Picasso.with(this).load(base_url + movie.getPosterPath()).into(imageView);
 
+        Picasso.with(this).load(Constants.BASE_IMG_URL + movie.getPosterPath()).into(imageView);
 
         DetailsFragment af = DetailsFragment.newInstance(movie);
         getSupportFragmentManager().beginTransaction().add(af, "about_fragment").commit();

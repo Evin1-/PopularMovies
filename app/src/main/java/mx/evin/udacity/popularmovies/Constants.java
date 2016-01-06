@@ -12,4 +12,7 @@ public class Constants {
     public static final String TAG_ADAPTER = "TermAdapterTAG_";
     public static final String TAG_ASYNC = "PopularMoviesAsyncTAG_";
     public static final String TAG_DETAILS = "DetailsTAG_";
+
+    public static final String BASE_IMG_URL = "http://image.tmdb.org/t/p/w500/";
+    public static final String BASE_API_URL = "http://api.themoviedb.org";
 }

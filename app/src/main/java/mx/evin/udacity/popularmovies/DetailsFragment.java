@@ -57,7 +57,6 @@ public class DetailsFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String base_url = "http://image.tmdb.org/t/p/w500/";
 
         Result movie = getArguments().getParcelable("movie");
 
@@ -69,7 +68,7 @@ public class DetailsFragment extends DialogFragment {
         getDialog().setTitle(movie.getTitle());
 
         ImageView imageView = (ImageView) view.findViewById(R.id.detailsFragmentPoster);
-        Picasso.with(getContext()).load(base_url + movie.getBackdropPath()).into(imageView);
+        Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(imageView);
 
         ((TextView) view.findViewById(R.id.detailsFragmentReleaseTxt)).setText(movie.getReleaseDate());
         ((TextView) view.findViewById(R.id.detailsFragmentVote)).setText(String.format("%.02f", movie.getVoteAverage()));

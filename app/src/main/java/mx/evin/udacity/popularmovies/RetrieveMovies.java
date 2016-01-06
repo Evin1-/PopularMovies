@@ -49,7 +49,7 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
     protected Void doInBackground(String... params) {
         String order;
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.themoviedb.org")
+                .baseUrl(Constants.BASE_API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
