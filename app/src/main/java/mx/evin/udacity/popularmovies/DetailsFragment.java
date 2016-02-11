@@ -29,6 +29,8 @@ import mx.evin.udacity.popularmovies.entities.Result;
  */
 public class DetailsFragment extends DialogFragment {
 
+    // TODO: 2/11/16 Try SnackBar with FullScreenFragment
+
     @Bind(R.id.detailsFragmentTitleTxt)
     TextView mTextViewTitle;
     @Bind(R.id.detailsFragmentReleaseTxt)
@@ -65,6 +67,12 @@ public class DetailsFragment extends DialogFragment {
     public void onAddToFavoritesBtnClick(){
         Activity activity = getActivity();
         Toast.makeText(activity, mTextViewTitle.getText() + activity.getString(R.string.addedToFavoritesSuccess), Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.viewOnYoutubeBtn)
+    public void viewOnYoutubeClick(){
+        Activity activity = getActivity();
+        Toast.makeText(activity, activity.getString(R.string.openingYoutubeApp), Toast.LENGTH_SHORT).show();
     }
 
     @Override
