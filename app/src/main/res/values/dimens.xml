@@ -8,7 +8,7 @@
     <dimen name="detailsFragmentRateSize">11sp</dimen>
 
     <dimen name="imageIconMargin">2dp</dimen>
-    <dimen name="imageIconSize">12dp</dimen>
+    <dimen name="imageIconSize">10dp</dimen>
 
     <dimen name="detailsFragmentPlotSize">10sp</dimen>
 
