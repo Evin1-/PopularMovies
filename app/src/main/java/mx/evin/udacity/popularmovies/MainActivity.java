@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mOrderType = "popularity";
-        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.f_main);
+        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragment);
         mActionBar = getSupportActionBar();
 
         if (savedInstanceState != null && savedInstanceState.containsKey(Constants.RESULTS_KEY)) {

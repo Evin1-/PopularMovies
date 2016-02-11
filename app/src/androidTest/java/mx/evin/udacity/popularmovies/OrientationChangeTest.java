@@ -32,12 +32,12 @@ public class OrientationChangeTest {
     public void testRandomBehavior() {
         changeOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        clickOnRandomItem(R.id.a_main_recycler);
+        clickOnRandomItem(R.id.mainRecycler);
         onView(withId(R.id.addToFavoritesBtn)).perform(click());
 
         pressBack();
 
-        clickOnRandomItem(R.id.a_main_recycler);
+        clickOnRandomItem(R.id.mainRecycler);
         onView(withId(R.id.viewOnYoutubeBtn)).perform(click());
 
         pressBack();

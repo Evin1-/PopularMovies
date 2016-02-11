@@ -25,7 +25,7 @@ import mx.evin.udacity.popularmovies.entities.Result;
 public class MainFragment extends Fragment {
 
 
-    @Bind(R.id.a_main_recycler)
+    @Bind(R.id.mainRecycler)
     RecyclerView mRecyclerView;
 
     private MoviesAdapter mAdapter;
