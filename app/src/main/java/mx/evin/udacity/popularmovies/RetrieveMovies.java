@@ -1,13 +1,9 @@
 package mx.evin.udacity.popularmovies;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import mx.evin.udacity.popularmovies.entities.Page;
 import mx.evin.udacity.popularmovies.entities.Result;
@@ -23,15 +19,12 @@ import retrofit.http.Query;
 public class RetrieveMovies extends AsyncTask<String, Result, Void>{
 
     private static final String TAG = Constants.TAG_ASYNC;
-    private final AppCompatActivity mActivity;
+    private final MainActivity mActivity;
     private final ArrayList<Result> mResults;
-    private MoviesAdapter mAdapter;
-    private final RecyclerView mRecyclerView;
 
-    public RetrieveMovies(AppCompatActivity activity) {
+    public RetrieveMovies(MainActivity activity) {
         mActivity = activity;
         mResults = new ArrayList<>();
-        mRecyclerView = (RecyclerView) mActivity.findViewById(R.id.rvMainResults);
     }
 
     public interface MovieDBService {
@@ -42,7 +35,6 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        startRecycler(mResults);
     }
 
     @Override
@@ -76,18 +68,13 @@ public class RetrieveMovies extends AsyncTask<String, Result, Void>{
     protected void onProgressUpdate(Result... values) {
         super.onProgressUpdate(values);
         mResults.add(values[0]);
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         Log.d(TAG, "Finished");
-    }
 
-    public void startRecycler(List<Result> results){
-        mAdapter = new MoviesAdapter(results);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
+        mActivity.setResults(mResults);
     }
 }
