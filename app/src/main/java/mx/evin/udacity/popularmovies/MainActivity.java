@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: 2/11/16 Change lowercase ids
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

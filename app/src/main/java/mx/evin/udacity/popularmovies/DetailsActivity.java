@@ -18,6 +18,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: 2/11/16 Style details buttons
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
