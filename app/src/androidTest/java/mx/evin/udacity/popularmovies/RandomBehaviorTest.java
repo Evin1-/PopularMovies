@@ -41,21 +41,29 @@ public class RandomBehaviorTest {
     private void clickOnRandomItem(int viewId) {
         int x = getRandomRecyclerPosition(viewId);
 
-        Log.d(TAG, "DoesMainListShowRandom: " + x);
+        Log.d(TAG, "clickOnRandomItem: " + x);
 
         onView(withId(viewId))
-                .perform(RecyclerViewActions
-                        .actionOnItemAtPosition(x, click()));
+                .perform(RecyclerViewActions.scrollToPosition(x), RecyclerViewActions.actionOnItemAtPosition(x, click()));
     }
 
     private int getRandomRecyclerPosition(int recyclerId) {
         Random ran = new Random();
         RecyclerView recyclerView = (RecyclerView) mActivityRule.getActivity().findViewById(recyclerId);
 
-        int n = (recyclerView == null)
+        int n = (recyclerView == null || recyclerView.getAdapter().getItemCount() <= 0)
                 ? 1
-                : recyclerView.getAdapter().getItemCount();
-        return ran.nextInt(n);
+                : recyclerView.getAdapter().getItemCount() / 2;
+
+        int next;
+
+        Log.d(TAG, "getRandomRecyclerPosition: " + n);
+
+        next = (n != 0)
+                ? ran.nextInt(n)
+                : 0;
+
+        return next;
     }
 
 }
