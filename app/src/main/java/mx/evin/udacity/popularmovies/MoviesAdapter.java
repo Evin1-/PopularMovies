@@ -14,9 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Random;
 
 import mx.evin.udacity.popularmovies.entities.Result;
 
@@ -85,10 +87,27 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView txtDescription = viewHolder.txtShortDescription;
         txtDescription.setText(result.getOverview());
 
-        ImageView imgPath = viewHolder.imgPath;
+//
+//        Random random = new Random();
+//        if (random.nextBoolean()){
+//            base_url = "dwa";
+//        }
+
+        final ImageView imgPath = viewHolder.imgPath;
         Picasso.with(context)
                 .load(base_url + result.getBackdropPath())
-                .into(imgPath);
+                .placeholder(R.drawable.large_placeholder)
+                .into(imgPath, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        imgPath.setVisibility(View.GONE);
+                    }
+                });
 
         TextView txtRating = viewHolder.txtPopularity;
         txtRating.setText(String.format("%.2f", result.getPopularity()));
