@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mx.evin.udacity.popularmovies.DetailsActivity">
+
     <ImageView
         android:id="@+id/detailsBackgroundImage"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/detailsBackgroundDescription"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:contentDescription="@string/detailsBackgroundDescription"
+        android:scaleType="centerCrop" />
 
 </merge>

@@ -1,76 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/recyclerCardPadding"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="@dimen/recyclerCardPadding">
+
     <LinearLayout
         android:id="@+id/rvItemLinear"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:id="@+id/rvItemRelative"
-            android:layout_weight="5"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="5">
+
             <ImageView
                 android:id="@+id/rvItemPath"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/rvItemDescription"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:contentDescription="@string/rvItemDescription"
+                android:scaleType="centerCrop" />
+
             <TextView
                 android:id="@+id/rvItemTitle"
-                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#39000000"
                 android:ellipsize="end"
                 android:padding="@dimen/recyclerTitlePadding"
-                android:background="#39000000"
-                android:layout_alignParentBottom="true"
+                android:singleLine="true"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/recyclerTitleSize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/recyclerTitleSize" />
 
         </RelativeLayout>
+
         <LinearLayout
-            android:layout_margin="@dimen/recyclerInfoLinearMargin"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/recyclerInfoLinearMargin"
+            android:layout_weight="1">
+
             <ImageView
-                android:contentDescription="@string/rvPopularityDescription"
-                android:src="@drawable/elevation_rise"
-                android:layout_margin="@dimen/imageIconMargin"
-                android:layout_gravity="center"
                 android:layout_width="@dimen/imageIconSize"
-                android:layout_height="@dimen/imageIconSize" />
+                android:layout_height="@dimen/imageIconSize"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/imageIconMargin"
+                android:contentDescription="@string/rvPopularityDescription"
+                android:src="@drawable/elevation_rise" />
+
             <TextView
                 android:id="@+id/rvItemPopularity"
-                android:textSize="@dimen/recyclerInfoSize"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/recyclerInfoSize" />
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/rvItemRating"
-                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/recyclerInfoSize"
-                    android:layout_gravity="end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
+
                 <ImageView
-                    android:contentDescription="@string/rvRatingDescription"
-                    android:src="@drawable/thumb_up"
-                    android:layout_margin="@dimen/imageIconMargin"
-                    android:layout_gravity="center"
                     android:layout_width="@dimen/imageIconSize"
-                    android:layout_height="@dimen/imageIconSize" />
+                    android:layout_height="@dimen/imageIconSize"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/imageIconMargin"
+                    android:contentDescription="@string/rvRatingDescription"
+                    android:src="@drawable/thumb_up" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

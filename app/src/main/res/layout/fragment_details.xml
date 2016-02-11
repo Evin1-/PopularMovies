@@ -2,63 +2,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/detailsFragmentPadding"
     android:orientation="vertical"
+    android:padding="@dimen/detailsFragmentPadding"
     tools:context="mx.evin.udacity.popularmovies.DetailsFragment">
 
     <TextView
         android:id="@+id/detailsFragmentTitleTxt"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        android:textSize="@dimen/detailsFragmentTitleSize"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/detailsFragmentTitleSize"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/detailsFragmentPoster"
-        android:contentDescription="@string/detailsPosterDescription"
-        android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/detailsPosterDescription"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/detailsFragmentReleaseTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorText"
             android:textSize="@dimen/detailsFragmentDateSize"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textStyle="bold" />
+
         <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="end"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/detailsFragmentVote"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:textSize="@dimen/detailsFragmentRateSize"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/detailsFragmentRateSize"
+                android:textStyle="bold" />
+
             <ImageView
-                android:contentDescription="@string/detailsPosterDescription"
-                android:src="@drawable/thumb_up"
+                android:layout_width="@dimen/imageIconSize"
+                android:layout_height="@dimen/imageIconSize"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/imageIconMargin"
-                android:layout_width="@dimen/imageIconSize"
-                android:layout_height="@dimen/imageIconSize" />
+                android:contentDescription="@string/detailsPosterDescription"
+                android:src="@drawable/thumb_up" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/detailsFragmentPlot"
-        android:textSize="@dimen/detailsFragmentPlotSize"
-        android:textColor="@color/colorText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/detailsFragmentPlotSize" />
 
 </LinearLayout>
