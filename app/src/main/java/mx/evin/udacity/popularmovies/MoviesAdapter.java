@@ -18,7 +18,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.Random;
 
 import mx.evin.udacity.popularmovies.entities.Result;
 
