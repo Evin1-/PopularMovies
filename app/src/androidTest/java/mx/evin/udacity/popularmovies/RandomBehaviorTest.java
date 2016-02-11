@@ -30,6 +30,12 @@ public class RandomBehaviorTest {
     @Test
     public void testRandomBehavior() {
         clickOnRandomItem(R.id.a_main_recycler);
+        onView(withId(R.id.addToFavoritesBtn)).perform(click());
+
+        pressBack();
+
+        clickOnRandomItem(R.id.a_main_recycler);
+        onView(withId(R.id.viewOnYoutubeBtn)).perform(click());
     }
 
     private void clickOnRandomItem(int viewId) {
