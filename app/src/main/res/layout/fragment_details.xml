@@ -65,7 +65,24 @@
         android:id="@+id/detailsFragmentPlot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/placeholderText"
         android:textColor="@color/colorText"
         android:textSize="@dimen/detailsFragmentPlotSize" />
+
+    <Button
+        android:id="@+id/addToFavoritesBtn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:text="@string/addToFavoritesBtn" />
+
+    <Button
+        android:id="@+id/viewOnYoutubeBtn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:text="@string/viewTrailerBtn" />
 
 </LinearLayout>

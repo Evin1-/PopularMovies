@@ -1,5 +1,6 @@
 package mx.evin.udacity.popularmovies;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mx.evin.udacity.popularmovies.entities.Result;
 
 
@@ -57,6 +59,12 @@ public class DetailsFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    @OnClick(R.id.addToFavoritesBtn)
+    public void onAddToFavoritesBtnClick(){
+        Activity activity = getActivity();
+        Toast.makeText(activity, mTextViewTitle.getText() + activity.getString(R.string.addedToFavoritesSuccess), Toast.LENGTH_SHORT).show();
     }
 
     @Override

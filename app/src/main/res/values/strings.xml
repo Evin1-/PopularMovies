@@ -16,4 +16,8 @@
     <string name="retrieveMovieFailedMessage">Failed to retrieve movie</string>
     <string name="internetNotAvailableMessage">Couldn\'t connect. Please check your Internet connection!</string>
     <string name="subtitleOrderedPrefix">"Ordered by "</string>
+
+    <string name="addedToFavoritesSuccess">" added to favorites"</string>
+    <string name="addToFavoritesBtn">Add to favorites</string>
+    <string name="viewTrailerBtn">View Trailer</string>
 </resources>
