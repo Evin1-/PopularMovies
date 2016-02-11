@@ -119,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setResults(ArrayList<Result> results) {
-        mMainFragment.refreshRecycler(results);
+        if (mMainFragment != null){
+            mMainFragment.refreshRecycler(results);
+        }
     }
 }
