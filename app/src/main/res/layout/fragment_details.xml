@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
+            android:text="@string/placeholder_text"
             android:textSize="@dimen/detailsFragmentDateSize"
             android:textStyle="bold" />
 
@@ -44,6 +45,7 @@
                 android:id="@+id/detailsFragmentVote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/placeholder_text"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/detailsFragmentRateSize"
                 android:textStyle="bold" />

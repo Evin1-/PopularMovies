@@ -6,4 +6,5 @@
     <color name="colorText">#D4D4D4</color>
     <color name="colorDarkGray">#9D9D9D</color>
     <color name="colorLightGray">#E8E8E8</color>
+    <color name="colorBlackTitleBackground">#39000000</color>
 </resources>
