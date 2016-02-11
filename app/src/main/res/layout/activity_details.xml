@@ -6,9 +6,9 @@
     tools:context="mx.evin.udacity.popularmovies.DetailsActivity">
 
     <fragment
-        class="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment"
         android:id="@+id/placeholderFragmentId"
+        class="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </merge>
