@@ -3,8 +3,6 @@ package mx.evin.udacity.popularmovies;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,23 +10,17 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import mx.evin.udacity.popularmovies.adapters.MoviesAdapter;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.fragments.MainFragment;
 import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.NetworkMagic;
-import mx.evin.udacity.popularmovies.decorators.SpacesItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.TAG_MAIN;
 
-    private ArrayList<Result> mResults;
-    private MoviesAdapter mAdapter;
-
-    @Bind(R.id.a_main_recycler)
-    RecyclerView mRecyclerView;
+    private MainFragment mMainFragment;
 
     private ActionBar mActionBar;
 
@@ -43,14 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mResults = new ArrayList<>();
         mOrderType = "popularity";
-
+        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.f_main);
         mActionBar = getSupportActionBar();
-        initializeRecycler();
 
         if (savedInstanceState != null && savedInstanceState.containsKey(Constants.RESULTS_KEY)) {
-            setResults(savedInstanceState.<Result>getParcelableArrayList(Constants.RESULTS_KEY));
             if (savedInstanceState.containsKey(Constants.ORDER_TYPE_KEY)) {
                 mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY);
             }
@@ -96,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(Constants.RESULTS_KEY, mResults);
         outState.putString(Constants.ORDER_TYPE_KEY, mOrderType);
 
         super.onSaveInstanceState(outState);
@@ -122,22 +110,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initializeRecycler() {
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(10));
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mAdapter = new MoviesAdapter(mResults);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
     public void queryMovieAPI(String arg) {
         new RetrieveMoviesTask(this).execute(arg);
     }
 
     public void setResults(ArrayList<Result> results) {
-        if (results != null && results.size() > 0 && mResults != null && mAdapter != null) {
-            mResults.clear();
-            mResults.addAll(results);
-            mAdapter.notifyDataSetChanged();
-        }
+        mMainFragment.refreshRecycler(results);
     }
 }
