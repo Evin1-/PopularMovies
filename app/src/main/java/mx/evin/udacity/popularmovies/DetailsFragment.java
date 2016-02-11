@@ -51,7 +51,7 @@ public class DetailsFragment extends DialogFragment {
         Result movie = getArguments().getParcelable("movie");
 
         if (movie == null){
-            Toast.makeText(getActivity(), "Failed to retrieve movie", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.retrieve_movie_failed_message, Toast.LENGTH_SHORT).show();
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }else{
             ImageView imageView = (ImageView) view.findViewById(R.id.detailsFragmentPoster);
