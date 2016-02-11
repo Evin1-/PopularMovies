@@ -74,7 +74,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     @Override
     public void onBindViewHolder(MoviesAdapter.ViewHolder viewHolder, int position) {
         Result result = mResults.get(position);
-        String base_url = "http://image.tmdb.org/t/p/w500/";
+        String base_url = Constants.BASE_IMG_URL;
 
         TextView txtTitle = viewHolder.txtRating;
         txtTitle.setText(String.format("%.3f", result.getVoteAverage()));
