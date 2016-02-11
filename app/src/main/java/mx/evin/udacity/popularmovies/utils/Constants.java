@@ -18,4 +18,6 @@ public class Constants {
 
     public static final String RESULTS_KEY = "results_key_bundle";
     public static final String ORDER_TYPE_KEY = "order_key_bundle";
+    public static final String DEFAULT_SHARED_VALUE = "not_found";
+    public static final String SHARED_PREFERENCES_FILE = "shared_pref_movies";
 }
