@@ -29,6 +29,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         public final TextView txtTitle;
         public final TextView txtPopularity;
         public final TextView txtRating;
+        public final TextView txtShortDescription;
         public Result result;
 
         public ViewHolder(View itemView) {
@@ -37,6 +38,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             imgPath = (ImageView) itemView.findViewById(R.id.rvItemPath);
             txtPopularity = (TextView) itemView.findViewById(R.id.rvItemPopularity);
             txtRating = (TextView) itemView.findViewById(R.id.rvItemRating);
+            txtShortDescription = (TextView) itemView.findViewById(R.id.rvItemShortDescription);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,6 +81,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         TextView txtPath = viewHolder.txtTitle;
         txtPath.setText(result.getTitle());
+
+        TextView txtDescription = viewHolder.txtShortDescription;
+        txtDescription.setText(result.getOverview());
 
         ImageView imgPath = viewHolder.imgPath;
         Picasso.with(context)

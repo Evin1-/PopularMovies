@@ -10,14 +10,13 @@
     <LinearLayout
         android:id="@+id/rvItemLinear"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/rvItemRelative"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/rvItemPath"
@@ -42,31 +41,55 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/recyclerInfoLinearMargin"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="@dimen/imageIconSize"
-                android:layout_height="@dimen/imageIconSize"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/imageIconMargin"
-                android:contentDescription="@string/rvPopularityDescription"
-                android:src="@drawable/elevation_rise"
-                android:tint="@color/colorDarkGray" />
+            android:layout_marginBottom="0dp">
 
             <TextView
-                android:id="@+id/rvItemPopularity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:text="@string/placeholder_text"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="@dimen/recyclerInfoSize" />
-
-            <LinearLayout
+                android:id="@+id/rvItemShortDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/placeholder_text"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/imageIconSize"
+                    android:layout_height="@dimen/imageIconSize"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/imageIconMargin"
+                    android:contentDescription="@string/rvPopularityDescription"
+                    android:src="@drawable/elevation_rise"
+                    android:tint="@color/colorDarkGray" />
+
+                <TextView
+                    android:id="@+id/rvItemPopularity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:text="@string/placeholder_text"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="@dimen/recyclerInfoSize" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:orientation="horizontal">
 
@@ -89,5 +112,6 @@
                     android:src="@drawable/thumb_up" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
