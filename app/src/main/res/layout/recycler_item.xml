@@ -60,7 +60,7 @@
                     android:layout_margin="@dimen/imageIconMargin"
                     android:contentDescription="@string/rvPopularityDescription"
                     android:src="@drawable/ic_equalizer_black_48dp"
-                    android:tint="@color/colorDarkGray" />
+                    android:tint="@color/colorDarkDarkGray" />
 
                 <TextView
                     android:id="@+id/rvItemPopularity"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:text="@string/placeholder_text"
-                    android:textColor="@color/colorDarkGray"
+                    android:textColor="@color/colorDarkDarkGray"
                     android:textSize="@dimen/recyclerInfoSize" />
             </LinearLayout>
 
