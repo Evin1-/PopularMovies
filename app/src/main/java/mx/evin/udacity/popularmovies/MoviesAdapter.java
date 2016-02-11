@@ -87,12 +87,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView txtDescription = viewHolder.txtShortDescription;
         txtDescription.setText(result.getOverview());
 
-//
-//        Random random = new Random();
-//        if (random.nextBoolean()){
-//            base_url = "dwa";
-//        }
-
         final ImageView imgPath = viewHolder.imgPath;
         Picasso.with(context)
                 .load(base_url + result.getBackdropPath())
