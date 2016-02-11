@@ -77,7 +77,9 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
         super.onPostExecute(aVoid);
         Log.d(TAG, "Finished");
 
-        mActivity.setResults(mResults);
+        if (!isCancelled()){
+            mActivity.setResults(mResults);
+        }
         clearReferences();
     }
 

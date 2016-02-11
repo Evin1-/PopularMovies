@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void queryMovieAPI(String arg) {
-        new RetrieveMoviesTask(this).execute(arg);
+        if (NetworkMagic.isNetworkAvailable(this)){
+            new RetrieveMoviesTask(this).execute(arg);
+        }
     }
 
     public void setResults(ArrayList<Result> results) {
