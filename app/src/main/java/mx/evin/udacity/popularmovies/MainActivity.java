@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -78,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
+        if (!NetworkUtils.isNetworkAvailable(this)){
+            Toast.makeText(MainActivity.this, R.string.internetNotAvailableMessage, Toast.LENGTH_SHORT).show();
+            return super.onOptionsItemSelected(item);
+        }
+
         switch (item.getItemId()) {
             case R.id.toggle:
                 toggleOrderType(item);
