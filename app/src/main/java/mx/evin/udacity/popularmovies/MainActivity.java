@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         mActionBar = getSupportActionBar();
         initializeRecycler();
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.mResultsKey)) {
-            setResults(savedInstanceState.<Result>getParcelableArrayList(Constants.mResultsKey));
-            if (savedInstanceState.containsKey(Constants.mOrderTypeKey)) {
-                mOrderType = savedInstanceState.getString(Constants.mOrderTypeKey);
+        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.RESULTS_KEY)) {
+            setResults(savedInstanceState.<Result>getParcelableArrayList(Constants.RESULTS_KEY));
+            if (savedInstanceState.containsKey(Constants.ORDER_TYPE_KEY)) {
+                mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY);
             }
         } else {
             queryMovieAPI(mOrderType);
@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(Constants.mResultsKey, mResults);
-        outState.putString(Constants.mOrderTypeKey, mOrderType);
+        outState.putParcelableArrayList(Constants.RESULTS_KEY, mResults);
+        outState.putString(Constants.ORDER_TYPE_KEY, mOrderType);
 
         super.onSaveInstanceState(outState);
     }
