@@ -51,18 +51,11 @@ public class MainActivity extends AppCompatActivity {
         refreshActionBar();
     }
 
-    private void refreshActionBar() {
-        if (mActionBar != null) {
-            mActionBar.setSubtitle(getString(R.string.subtitleOrderedPrefix) + mOrderType);
-            mActionBar.invalidateOptionsMenu();
-        }
-    }
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (!mOrderType.equals("popularity")){
+        if (!mOrderType.equals("popularity")) {
             menu.findItem(R.id.toggle).setTitle(R.string.menuTogglePopularity);
-        }else {
+        } else {
             menu.findItem(R.id.toggle).setTitle(R.string.menuToggleRating);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -77,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (!NetworkUtils.isNetworkAvailable(this)){
+        if (!NetworkUtils.isNetworkAvailable(this)) {
             Toast.makeText(MainActivity.this, R.string.internetNotAvailableMessage, Toast.LENGTH_SHORT).show();
             return super.onOptionsItemSelected(item);
         }
@@ -89,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList(Constants.mResultsKey, mResults);
+        outState.putString(Constants.mOrderTypeKey, mOrderType);
+
+        super.onSaveInstanceState(outState);
     }
 
     private void toggleOrderType(MenuItem item) {
@@ -104,12 +105,11 @@ public class MainActivity extends AppCompatActivity {
         refreshActionBar();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(Constants.mResultsKey, mResults);
-        outState.putString(Constants.mOrderTypeKey, mOrderType);
-
-        super.onSaveInstanceState(outState);
+    private void refreshActionBar() {
+        if (mActionBar != null) {
+            mActionBar.setSubtitle(getString(R.string.subtitleOrderedPrefix) + mOrderType);
+            mActionBar.invalidateOptionsMenu();
+        }
     }
 
     private void initializeRecycler() {
