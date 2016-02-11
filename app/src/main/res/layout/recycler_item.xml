@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/recyclerInfoLinearMarginSmall"
+            android:layout_marginTop="@dimen/recyclerInfoLinearMarginSmall"
             android:layout_marginRight="@dimen/recyclerInfoLinearMarginSmall">
 
             <LinearLayout
@@ -55,17 +56,17 @@
                 <ImageView
                     android:layout_width="@dimen/imageIconSize"
                     android:layout_height="@dimen/imageIconSize"
-                    android:layout_gravity="center"
+                    android:layout_gravity="bottom"
                     android:layout_margin="@dimen/imageIconMargin"
                     android:contentDescription="@string/rvPopularityDescription"
-                    android:src="@drawable/elevation_rise"
+                    android:src="@drawable/ic_equalizer_black_48dp"
                     android:tint="@color/colorDarkGray" />
 
                 <TextView
                     android:id="@+id/rvItemPopularity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
+                    android:layout_gravity="bottom"
                     android:text="@string/placeholder_text"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="@dimen/recyclerInfoSize" />
@@ -94,7 +95,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/imageIconMargin"
                     android:contentDescription="@string/rvRatingDescription"
-                    android:src="@drawable/thumb_up" />
+                    android:tint="@color/colorAccent"
+                    android:src="@drawable/ic_thumb_up_black_48dp" />
             </LinearLayout>
         </LinearLayout>
 

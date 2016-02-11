@@ -56,7 +56,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/imageIconMargin"
                 android:contentDescription="@string/detailsPosterDescription"
-                android:src="@drawable/thumb_up" />
+                android:tint="@color/colorAccent"
+                android:src="@drawable/ic_thumb_up_black_48dp" />
         </LinearLayout>
     </LinearLayout>
 
