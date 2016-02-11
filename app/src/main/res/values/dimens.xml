@@ -1,16 +1,21 @@
 <resources>
     <dimen name="activity_horizontal_margin">2dp</dimen>
     <dimen name="activity_vertical_margin">2dp</dimen>
+
     <dimen name="detailsFragmentPadding">10dp</dimen>
     <dimen name="detailsFragmentTitleSize">15sp</dimen>
     <dimen name="detailsFragmentDateSize">11sp</dimen>
     <dimen name="detailsFragmentRateSize">11sp</dimen>
+
     <dimen name="imageIconMargin">2dp</dimen>
     <dimen name="imageIconSize">12dp</dimen>
+
     <dimen name="detailsFragmentPlotSize">10sp</dimen>
+
     <dimen name="recyclerInfoSize">10sp</dimen>
     <dimen name="recyclerTitleSize">10sp</dimen>
-    <dimen name="recyclerInfoLinearMargin">3dp</dimen>
+    <dimen name="recyclerInfoLinearMargin">5dp</dimen>
+    <dimen name="recyclerInfoLinearMarginSmall">2dp</dimen>
     <dimen name="recyclerTitlePadding">5dp</dimen>
     <dimen name="recyclerCardPadding">10dp</dimen>
 </resources>

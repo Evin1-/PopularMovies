@@ -42,23 +42,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/recyclerInfoLinearMargin"
-            android:layout_marginBottom="0dp">
-
-            <TextView
-                android:id="@+id/rvItemShortDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@string/placeholder_text"
-                android:textSize="8sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_marginRight="@dimen/recyclerInfoLinearMarginSmall"
+            android:layout_marginLeft="@dimen/recyclerInfoLinearMarginSmall">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -111,6 +96,23 @@
                     android:contentDescription="@string/rvRatingDescription"
                     android:src="@drawable/thumb_up" />
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/recyclerInfoLinearMargin"
+            android:layout_marginBottom="0dp">
+
+            <TextView
+                android:id="@+id/rvItemShortDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/placeholder_text"
+                android:textSize="8sp" />
+
         </LinearLayout>
 
     </LinearLayout>
