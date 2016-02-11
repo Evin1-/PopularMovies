@@ -1,4 +1,4 @@
-package mx.evin.udacity.popularmovies;
+package mx.evin.udacity.popularmovies.utils;
 
 import android.app.Activity;
 import android.content.Context;

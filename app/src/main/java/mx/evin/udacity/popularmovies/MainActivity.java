@@ -14,7 +14,12 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import mx.evin.udacity.popularmovies.adapters.MoviesAdapter;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
+import mx.evin.udacity.popularmovies.utils.Constants;
+import mx.evin.udacity.popularmovies.utils.NetworkUtils;
+import mx.evin.udacity.popularmovies.utils.SpacesItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.TAG_MAIN;
@@ -123,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void queryMovieAPI(String arg) {
-        new RetrieveMovies(this).execute(arg);
+        new RetrieveMoviesTask(this).execute(arg);
     }
 
     public void setResults(ArrayList<Result> results) {

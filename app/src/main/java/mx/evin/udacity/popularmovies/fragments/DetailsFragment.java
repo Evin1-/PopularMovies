@@ -1,4 +1,4 @@
-package mx.evin.udacity.popularmovies;
+package mx.evin.udacity.popularmovies.fragments;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -21,7 +21,9 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.utils.Constants;
 
 
 /**

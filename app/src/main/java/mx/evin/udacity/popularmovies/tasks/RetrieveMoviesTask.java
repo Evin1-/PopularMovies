@@ -1,12 +1,14 @@
-package mx.evin.udacity.popularmovies;
+package mx.evin.udacity.popularmovies.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.ArrayList;
 
+import mx.evin.udacity.popularmovies.MainActivity;
 import mx.evin.udacity.popularmovies.entities.Page;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.utils.Constants;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -16,13 +18,13 @@ import retrofit.http.Query;
 /**
  * Created by evin on 1/3/16.
  */
-public class RetrieveMovies extends AsyncTask<String, Result, Void>{
+public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
 
     private static final String TAG = Constants.TAG_ASYNC;
     private final MainActivity mActivity;
     private final ArrayList<Result> mResults;
 
-    public RetrieveMovies(MainActivity activity) {
+    public RetrieveMoviesTask(MainActivity activity) {
         mActivity = activity;
         mResults = new ArrayList<>();
     }

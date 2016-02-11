@@ -1,4 +1,4 @@
-package mx.evin.udacity.popularmovies;
+package mx.evin.udacity.popularmovies.utils;
 
 /**
  * Created by evin on 1/3/16.

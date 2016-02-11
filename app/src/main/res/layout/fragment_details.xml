@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/detailsFragmentPadding"
-    tools:context="mx.evin.udacity.popularmovies.DetailsFragment">
+    tools:context=".fragments.DetailsFragment">
 
     <TextView
         android:id="@+id/detailsFragmentTitleTxt"

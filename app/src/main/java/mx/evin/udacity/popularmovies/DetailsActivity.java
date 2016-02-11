@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.fragments.DetailsFragment;
+import mx.evin.udacity.popularmovies.utils.Constants;
 
 public class DetailsActivity extends AppCompatActivity {
 

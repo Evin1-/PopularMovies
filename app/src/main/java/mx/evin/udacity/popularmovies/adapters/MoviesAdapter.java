@@ -1,4 +1,4 @@
-package mx.evin.udacity.popularmovies;
+package mx.evin.udacity.popularmovies.adapters;
 
 /**
  * Created by evin on 1/5/16.
@@ -19,7 +19,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import mx.evin.udacity.popularmovies.DetailsActivity;
+import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.utils.Constants;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
