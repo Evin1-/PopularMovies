@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragment);
         mActionBar = getSupportActionBar();
 
+        mMainFragment.setRetainInstance(true);
+
         if (savedInstanceState != null && savedInstanceState.containsKey(Constants.RESULTS_KEY)) {
             if (savedInstanceState.containsKey(Constants.ORDER_TYPE_KEY)) {
                 mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY);

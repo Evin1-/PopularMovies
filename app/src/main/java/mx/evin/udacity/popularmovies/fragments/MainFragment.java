@@ -17,6 +17,7 @@ import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.adapters.MoviesAdapter;
 import mx.evin.udacity.popularmovies.decorators.SpacesItemDecoration;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.utils.Constants;
 
 
 /**
@@ -50,6 +51,9 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mResults = new ArrayList<>();
         initializeRecycler();
+        if (savedInstanceState != null){
+            refreshRecycler(savedInstanceState.<Result>getParcelableArrayList(Constants.RESULTS_KEY));
+        }
     }
 
     private void initializeRecycler() {
@@ -65,5 +69,11 @@ public class MainFragment extends Fragment {
             mResults.addAll(results);
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList(Constants.RESULTS_KEY, mResults);
+        super.onSaveInstanceState(outState);
     }
 }
