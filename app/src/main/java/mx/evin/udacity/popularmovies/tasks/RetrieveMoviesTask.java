@@ -21,8 +21,8 @@ import retrofit.http.Query;
 public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
 
     private static final String TAG = Constants.TAG_ASYNC;
-    private final MainActivity mActivity;
-    private final ArrayList<Result> mResults;
+    private MainActivity mActivity;
+    private ArrayList<Result> mResults;
 
     public RetrieveMoviesTask(MainActivity activity) {
         mActivity = activity;
@@ -78,5 +78,11 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
         Log.d(TAG, "Finished");
 
         mActivity.setResults(mResults);
+        clearReferences();
+    }
+
+    private void clearReferences() {
+        mActivity = null;
+        mResults = null;
     }
 }

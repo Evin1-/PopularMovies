@@ -25,7 +25,6 @@ import mx.evin.udacity.popularmovies.utils.Constants;
  */
 public class MainFragment extends Fragment {
 
-
     @Bind(R.id.mainRecycler)
     RecyclerView mRecyclerView;
 
@@ -35,7 +34,6 @@ public class MainFragment extends Fragment {
     public MainFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
