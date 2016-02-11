@@ -13,16 +13,21 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: 2/10/16 Add placeholder and error Picasso
 
     private static final String TAG = Constants.TAG_MAIN;
-    private ArrayList<Result> mResults;
 
+    private ArrayList<Result> mResults;
     private MoviesAdapter mAdapter;
-    private RecyclerView mRecyclerView;
+
+    @Bind(R.id.rvMainResults)
+    RecyclerView mRecyclerView;
+
     private ActionBar mActionBar;
 
     private String mOrderType;
@@ -32,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+
         mResults = new ArrayList<>();
         mOrderType = "popularity";
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.rvMainResults);
         mActionBar = getSupportActionBar();
         initializeRecycler();
 

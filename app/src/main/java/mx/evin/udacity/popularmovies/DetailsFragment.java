@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 
 
@@ -22,6 +25,17 @@ import mx.evin.udacity.popularmovies.entities.Result;
  * A simple {@link DialogFragment} subclass.
  */
 public class DetailsFragment extends DialogFragment {
+
+    @Bind(R.id.detailsFragmentTitleTxt)
+    TextView mTextViewTitle;
+    @Bind(R.id.detailsFragmentReleaseTxt)
+    TextView mTextViewRelease;
+    @Bind(R.id.detailsFragmentVote)
+    TextView mTextViewVote;
+    @Bind(R.id.detailsFragmentPlot)
+    TextView mTextViewPlot;
+    @Bind(R.id.detailsFragmentPoster)
+    ImageView mImageView;
 
     public DetailsFragment() {
     }
@@ -39,7 +53,9 @@ public class DetailsFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_details, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -50,17 +66,16 @@ public class DetailsFragment extends DialogFragment {
 
         Result movie = getArguments().getParcelable("movie");
 
-        if (movie == null){
+        if (movie == null) {
             Toast.makeText(getActivity(), R.string.retrieveMovieFailedMessage, Toast.LENGTH_SHORT).show();
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-        }else{
-            ImageView imageView = (ImageView) view.findViewById(R.id.detailsFragmentPoster);
-            Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(imageView);
+        } else {
+            Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(mImageView);
 
-            ((TextView) view.findViewById(R.id.detailsFragmentTitleTxt)).setText(movie.getTitle());
-            ((TextView) view.findViewById(R.id.detailsFragmentReleaseTxt)).setText(movie.getReleaseDate());
-            ((TextView) view.findViewById(R.id.detailsFragmentVote)).setText(String.format("%.02f", movie.getVoteAverage()));
-            ((TextView) view.findViewById(R.id.detailsFragmentPlot)).setText(movie.getOverview());
+            mTextViewTitle.setText(movie.getTitle());
+            mTextViewRelease.setText(movie.getReleaseDate());
+            mTextViewVote.setText(String.format("%.02f", movie.getVoteAverage()));
+            mTextViewPlot.setText(movie.getOverview());
         }
     }
 
@@ -70,6 +85,7 @@ public class DetailsFragment extends DialogFragment {
         getActivity().finish();
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
