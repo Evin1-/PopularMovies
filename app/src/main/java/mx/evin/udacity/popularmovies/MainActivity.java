@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import mx.evin.udacity.popularmovies.entities.Result;
 
 public class MainActivity extends AppCompatActivity {
-    // TODO: 2/10/16 Set popularity|rating as variable
     // TODO: 2/10/16 Add placeholder and error Picasso
 
     private static final String TAG = Constants.TAG_MAIN;
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             if (savedInstanceState.containsKey(Constants.mOrderTypeKey)) {
                 mOrderType = savedInstanceState.getString(Constants.mOrderTypeKey);
             }
-            Log.d(TAG, "onCreate: savedInstance " + mOrderType);
         } else {
             queryMovieAPI(mOrderType);
         }
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshActionBar() {
         if (mActionBar != null) {
-            mActionBar.setSubtitle("Ordered by " + mOrderType);
+            mActionBar.setSubtitle(getString(R.string.subtitleOrderedPrefix) + mOrderType);
             mActionBar.invalidateOptionsMenu();
         }
     }
@@ -108,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState: ");
-
         outState.putParcelableArrayList(Constants.mResultsKey, mResults);
         outState.putString(Constants.mOrderTypeKey, mOrderType);
 
