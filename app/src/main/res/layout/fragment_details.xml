@@ -30,8 +30,8 @@
             android:id="@+id/detailsFragmentReleaseTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
             android:text="@string/placeholder_text"
+            android:textColor="@color/colorText"
             android:textSize="@dimen/detailsFragmentDateSize"
             android:textStyle="bold" />
 
@@ -56,8 +56,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/imageIconMargin"
                 android:contentDescription="@string/detailsPosterDescription"
-                android:tint="@color/colorAccent"
-                android:src="@drawable/ic_thumb_up_black_48dp" />
+                android:src="@drawable/ic_thumb_up_black_48dp"
+                android:tint="@color/colorAccent" />
         </LinearLayout>
     </LinearLayout>
 
