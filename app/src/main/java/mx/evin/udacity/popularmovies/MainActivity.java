@@ -18,8 +18,8 @@ import mx.evin.udacity.popularmovies.adapters.MoviesAdapter;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
-import mx.evin.udacity.popularmovies.utils.NetworkUtils;
-import mx.evin.udacity.popularmovies.utils.SpacesItemDecoration;
+import mx.evin.udacity.popularmovies.utils.NetworkMagic;
+import mx.evin.udacity.popularmovies.decorators.SpacesItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.TAG_MAIN;
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (!NetworkUtils.isNetworkAvailable(this)) {
+        if (!NetworkMagic.isNetworkAvailable(this)) {
             Toast.makeText(MainActivity.this, R.string.internetNotAvailableMessage, Toast.LENGTH_SHORT).show();
             return super.onOptionsItemSelected(item);
         }

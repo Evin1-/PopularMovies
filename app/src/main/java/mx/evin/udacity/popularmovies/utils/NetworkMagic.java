@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 /**
  * Created by evin on 2/10/16.
  */
-public class NetworkUtils {
+public class NetworkMagic {
 
     public static boolean isNetworkAvailable(Activity activity) {
         ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
