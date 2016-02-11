@@ -1,8 +1,8 @@
 package mx.evin.udacity.popularmovies;
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
