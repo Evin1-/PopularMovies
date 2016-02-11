@@ -16,6 +16,6 @@ public class Constants {
     public static final String BASE_IMG_URL = "http://image.tmdb.org/t/p/w500/";
     public static final String BASE_API_URL = "http://api.themoviedb.org";
 
-    public static final String mResults_key = "results_key_bundle";
-    public static final String mOrderType_key = "order_key_bundle";
+    public static final String mResultsKey = "results_key_bundle";
+    public static final String mOrderTypeKey = "order_key_bundle";
 }

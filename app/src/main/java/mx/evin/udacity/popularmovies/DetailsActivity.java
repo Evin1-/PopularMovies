@@ -29,7 +29,7 @@ public class DetailsActivity extends AppCompatActivity {
         Result movie = b.getParcelable("movie");
 
         if (movie == null){
-            Toast.makeText(DetailsActivity.this, R.string.retrieve_movie_failed_message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailsActivity.this, R.string.retrieveMovieFailedMessage, Toast.LENGTH_SHORT).show();
             this.finish();
         }else{
             Picasso.with(this).load(Constants.BASE_IMG_URL + movie.getPosterPath()).into(imageView);

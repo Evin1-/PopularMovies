@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         mActionBar = getSupportActionBar();
         initializeRecycler();
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.mResults_key)) {
-            setResults(savedInstanceState.<Result>getParcelableArrayList(Constants.mResults_key));
-            if (savedInstanceState.containsKey(Constants.mOrderType_key)) {
-                mOrderType = savedInstanceState.getString(Constants.mOrderType_key);
+        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.mResultsKey)) {
+            setResults(savedInstanceState.<Result>getParcelableArrayList(Constants.mResultsKey));
+            if (savedInstanceState.containsKey(Constants.mOrderTypeKey)) {
+                mOrderType = savedInstanceState.getString(Constants.mOrderTypeKey);
             }
             Log.d(TAG, "onCreate: savedInstance " + mOrderType);
         } else {
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState: ");
 
-        outState.putParcelableArrayList(Constants.mResults_key, mResults);
-        outState.putString(Constants.mOrderType_key, mOrderType);
+        outState.putParcelableArrayList(Constants.mResultsKey, mResults);
+        outState.putString(Constants.mOrderTypeKey, mOrderType);
 
         super.onSaveInstanceState(outState);
     }
