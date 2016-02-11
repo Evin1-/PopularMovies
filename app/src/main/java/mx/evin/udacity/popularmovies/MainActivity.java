@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeRecycler() {
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(5));
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(10));
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mAdapter = new MoviesAdapter(mResults);
         mRecyclerView.setAdapter(mAdapter);
