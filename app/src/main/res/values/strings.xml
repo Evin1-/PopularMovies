@@ -7,4 +7,5 @@
     <string name="rvRatingDescription">Rating description</string>
     <string name="detailsBackgroundDescription">Background description</string>
     <string name="detailsPosterDescription">Poster description</string>
+    <string name="placeholder_text">Placeholder</string>
 </resources>

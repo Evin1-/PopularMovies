@@ -8,10 +8,10 @@
     <dimen name="detailsFragmentRateSize">13sp</dimen>
     <dimen name="imageIconMargin">2dp</dimen>
     <dimen name="imageIconSize">12dp</dimen>
-    <dimen name="detailsFragmentPlotSize">12sp</dimen>
-    <dimen name="recyclerInfoSize">12sp</dimen>
+    <dimen name="detailsFragmentPlotSize">10sp</dimen>
+    <dimen name="recyclerInfoSize">10sp</dimen>
+    <dimen name="recyclerTitleSize">10sp</dimen>
     <dimen name="recyclerInfoLinearMargin">5dp</dimen>
-    <dimen name="recyclerTitleSize">13sp</dimen>
     <dimen name="recyclerTitlePadding">5dp</dimen>
     <dimen name="recyclerCardPadding">10dp</dimen>
 </resources>
