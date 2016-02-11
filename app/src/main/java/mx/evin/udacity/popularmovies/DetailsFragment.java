@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -70,7 +71,19 @@ public class DetailsFragment extends DialogFragment {
             Toast.makeText(getActivity(), R.string.retrieveMovieFailedMessage, Toast.LENGTH_SHORT).show();
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         } else {
-            Picasso.with(getContext()).load(Constants.BASE_IMG_URL + movie.getBackdropPath()).into(mImageView);
+            Picasso.with(getContext())
+                    .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
+                    .into(mImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            mImageView.setVisibility(View.INVISIBLE);
+                        }
+                    });
 
             mTextViewTitle.setText(movie.getTitle());
             mTextViewRelease.setText(movie.getReleaseDate());

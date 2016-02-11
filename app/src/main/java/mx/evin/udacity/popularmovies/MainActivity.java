@@ -17,8 +17,6 @@ import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 
 public class MainActivity extends AppCompatActivity {
-    // TODO: 2/10/16 Add placeholder and error Picasso
-
     private static final String TAG = Constants.TAG_MAIN;
 
     private ArrayList<Result> mResults;
