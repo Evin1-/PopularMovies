@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Result> mResults;
     private MoviesAdapter mAdapter;
 
-    @Bind(R.id.rvMainResults)
+    @Bind(R.id.a_main_recycler)
     RecyclerView mRecyclerView;
 
     private ActionBar mActionBar;
