@@ -39,10 +39,10 @@ public class DetailsActivity extends AppCompatActivity {
 
         mPlaceholderFragment = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.placeholderFragment);
 
-        if (movie == null){
+        if (movie == null) {
             SnackbarMagic.showSnackbar(mDetailsFrame, R.string.retrieveMovieFailedMessage);
             this.finish();
-        }else{
+        } else {
             mPlaceholderFragment.refreshContent(movie);
         }
     }

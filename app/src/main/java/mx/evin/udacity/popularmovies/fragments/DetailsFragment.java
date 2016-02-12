@@ -52,7 +52,7 @@ public class DetailsFragment extends Fragment {
     @OnClick(R.id.addToFavoritesBtn)
     public void onAddToFavoritesBtnClick() {
         Activity activity = getActivity();
-        if (getView()!= null){
+        if (getView() != null) {
             SnackbarMagic.showSnackbar(getView().getRootView(), R.string.addedToFavoritesSuccess);
         }
     }
@@ -60,7 +60,7 @@ public class DetailsFragment extends Fragment {
     @OnClick(R.id.viewOnYoutubeBtn)
     public void viewOnYoutubeClick() {
         Activity activity = getActivity();
-        if (getView()!= null){
+        if (getView() != null) {
             SnackbarMagic.showSnackbar(getView().getRootView(), R.string.openingYoutubeApp);
         }
     }

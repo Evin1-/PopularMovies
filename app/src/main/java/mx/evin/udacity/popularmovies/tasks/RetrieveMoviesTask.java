@@ -18,7 +18,7 @@ import retrofit.http.Query;
 /**
  * Created by evin on 1/3/16.
  */
-public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
+public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
 
     private static final String TAG = Constants.TAG_ASYNC;
     private MainActivity mActivity;
@@ -53,12 +53,12 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
 
         Call<Page> listCall = service.listMovies(order, Constants.MDB_API_KEY);
 
-        try{
+        try {
             Page results = listCall.execute().body();
             for (Result result : results.getResults()) {
                 publishProgress(result);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e(TAG, "Error: " + e.toString());
             Log.e(TAG, "Make sure you put your API key in Constants.java");
         }
@@ -77,7 +77,7 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void>{
         super.onPostExecute(aVoid);
         Log.d(TAG, "Finished");
 
-        if (!isCancelled() && mActivity != null){
+        if (!isCancelled() && mActivity != null) {
             mActivity.setResults(mResults);
         }
         clearReferences();
