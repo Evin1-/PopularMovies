@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/detailsFragmentPadding"
+    android:background="@color/colorBlackBackground"
     tools:context=".fragments.DetailsFragment">
 
     <TextView
