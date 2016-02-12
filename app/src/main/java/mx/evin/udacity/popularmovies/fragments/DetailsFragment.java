@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -20,14 +19,13 @@ import butterknife.OnClick;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.utils.Constants;
+import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
 
 /**
  * A simple {@link DialogFragment} subclass.
  */
 public class DetailsFragment extends Fragment {
-
-    // TODO: 2/11/16 Try SnackBar with FullScreenFragment
 
     @Bind(R.id.detailsFragmentTitleTxt)
     TextView mTextViewTitle;
@@ -54,18 +52,22 @@ public class DetailsFragment extends Fragment {
     @OnClick(R.id.addToFavoritesBtn)
     public void onAddToFavoritesBtnClick() {
         Activity activity = getActivity();
-        Toast.makeText(activity, mTextViewTitle.getText() + activity.getString(R.string.addedToFavoritesSuccess), Toast.LENGTH_SHORT).show();
+        if (getView()!= null){
+            SnackbarMagic.showSnackbar(getView().getRootView(), R.string.addedToFavoritesSuccess);
+        }
     }
 
     @OnClick(R.id.viewOnYoutubeBtn)
     public void viewOnYoutubeClick() {
         Activity activity = getActivity();
-        Toast.makeText(activity, activity.getString(R.string.openingYoutubeApp), Toast.LENGTH_SHORT).show();
+        if (getView()!= null){
+            SnackbarMagic.showSnackbar(getView().getRootView(), R.string.openingYoutubeApp);
+        }
     }
 
     public void refreshDetails(Result movie) {
         if (movie == null) {
-            Toast.makeText(getActivity(), R.string.retrieveMovieFailedMessage, Toast.LENGTH_SHORT).show();
+            SnackbarMagic.showSnackbar(getView().getRootView(), R.string.retrieveMovieFailedMessage);
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         } else {
             Picasso.with(getContext())

@@ -3,8 +3,6 @@ package mx.evin.udacity.popularmovies.utils;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import mx.evin.udacity.popularmovies.R;
-
 /**
  * Created by evin on 2/11/16.
  */
