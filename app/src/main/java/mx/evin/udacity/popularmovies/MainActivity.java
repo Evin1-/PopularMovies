@@ -135,8 +135,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshDetails(Result result) {
-        if (isTabletLayout()) {
-            Log.d(TAG, "refreshDetails: " + "dwadwa");
+        if (result == null){
+            return;
+        }
+
+        if (isTabletLayout() && mPlaceholderFragment != null) {
+            mPlaceholderFragment.refreshContent(result);
         }else {
             Intent intent = new Intent(this, DetailsActivity.class);
             Bundle b = new Bundle();
