@@ -2,15 +2,19 @@ package mx.evin.udacity.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.fragments.MainFragment;
@@ -18,6 +22,7 @@ import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
 import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.NetworkMagic;
+import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.TAG_MAIN;
@@ -29,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private Result mResult;
 
     private String mOrderType;
+
+    @Bind(R.id.mainFrame)
+    ViewGroup mMainFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleOrderType(MenuItem item) {
         if (!NetworkMagic.isNetworkAvailable(this)) {
-            Toast.makeText(MainActivity.this, R.string.internetNotAvailableMessage, Toast.LENGTH_SHORT).show();
+            SnackbarMagic.showSnackbar(mMainFrame, R.string.internetNotAvailableMessage);
             return;
         }
 
@@ -127,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
     public void queryMovieAPI(String arg) {
         if (NetworkMagic.isNetworkAvailable(this)) {
             new RetrieveMoviesTask(this).execute(arg);
+        } else {
+            SnackbarMagic.showSnackbar(mMainFrame, R.string.internetNotAvailableMessage);
         }
     }
 

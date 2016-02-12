@@ -3,18 +3,24 @@ package mx.evin.udacity.popularmovies;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
 import mx.evin.udacity.popularmovies.utils.Constants;
+import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
 public class DetailsActivity extends AppCompatActivity {
 
     private static final String TAG = Constants.TAG_DETAILS;
 
     private PlaceholderFragment mPlaceholderFragment;
+
+    @Bind(R.id.detailsFrame)
+    ViewGroup mDetailsFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +41,7 @@ public class DetailsActivity extends AppCompatActivity {
         mPlaceholderFragment = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.placeholderFragment);
 
         if (movie == null){
-            Toast.makeText(DetailsActivity.this, R.string.retrieveMovieFailedMessage, Toast.LENGTH_SHORT).show();
+            SnackbarMagic.showSnackbar(mDetailsFrame, R.string.retrieveMovieFailedMessage);
             this.finish();
         }else{
             mPlaceholderFragment.refreshContent(movie);
