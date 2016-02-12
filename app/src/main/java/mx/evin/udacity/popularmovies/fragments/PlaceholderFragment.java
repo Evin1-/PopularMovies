@@ -26,6 +26,7 @@ public class PlaceholderFragment extends Fragment {
     ImageView mImageView;
 
     private Result mResult;
+    private DetailsFragment mDetailsFragment;
 
     public PlaceholderFragment() {
         // Required empty public constructor
@@ -40,10 +41,21 @@ public class PlaceholderFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mDetailsFragment = (DetailsFragment) getChildFragmentManager().findFragmentById(R.id.detailsFragment);
+    }
+
     public void refreshContent(Result result) {
         mResult = result;
 
-        drawBackgroundImage();
+        if (mImageView != null){
+            drawBackgroundImage();
+        }
+        if (mDetailsFragment != null){
+            mDetailsFragment.refreshDetails(result);
+        }
     }
 
     private void drawBackgroundImage() {

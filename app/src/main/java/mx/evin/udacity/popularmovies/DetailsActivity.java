@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
-import mx.evin.udacity.popularmovies.fragments.DetailsFragment;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
 import mx.evin.udacity.popularmovies.utils.Constants;
 
@@ -40,9 +39,6 @@ public class DetailsActivity extends AppCompatActivity {
             this.finish();
         }else{
             mPlaceholderFragment.refreshContent(movie);
-
-            DetailsFragment af = DetailsFragment.newInstance(movie);
-            getSupportFragmentManager().beginTransaction().add(af, Constants.DETAILS_FRAGMENT_TAG).commit();
         }
     }
 }
