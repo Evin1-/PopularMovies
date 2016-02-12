@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -24,6 +25,8 @@ public class PlaceholderFragment extends Fragment {
     @Bind(R.id.detailsBackgroundImage)
     ImageView mImageView;
 
+    private Result mResult;
+
     public PlaceholderFragment() {
         // Required empty public constructor
     }
@@ -38,6 +41,20 @@ public class PlaceholderFragment extends Fragment {
     }
 
     public void refreshContent(Result result) {
-        Picasso.with(getContext()).load(Constants.BASE_IMG_URL + result.getPosterPath()).into(mImageView);
+        mResult = result;
+
+        Picasso.with(getContext())
+                .load(Constants.BASE_IMG_URL + mResult.getPosterPath())
+                .into(mImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        mImageView.setVisibility(View.INVISIBLE);
+                    }
+                });
     }
 }
