@@ -39,6 +39,7 @@ public class DetailsFragment extends Fragment {
     ImageView mImageView;
 
     public DetailsFragment() {
+
     }
 
     @Override
@@ -67,7 +68,9 @@ public class DetailsFragment extends Fragment {
 
     public void refreshDetails(Result movie) {
         if (movie == null) {
-            SnackbarMagic.showSnackbar(getView().getRootView(), R.string.retrieveMovieFailedMessage);
+            if (getView() != null){
+                SnackbarMagic.showSnackbar(getView().getRootView(), R.string.retrieveMovieFailedMessage);
+            }
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         } else {
             Picasso.with(getContext())

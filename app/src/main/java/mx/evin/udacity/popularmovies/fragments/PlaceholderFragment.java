@@ -29,7 +29,7 @@ public class PlaceholderFragment extends Fragment {
     private DetailsFragment mDetailsFragment;
 
     public PlaceholderFragment() {
-        // Required empty public constructor
+
     }
 
 
