@@ -75,6 +75,7 @@ public class DetailsFragment extends Fragment {
         } else {
             Picasso.with(getContext())
                     .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
+                    .placeholder(R.drawable.large_placeholder)
                     .into(mImageView, new Callback() {
                         @Override
                         public void onSuccess() {
