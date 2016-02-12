@@ -1,6 +1,7 @@
 package mx.evin.udacity.popularmovies.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,14 +33,25 @@ public class MainFragment extends Fragment {
     private MoviesAdapter mAdapter;
     private ArrayList<Result> mResults;
 
+    private ActivityCallback mCallback;
+
     public MainFragment() {
-        // Required empty public constructor
+
+    }
+
+    public interface ActivityCallback {
+        public void onEmptyResults();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallback = (ActivityCallback) context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -50,7 +62,7 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mResults = new ArrayList<>();
         initializeRecycler();
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             refreshRecycler(savedInstanceState.<Result>getParcelableArrayList(Constants.RESULTS_KEY));
         }
     }
@@ -67,6 +79,8 @@ public class MainFragment extends Fragment {
             mResults.clear();
             mResults.addAll(results);
             mAdapter.notifyDataSetChanged();
+        }else {
+            mCallback.onEmptyResults();
         }
     }
 

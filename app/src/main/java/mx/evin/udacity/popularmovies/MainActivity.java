@@ -21,7 +21,7 @@ import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.NetworkMagic;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.ActivityCallback{
     private static final String TAG = Constants.TAG_MAIN;
 
     private MainFragment mMainFragment;
@@ -102,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
             outState.putParcelable(Constants.RESULT_TEMP_KEY, mResult);
         }
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onEmptyResults() {
+        queryMovieAPI(mOrderType);
     }
 
     private void toggleOrderType(MenuItem item) {

@@ -8,7 +8,9 @@ import android.view.View;
  */
 public class SnackbarMagic {
     public static void showSnackbar(View anchor, int messageId) {
-        Snackbar snackbar = Snackbar.make(anchor, messageId, Snackbar.LENGTH_LONG);
-        snackbar.show();
+        if (anchor != null){
+            Snackbar snackbar = Snackbar.make(anchor, messageId, Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
     }
 }
