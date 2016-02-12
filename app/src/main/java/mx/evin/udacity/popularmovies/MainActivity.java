@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
 
     public void queryMovieAPI(String arg) {
         if (NetworkMagic.isNetworkAvailable(this)) {
+            arg = (arg == null) ? "popularity" : arg;
             new RetrieveMoviesTask(this).execute(arg);
         } else {
             SnackbarMagic.showSnackbar(mMainFrame, R.string.internetNotAvailableMessage);
