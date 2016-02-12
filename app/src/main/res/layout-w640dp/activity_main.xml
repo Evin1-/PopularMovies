@@ -14,7 +14,7 @@
         tools:layout="@layout/fragment_main" />
 
     <fragment
-        android:id="@+id/placeholderFragmentId"
+        android:id="@+id/placeholderFragment"
         class="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"

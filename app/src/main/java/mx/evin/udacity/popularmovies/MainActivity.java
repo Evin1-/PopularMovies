@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.fragments.MainFragment;
+import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
 import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.NetworkMagic;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.TAG_MAIN;
 
     private MainFragment mMainFragment;
+    private PlaceholderFragment mPlaceholderFragment;
 
     private ActionBar mActionBar;
 
@@ -36,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mOrderType = "popularity";
-        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragment);
         mActionBar = getSupportActionBar();
+
+        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragment);
+        mPlaceholderFragment = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.placeholderFragment);
 
         mMainFragment.setRetainInstance(true);
 
@@ -81,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString(Constants.ORDER_TYPE_KEY, mOrderType);
-
         super.onSaveInstanceState(outState);
     }
 
@@ -120,5 +123,12 @@ public class MainActivity extends AppCompatActivity {
         if (mMainFragment != null) {
             mMainFragment.refreshRecycler(results);
         }
+        if (isTabletLayout() && results != null && results.size() > 0){
+            mPlaceholderFragment.refreshContent(results.get(0));
+        }
+    }
+
+    private boolean isTabletLayout(){
+        return mPlaceholderFragment != null && mPlaceholderFragment.isAdded();
     }
 }

@@ -6,7 +6,7 @@
     tools:context="mx.evin.udacity.popularmovies.DetailsActivity">
 
     <fragment
-        android:id="@+id/placeholderFragmentId"
+        android:id="@+id/placeholderFragment"
         class="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
