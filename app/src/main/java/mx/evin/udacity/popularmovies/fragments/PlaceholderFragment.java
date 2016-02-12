@@ -43,6 +43,10 @@ public class PlaceholderFragment extends Fragment {
     public void refreshContent(Result result) {
         mResult = result;
 
+        drawBackgroundImage();
+    }
+
+    private void drawBackgroundImage() {
         Picasso.with(getContext())
                 .load(Constants.BASE_IMG_URL + mResult.getPosterPath())
                 .into(mImageView, new Callback() {

@@ -42,7 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
             mPlaceholderFragment.refreshContent(movie);
 
             DetailsFragment af = DetailsFragment.newInstance(movie);
-            getSupportFragmentManager().beginTransaction().add(af, "about_fragment").commit();
+            getSupportFragmentManager().beginTransaction().add(af, Constants.DETAILS_FRAGMENT_TAG).commit();
         }
     }
 }
