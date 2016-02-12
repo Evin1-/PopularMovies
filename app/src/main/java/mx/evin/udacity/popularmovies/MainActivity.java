@@ -147,8 +147,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         if (mMainFragment != null) {
             mMainFragment.refreshRecycler(results);
         }
-        if (isTabletLayout() && results != null && results.size() > 0) {
-            refreshDetails(results.get(0));
+        if (results != null && results.size() > 0) {
+            if (isTabletLayout()){
+                refreshDetails(results.get(0));
+            }else {
+                mResult = results.get(0);
+            }
         }
     }
 

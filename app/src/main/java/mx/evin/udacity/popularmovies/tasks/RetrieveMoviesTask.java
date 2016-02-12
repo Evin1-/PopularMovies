@@ -60,7 +60,6 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
             }
         } catch (Exception e) {
             Log.e(TAG, "Error: " + e.toString());
-            Log.e(TAG, "Make sure you put your API key in Constants.java");
         }
 
         return null;
@@ -75,7 +74,6 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        Log.d(TAG, "Finished");
 
         if (!isCancelled() && mActivity != null) {
             mActivity.setResults(mResults);
