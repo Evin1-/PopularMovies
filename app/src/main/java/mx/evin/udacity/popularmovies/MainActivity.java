@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private PlaceholderFragment mPlaceholderFragment;
 
     private ActionBar mActionBar;
+    private Result mResult;
 
     private String mOrderType;
 
@@ -47,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
         mMainFragment.setRetainInstance(true);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.ORDER_TYPE_KEY)) {
-            mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY);
+        if (savedInstanceState != null) {
+            mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY, "popularity");
+            if (savedInstanceState.containsKey(Constants.RESULT_TEMP_KEY)) {
+                mResult = savedInstanceState.getParcelable(Constants.RESULT_TEMP_KEY);
+                refreshPlaceholderFragment(mResult);
+            }
         } else {
             queryMovieAPI(mOrderType);
         }
@@ -86,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(Constants.ORDER_TYPE_KEY, mOrderType);
+        if (mOrderType != null) {
+            outState.putString(Constants.ORDER_TYPE_KEY, mOrderType);
+        }
+        if (mResult != null) {
+            outState.putParcelable(Constants.RESULT_TEMP_KEY, mResult);
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -125,29 +134,37 @@ public class MainActivity extends AppCompatActivity {
         if (mMainFragment != null) {
             mMainFragment.refreshRecycler(results);
         }
-        if (isTabletLayout() && results != null && results.size() > 0){
-            mPlaceholderFragment.refreshContent(results.get(0));
+        if (isTabletLayout() && results != null && results.size() > 0) {
+            refreshDetails(results.get(0));
         }
     }
 
-    private boolean isTabletLayout(){
+    private boolean isTabletLayout() {
         return mPlaceholderFragment != null && mPlaceholderFragment.isAdded();
     }
 
     public void refreshDetails(Result result) {
-        if (result == null){
+        if (result == null) {
             return;
         }
 
-        if (isTabletLayout() && mPlaceholderFragment != null) {
-            mPlaceholderFragment.refreshContent(result);
-        }else {
+        mResult = result;
+
+        if (isTabletLayout()) {
+            refreshPlaceholderFragment(mResult);
+        } else {
             Intent intent = new Intent(this, DetailsActivity.class);
             Bundle b = new Bundle();
 
-            b.putParcelable("movie", result);
+            b.putParcelable("movie", mResult);
             intent.putExtras(b);
             startActivity(intent);
+        }
+    }
+
+    private void refreshPlaceholderFragment(Result result) {
+        if (mPlaceholderFragment != null) {
+            mPlaceholderFragment.refreshContent(result);
         }
     }
 }

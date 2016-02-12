@@ -21,4 +21,5 @@ public class Constants {
     public static final String DEFAULT_SHARED_VALUE = "not_found";
     public static final String SHARED_PREFERENCES_FILE = "shared_pref_movies";
     public static final String DETAILS_FRAGMENT_TAG = "details_fragment_tag";
+    public static final String RESULT_TEMP_KEY = "result_temp_key";
 }

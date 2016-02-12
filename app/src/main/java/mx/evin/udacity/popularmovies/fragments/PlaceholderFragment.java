@@ -50,10 +50,10 @@ public class PlaceholderFragment extends Fragment {
     public void refreshContent(Result result) {
         mResult = result;
 
-        if (mImageView != null){
+        if (mImageView != null && mResult != null) {
             drawBackgroundImage();
         }
-        if (mDetailsFragment != null){
+        if (mDetailsFragment != null) {
             mDetailsFragment.refreshDetails(result);
         }
     }

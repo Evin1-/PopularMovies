@@ -11,7 +11,7 @@
     <string name="detailsBackgroundDescription">Background description</string>
 
     <string name="detailsPosterDescription">Poster description</string>
-    <string name="placeholderText">Placeholder</string>
+    <string name="placeholderText">Loading&#8230;</string>
 
     <string name="retrieveMovieFailedMessage">Failed to retrieve movie</string>
     <string name="internetNotAvailableMessage">Couldn\'t connect. Please check your Internet connection!</string>
