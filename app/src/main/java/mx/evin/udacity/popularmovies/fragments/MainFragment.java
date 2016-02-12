@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import mx.evin.udacity.popularmovies.MainActivity;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.adapters.MoviesAdapter;
 import mx.evin.udacity.popularmovies.decorators.SpacesItemDecoration;
@@ -57,7 +58,7 @@ public class MainFragment extends Fragment {
     private void initializeRecycler() {
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(10));
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mAdapter = new MoviesAdapter(mResults);
+        mAdapter = new MoviesAdapter((MainActivity) getActivity(), mResults);
         mRecyclerView.setAdapter(mAdapter);
     }
 

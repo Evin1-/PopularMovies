@@ -1,8 +1,10 @@
 package mx.evin.udacity.popularmovies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -130,5 +132,18 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isTabletLayout(){
         return mPlaceholderFragment != null && mPlaceholderFragment.isAdded();
+    }
+
+    public void refreshDetails(Result result) {
+        if (isTabletLayout()) {
+            Log.d(TAG, "refreshDetails: " + "dwadwa");
+        }else {
+            Intent intent = new Intent(this, DetailsActivity.class);
+            Bundle b = new Bundle();
+
+            b.putParcelable("movie", result);
+            intent.putExtras(b);
+            startActivity(intent);
+        }
     }
 }

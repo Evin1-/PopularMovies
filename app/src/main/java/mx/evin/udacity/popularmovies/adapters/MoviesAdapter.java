@@ -4,9 +4,6 @@ package mx.evin.udacity.popularmovies.adapters;
  * Created by evin on 1/5/16.
  */
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import mx.evin.udacity.popularmovies.DetailsActivity;
+import mx.evin.udacity.popularmovies.MainActivity;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.utils.Constants;
@@ -27,8 +24,10 @@ import mx.evin.udacity.popularmovies.utils.Constants;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
     private static final String TAG = Constants.TAG_ADAPTER;
+    private final List<Result> mResults;
+    private MainActivity mMainActivity;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public final ImageView imgPath;
         public final TextView txtTitle;
         public final TextView txtPopularity;
@@ -47,29 +46,21 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailsActivity.class);
-                    Bundle b = new Bundle();
-
-                    b.putParcelable("movie", result);
-                    intent.putExtras(b);
-                    v.getContext().startActivity(intent);
+                    mMainActivity.refreshDetails(result);
                 }
             });
 
         }
     }
 
-    private final List<Result> mResults;
-    private Context context;
-
-    public MoviesAdapter(List<Result> results) {
+    public MoviesAdapter(MainActivity mainActivity, List<Result> results) {
+        mMainActivity = mainActivity;
         mResults = results;
     }
 
     @Override
     public MoviesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View termView = inflater.inflate(R.layout.recycler_item, parent, false);
 
         return new ViewHolder(termView);
@@ -90,7 +81,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         txtDescription.setText(result.getOverview());
 
         final ImageView imgPath = viewHolder.imgPath;
-        Picasso.with(context)
+        Picasso.with(mMainActivity)
                 .load(base_url + result.getBackdropPath())
                 .placeholder(R.drawable.large_placeholder)
                 .into(imgPath, new Callback() {
