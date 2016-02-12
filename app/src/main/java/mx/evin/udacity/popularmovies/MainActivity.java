@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO: 2/11/16 Change lowercase ids
+        // TODO: 2/11/16 Add ProgressBar
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -41,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         mMainFragment.setRetainInstance(true);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.RESULTS_KEY)) {
-            if (savedInstanceState.containsKey(Constants.ORDER_TYPE_KEY)) {
-                mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY);
-            }
+        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.ORDER_TYPE_KEY)) {
+            mOrderType = savedInstanceState.getString(Constants.ORDER_TYPE_KEY);
         } else {
             queryMovieAPI(mOrderType);
         }
@@ -71,11 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (!NetworkMagic.isNetworkAvailable(this)) {
-            Toast.makeText(MainActivity.this, R.string.internetNotAvailableMessage, Toast.LENGTH_SHORT).show();
-            return super.onOptionsItemSelected(item);
-        }
-
         switch (item.getItemId()) {
             case R.id.toggle:
                 toggleOrderType(item);
@@ -93,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toggleOrderType(MenuItem item) {
+        if (!NetworkMagic.isNetworkAvailable(this)) {
+            Toast.makeText(MainActivity.this, R.string.internetNotAvailableMessage, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (item.getTitle().equals(getString(R.string.menuTogglePopularity))) {
             item.setTitle(getString(R.string.menuToggleRating));
             mOrderType = "popularity";
@@ -113,13 +111,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void queryMovieAPI(String arg) {
-        if (NetworkMagic.isNetworkAvailable(this)){
+        if (NetworkMagic.isNetworkAvailable(this)) {
             new RetrieveMoviesTask(this).execute(arg);
         }
     }
 
     public void setResults(ArrayList<Result> results) {
-        if (mMainFragment != null){
+        if (mMainFragment != null) {
             mMainFragment.refreshRecycler(results);
         }
     }
