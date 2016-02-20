@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/11/16 Add ProgressBar
+        // TODO: 2/19/16 Check SnackBar in portrait details
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
