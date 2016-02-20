@@ -9,6 +9,7 @@ import mx.evin.udacity.popularmovies.MainActivity;
 import mx.evin.udacity.popularmovies.entities.Page;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.utils.Constants;
+import mx.evin.udacity.popularmovies.utils.Keys;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -51,7 +52,7 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
 
         order = (params.length < 1) ? "popularity.desc" : params[0] + ".desc";
 
-        Call<Page> listCall = service.listMovies(order, Constants.MDB_API_KEY);
+        Call<Page> listCall = service.listMovies(order, Keys.MDB_API_KEY);
 
         try {
             Page results = listCall.execute().body();
