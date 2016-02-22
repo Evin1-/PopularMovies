@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/11/16 Add ProgressBar
-        // TODO: 2/19/16 Check SnackBar in portrait details
+        // TODO: 2/22/16 Implement SwipeRefreshLayout
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (!mOrderType.equals("popularity")) {
-            menu.findItem(R.id.toggle).setTitle(R.string.menuTogglePopularity);
+            menu.findItem(R.id.menu_toggle).setTitle(R.string.menuTogglePopularity);
         } else {
-            menu.findItem(R.id.toggle).setTitle(R.string.menuToggleRating);
+            menu.findItem(R.id.menu_toggle).setTitle(R.string.menuToggleRating);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -109,9 +109,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toggle:
+            case R.id.menu_toggle:
                 toggleOrderType(item);
                 return true;
+            case R.id.menu_favs:
+                Log.d(TAG, "onOptionsItemSelected: " + item);
             default:
                 return super.onOptionsItemSelected(item);
         }

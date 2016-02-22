@@ -21,4 +21,5 @@
     <string name="addToFavoritesBtn">Add to favorites</string>
     <string name="viewTrailerBtn">View Trailer</string>
     <string name="openingYoutubeApp">Opening Video App</string>
+    <string name="menuFavs">Show favorites</string>
 </resources>
