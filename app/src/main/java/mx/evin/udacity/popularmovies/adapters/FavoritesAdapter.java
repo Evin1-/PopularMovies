@@ -48,6 +48,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "onClick: " + result);
                     mFavoritesActivity.refreshDetails(result);
                 }
             });
@@ -67,49 +68,19 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             @Override
             public void bindView(View view, Context context, Cursor cursor) {
 
-//                Result result = mResults.get(position);
-//
-//                TextView txtTitle = (TextView) view.findViewById(R.id.rvItemTitle);
-//                txtTitle.setText(String.format("%.3f", result.getVoteAverage()));
-//
-//                TextView txtPath = (TextView) view.findViewById(R.id.rvItemTitle);
-//                txtPath.setText(result.getTitle());
-//
-//                TextView txtDescription = viewHolder.txtShortDescription;
-//                txtDescription.setText(result.getOverview());
-//
-//                final ImageView imgPath = viewHolder.imgPath;
-//                Picasso.with(mFavoritesActivity)
-//                        .load(base_url + result.getBackdropPath())
-//                        .placeholder(R.drawable.large_placeholder)
-//                        .into(imgPath, new Callback() {
-//                            @Override
-//                            public void onSuccess() {
-//
-//                            }
-//
-//                            @Override
-//                            public void onError() {
-//                                imgPath.setVisibility(View.GONE);
-//                            }
-//                        });
-//
-//                TextView txtRating = viewHolder.txtPopularity;
-//                txtRating.setText(String.format("%.2f", result.getPopularity()));
-//
-//                viewHolder.result = result;
-
                 TextView txtTitle = (TextView) view.findViewById(R.id.rvItemTitle);
                 txtTitle.setText(cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_TITLE)));
-
-                TextView txtRating = (TextView) view.findViewById(R.id.rvItemRating);
-                txtRating.setText(cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_RATING)));
 
                 TextView txtDescription = (TextView) view.findViewById(R.id.rvItemShortDescription);
                 txtDescription.setText(cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_SYNOPSIS)));
 
                 TextView txtPopularity = (TextView) view.findViewById(R.id.rvItemPopularity);
-                txtPopularity.setText(cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_POPULARITY)));
+                Float popularityFloat = Float.valueOf(cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_POPULARITY)));
+                txtPopularity.setText(String.format("%.3f", popularityFloat));
+
+                TextView txtRating = (TextView) view.findViewById(R.id.rvItemRating);
+                Float ratingFloat = Float.valueOf(cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_RATING)));
+                txtRating.setText(String.format("%.2f", ratingFloat));
 
                 String base_url = Constants.BASE_IMG_URL;
                 final ImageView imgPath = (ImageView) view.findViewById(R.id.rvItemPath);
@@ -127,8 +98,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
                                 imgPath.setVisibility(View.GONE);
                             }
                         });
-
-                Log.d(TAG, "bindView: " + cursor.getString(0));
             }
         };
     }
@@ -141,14 +110,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
     @Override
     public void onBindViewHolder(FavoritesAdapter.ViewHolder viewHolder, int position) {
-        mCursorAdapter.getCursor().moveToPosition(position);
-//        viewHolder.result = buildResult(mCursorAdapter.getCursor());
-        mCursorAdapter.bindView(viewHolder.itemView, mFavoritesActivity.getApplicationContext(), mCursorAdapter.getCursor());
-    }
+        Cursor cursor = mCursorAdapter.getCursor();
 
-//    private Result buildResult(Cursor cursor) {
-////        return new Result();
-//    }
+        cursor.moveToPosition(position);
+        viewHolder.result = Result.buildResult(cursor);
+        mCursorAdapter.bindView(viewHolder.itemView, mFavoritesActivity.getApplicationContext(), cursor);
+    }
 
     @Override
     public int getItemCount() {

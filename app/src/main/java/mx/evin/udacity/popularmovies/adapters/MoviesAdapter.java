@@ -74,14 +74,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView txtTitle = viewHolder.txtTitle;
         txtTitle.setText(result.getTitle());
 
-        TextView txtRating = viewHolder.txtRating;
-        txtRating.setText(String.format("%.3f", result.getVoteAverage()));
-
         TextView txtDescription = viewHolder.txtShortDescription;
         txtDescription.setText(result.getOverview());
 
         TextView txtPopularity = viewHolder.txtPopularity;
-        txtPopularity.setText(String.format("%.2f", result.getPopularity()));
+        txtPopularity.setText(String.format("%.3f", result.getPopularity()));
+
+        TextView txtRating = viewHolder.txtRating;
+        txtRating.setText(String.format("%.2f", result.getVoteAverage()));
 
         final ImageView imgPath = viewHolder.imgPath;
         Picasso.with(mMainActivity)
