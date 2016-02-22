@@ -19,4 +19,7 @@
     <dimen name="recyclerInfoLinearMarginSmall">2dp</dimen>
     <dimen name="recyclerTitlePadding">5dp</dimen>
     <dimen name="recyclerCardPadding">10dp</dimen>
+
+    <dimen name="isFavoriteIconWidth">15dp</dimen>
+    <dimen name="isFavoriteIconMargin">5dp</dimen>
 </resources>

@@ -2,18 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBlackBackground"
     android:orientation="vertical"
     android:padding="@dimen/detailsFragmentPadding"
-    android:background="@color/colorBlackBackground"
     tools:context=".fragments.DetailsFragment">
 
-    <TextView
-        android:id="@+id/detailsFragmentTitleTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorAccentLight"
-        android:textSize="@dimen/detailsFragmentTitleSize"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/detailsFragmentTitleTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/placeholderText"
+            android:textColor="@color/colorAccentLight"
+            android:textSize="@dimen/detailsFragmentTitleSize"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/detailsFragmentIsFavoriteIcon"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/isFavoriteIconWidth"
+            android:layout_margin="@dimen/isFavoriteIconMargin"
+            android:layout_weight="1"
+            android:contentDescription="@string/detailsIsFavoriteIconDescription"
+            android:src="@drawable/ic_favorite_white_24dp"
+            android:tint="@color/colorAccent" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/detailsFragmentPoster"

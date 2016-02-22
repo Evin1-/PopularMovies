@@ -1,15 +1,17 @@
 package mx.evin.udacity.popularmovies.fragments;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,10 +44,15 @@ public class DetailsFragment extends Fragment {
     TextView mTextViewVote;
     @Bind(R.id.detailsFragmentPlot)
     TextView mTextViewPlot;
+    @Bind(R.id.detailsFragmentIsFavoriteIcon)
+    ImageView mImageIcon;
     @Bind(R.id.detailsFragmentPoster)
     ImageView mImageView;
+    @Bind(R.id.addToFavoritesBtn)
+    Button mButtonFavorites;
 
     private Result mMovie;
+    private boolean isFavorite = false;
 
     public DetailsFragment() {
 
@@ -61,20 +68,33 @@ public class DetailsFragment extends Fragment {
 
     @OnClick(R.id.addToFavoritesBtn)
     public void onAddToFavoritesBtnClick() {
-        Activity activity = getActivity();
         if (getView() != null) {
-            SnackbarMagic.showSnackbar(getView(), R.string.addedToFavoritesSuccess);
+            if (isFavorite){
+                SnackbarMagic.showSnackbar(getView(), R.string.removedFromFavoritesSuccess);
+                removeFromFavorites();
+            }else {
+                SnackbarMagic.showSnackbar(getView(), R.string.addedToFavoritesSuccess);
+                addToFavorites();
+            }
         }
 
-        addToFavorites();
+        checkIfFavorite();
+        modifyUIFavorite();
+    }
 
+    private void removeFromFavorites() {
+        final ContentResolver contentResolver = getActivity().getContentResolver();
+        final String[] selectionArgs = {String.valueOf(mMovie.getId())};
+        final String columnMovieId = FavoriteEntry.COLUMN_MOVIE_ID + " = ?";
+
+        contentResolver.delete(FavoritesProvider.PROVIDER_URI, columnMovieId, selectionArgs);
     }
 
     private void addToFavorites() {
-        ContentValues values = FavoriteEntry.resolveMovie(mMovie);
+        final ContentResolver contentResolver = getActivity().getContentResolver();
+        final ContentValues values = FavoriteEntry.resolveMovie(mMovie);
 
-        Uri uri = getActivity().getContentResolver().insert(FavoritesProvider.PROVIDER_URI, values);
-        Log.d(TAG, "addToFavorites: " + uri);
+        contentResolver.insert(FavoritesProvider.PROVIDER_URI, values);
     }
 
     @OnClick(R.id.viewOnYoutubeBtn)
@@ -95,25 +115,54 @@ public class DetailsFragment extends Fragment {
 
             mMovie = movie;
 
-            Picasso.with(getContext())
-                    .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
-                    .placeholder(R.drawable.large_placeholder)
-                    .into(mImageView, new Callback() {
-                        @Override
-                        public void onSuccess() {
+            checkIfFavorite();
+            modifyUIFavorite();
+            refreshUI(movie);
+        }
+    }
 
-                        }
+    private void modifyUIFavorite() {
+        if (isFavorite){
+            mButtonFavorites.setText(R.string.removeFromFavorites);
+            mImageIcon.setVisibility(View.VISIBLE);
+        }else {
+            mButtonFavorites.setText(R.string.addToFavorites);
+            mImageIcon.setVisibility(View.INVISIBLE);
+        }
+    }
 
-                        @Override
-                        public void onError() {
-                            mImageView.setVisibility(View.INVISIBLE);
-                        }
-                    });
+    public void refreshUI(Result movie) {
+        Picasso.with(getContext())
+                .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
+                .placeholder(R.drawable.large_placeholder)
+                .into(mImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
 
-            mTextViewTitle.setText(movie.getTitle());
-            mTextViewRelease.setText(movie.getReleaseDate());
-            mTextViewVote.setText(String.format("%.02f", movie.getVoteAverage()));
-            mTextViewPlot.setText(movie.getOverview());
+                    }
+
+                    @Override
+                    public void onError() {
+                        mImageView.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+        mTextViewTitle.setText(movie.getTitle());
+        mTextViewRelease.setText(movie.getReleaseDate());
+        mTextViewVote.setText(String.format("%.02f", movie.getVoteAverage()));
+        mTextViewPlot.setText(movie.getOverview());
+    }
+
+    private void checkIfFavorite() {
+        if (mMovie == null){
+            return;
+        }
+        Uri uri = Uri.withAppendedPath(FavoritesProvider.PROVIDER_URI, String.valueOf(mMovie.getId()));
+        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+
+        if (cursor != null){
+            isFavorite = cursor.getCount() > 0;
+            cursor.close();
         }
     }
 

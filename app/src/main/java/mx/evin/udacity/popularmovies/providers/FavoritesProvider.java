@@ -43,8 +43,12 @@ public class FavoritesProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // TODO Implement this to handle requests to delete one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        SQLiteDatabase sqLiteDatabase = mDbHelper.getWritableDatabase();
+
+        int rowsChanged = sqLiteDatabase.delete(PROVIDER_TABLE, selection, selectionArgs);
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        return rowsChanged;
     }
 
     @Override
@@ -91,7 +95,7 @@ public class FavoritesProvider extends ContentProvider {
                 cursor = queryBuilder.query(sqLiteDatabase, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case MOVIE_ID:
-                queryBuilder.appendWhere(FavoriteEntry._ID + " = " + uri.getPathSegments().get(1));
+                queryBuilder.appendWhere(FavoriteEntry.COLUMN_MOVIE_ID + " = " + uri.getPathSegments().get(1));
                 cursor = queryBuilder.query(sqLiteDatabase, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case MOVIE_COUNT:
