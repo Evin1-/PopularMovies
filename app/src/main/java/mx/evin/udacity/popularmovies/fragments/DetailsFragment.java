@@ -1,9 +1,12 @@
 package mx.evin.udacity.popularmovies.fragments;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +20,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mx.evin.udacity.popularmovies.R;
+import mx.evin.udacity.popularmovies.database.MoviesContract.FavoriteEntry;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
@@ -26,6 +31,8 @@ import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
  * A simple {@link DialogFragment} subclass.
  */
 public class DetailsFragment extends Fragment {
+
+    private static final String TAG = "DetailsFragmentTAG_";
 
     @Bind(R.id.detailsFragmentTitleTxt)
     TextView mTextViewTitle;
@@ -37,6 +44,8 @@ public class DetailsFragment extends Fragment {
     TextView mTextViewPlot;
     @Bind(R.id.detailsFragmentPoster)
     ImageView mImageView;
+
+    private Result mMovie;
 
     public DetailsFragment() {
 
@@ -54,15 +63,25 @@ public class DetailsFragment extends Fragment {
     public void onAddToFavoritesBtnClick() {
         Activity activity = getActivity();
         if (getView() != null) {
-            SnackbarMagic.showSnackbar(getView().getRootView(), R.string.addedToFavoritesSuccess);
+            SnackbarMagic.showSnackbar(getView(), R.string.addedToFavoritesSuccess);
         }
+
+        addToFavorites();
+
+    }
+
+    private void addToFavorites() {
+        ContentValues values = FavoriteEntry.resolveMovie(mMovie);
+
+        Uri uri = getActivity().getContentResolver().insert(FavoritesProvider.CONTENT_URI, values);
+        Log.d(TAG, "addToFavorites: " + uri);
     }
 
     @OnClick(R.id.viewOnYoutubeBtn)
     public void viewOnYoutubeClick() {
         Activity activity = getActivity();
         if (getView() != null) {
-            SnackbarMagic.showSnackbar(getView().getRootView(), R.string.openingYoutubeApp);
+            SnackbarMagic.showSnackbar(getView(), R.string.openingYoutubeApp);
         }
     }
 
@@ -73,6 +92,9 @@ public class DetailsFragment extends Fragment {
             }
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         } else {
+
+            mMovie = movie;
+
             Picasso.with(getContext())
                     .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
                     .placeholder(R.drawable.large_placeholder)
