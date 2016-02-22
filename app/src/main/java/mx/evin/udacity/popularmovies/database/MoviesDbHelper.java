@@ -22,7 +22,7 @@ public class MoviesDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         final String SQL_CREATE_FAVORITES_TABLE = "CREATE TABLE " + FavoriteEntry.TABLE_NAME + " (" +
-                FavoriteEntry._ID + " INTEGER PRIMARY KEY," +
+                FavoriteEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 FavoriteEntry.COLUMN_MOVIE_ID + " TEXT NOT NULL, " +
                 FavoriteEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
                 FavoriteEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
