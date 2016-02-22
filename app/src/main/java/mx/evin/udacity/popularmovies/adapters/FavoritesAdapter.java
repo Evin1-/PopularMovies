@@ -60,7 +60,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                return inflater.inflate(R.layout.recycler_item, parent, false);
+                return inflater.inflate(R.layout.recycler_item_fav, parent, false);
             }
 
             @Override

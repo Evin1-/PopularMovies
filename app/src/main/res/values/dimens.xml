@@ -13,7 +13,7 @@
     <dimen name="detailsFragmentPlotSize">10sp</dimen>
 
     <dimen name="recyclerInfoSize">10sp</dimen>
-    <dimen name="recyclerTitleSize">10sp</dimen>
+    <dimen name="recyclerTitleSize">12sp</dimen>
     <dimen name="recyclerOverviewSize">8sp</dimen>
     <dimen name="recyclerInfoLinearMargin">5dp</dimen>
     <dimen name="recyclerInfoLinearMarginSmall">2dp</dimen>
