@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+public class FavSpacesItemDecoration extends RecyclerView.ItemDecoration {
     private final int mSpace;
 
-    public SpacesItemDecoration(int space) {
+    public FavSpacesItemDecoration(int space) {
         this.mSpace = space;
     }
 
@@ -15,12 +15,9 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         outRect.left = mSpace;
         outRect.bottom = mSpace;
+        outRect.right = mSpace;
 
-        if (parent.getChildAdapterPosition(view) % 2 == 1){
-            outRect.right = mSpace;
-        }
-
-        if (parent.getChildAdapterPosition(view) < 2){
+        if (parent.getChildAdapterPosition(view) < 1){
             outRect.top = mSpace;
         }
     }

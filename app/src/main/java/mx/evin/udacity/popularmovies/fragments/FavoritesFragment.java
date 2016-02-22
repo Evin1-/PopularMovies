@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import mx.evin.udacity.popularmovies.FavoritesActivity;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.adapters.FavoritesAdapter;
+import mx.evin.udacity.popularmovies.decorators.FavSpacesItemDecoration;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 
@@ -58,6 +59,7 @@ public class FavoritesFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.favsRecycler);
         recyclerView.setAdapter(new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(new FavSpacesItemDecoration(10));
     }
 
     private void retrieveFavsData() {
