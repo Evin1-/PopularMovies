@@ -108,12 +108,16 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     }
 
     private boolean checkHasFavorites() {
-        Uri uri = FavoritesProvider.PROVIDER_URI;
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        Uri uri = Uri.withAppendedPath(FavoritesProvider.PROVIDER_URI, "count");
+        boolean hasFavorites;
 
-        boolean hasFavorites = cursor != null && cursor.getCount() > 0;
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         if (cursor != null){
+            cursor.moveToFirst();
+            hasFavorites = cursor.getInt(0) > 0;
             cursor.close();
+        }else {
+            return false;
         }
 
         return hasFavorites;
