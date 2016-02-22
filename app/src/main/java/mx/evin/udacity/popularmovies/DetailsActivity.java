@@ -14,6 +14,7 @@ import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 public class DetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "DetailsActivityTAG_";
+    public static final String MOVIE_PARCELABLE_TAG = "movie_parcelable_tag";
 
     private PlaceholderFragment mPlaceholderFragment;
 
@@ -34,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
             actionBar.hide();
 
         Bundle b = getIntent().getExtras();
-        Result movie = b.getParcelable("movie");
+        Result movie = b.getParcelable(MOVIE_PARCELABLE_TAG);
 
         mPlaceholderFragment = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.placeholderFragment);
 
@@ -45,4 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
             mPlaceholderFragment.refreshContent(movie);
         }
     }
+
+
+
 }

@@ -48,7 +48,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d(TAG, "onClick: " + result);
                     mFavoritesActivity.refreshDetails(result);
                 }
             });

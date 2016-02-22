@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         // TODO: 2/22/16 Implement SwipeRefreshLayout
         // TODO: 2/22/16 Add on Internet available receiver
         // TODO: 2/22/16 Check savedInstance when returning from Favorites
+        // TODO: 2/22/16 Add scrolling behavior
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
             Intent intent = new Intent(this, DetailsActivity.class);
             Bundle b = new Bundle();
 
-            b.putParcelable("movie", mResult);
+            b.putParcelable(DetailsActivity.MOVIE_PARCELABLE_TAG, mResult);
             intent.putExtras(b);
             startActivity(intent);
         }
