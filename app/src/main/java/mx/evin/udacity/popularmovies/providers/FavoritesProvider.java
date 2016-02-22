@@ -18,7 +18,7 @@ public class FavoritesProvider extends ContentProvider {
     public static final String PROVIDER_AUTHORITY = MoviesContract.PROVIDER_AUTHORITY;
     public static final String PROVIDER_TABLE = FavoriteEntry.TABLE_NAME;
     public static final String PROVIDER_URL = "content://" + PROVIDER_AUTHORITY + "/" + PROVIDER_TABLE;
-    public static final Uri CONTENT_URI = Uri.parse(PROVIDER_URL);
+    public static final Uri PROVIDER_URI = Uri.parse(PROVIDER_URL);
 
     private MoviesDbHelper mDbHelper;
 
@@ -62,7 +62,7 @@ public class FavoritesProvider extends ContentProvider {
 
         long row = sqLiteDatabase.insert(PROVIDER_TABLE, null, values);
 
-        Uri appendedUri = ContentUris.withAppendedId(CONTENT_URI, row);
+        Uri appendedUri = ContentUris.withAppendedId(PROVIDER_URI, row);
         getContext().getContentResolver().notifyChange(appendedUri, null);
 
         return appendedUri;

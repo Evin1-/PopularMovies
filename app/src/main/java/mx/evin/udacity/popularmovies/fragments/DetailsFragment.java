@@ -73,7 +73,7 @@ public class DetailsFragment extends Fragment {
     private void addToFavorites() {
         ContentValues values = FavoriteEntry.resolveMovie(mMovie);
 
-        Uri uri = getActivity().getContentResolver().insert(FavoritesProvider.CONTENT_URI, values);
+        Uri uri = getActivity().getContentResolver().insert(FavoritesProvider.PROVIDER_URI, values);
         Log.d(TAG, "addToFavorites: " + uri);
     }
 

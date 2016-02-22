@@ -1,11 +1,10 @@
 package mx.evin.udacity.popularmovies;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,11 +15,9 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import mx.evin.udacity.popularmovies.database.MoviesContract;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.fragments.MainFragment;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
-import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.NetworkMagic;
@@ -69,24 +66,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         }
 
         refreshActionBar();
-
-        testContent();
-    }
-
-    private void testContent() {
-        String URL = FavoritesProvider.PROVIDER_URL;
-
-        Uri movies = Uri.parse(URL);
-        Cursor c = managedQuery(movies, null, null, null, null);
-
-        if (c.moveToFirst()) {
-            do {
-                Log.d(TAG, "testContent: " +
-                        c.getString(c.getColumnIndex(MoviesContract.FavoriteEntry._ID)) +
-                        ", " + c.getString(c.getColumnIndex(MoviesContract.FavoriteEntry.COLUMN_TITLE)) +
-                        ", " + c.getString(c.getColumnIndex(MoviesContract.FavoriteEntry.COLUMN_RATING)));
-            } while (c.moveToNext());
-        }
     }
 
     @Override
@@ -113,7 +92,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
                 toggleOrderType(item);
                 return true;
             case R.id.menu_favs:
-                Log.d(TAG, "onOptionsItemSelected: " + item);
+                Intent intent = new Intent(this, FavoritesActivity.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }
