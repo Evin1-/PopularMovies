@@ -5,13 +5,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import mx.evin.udacity.popularmovies.FavoritesActivity;
 import mx.evin.udacity.popularmovies.R;
-import mx.evin.udacity.popularmovies.database.MoviesContract;
+import mx.evin.udacity.popularmovies.adapters.FavoritesAdapter;
 import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 
 /**
@@ -20,36 +22,38 @@ import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 public class FavoritesFragment extends Fragment {
 
     private static final String TAG = "FavoritesFragmentTAG_";
+    private Cursor mCursor;
 
     public FavoritesFragment() {
-        // Required empty public constructor
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         retrieveFavsData();
+
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.favsRecycler);
+        recyclerView.setAdapter(new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     private void retrieveFavsData() {
         Uri movies = FavoritesProvider.PROVIDER_URI;
-        Cursor c = getActivity().managedQuery(movies, null, null, null, null);
+        mCursor = getActivity().getContentResolver().query(movies, null, null, null, null);
+    }
 
-        if (c.moveToFirst()) {
-            do {
-                Log.d(TAG, "testContent: " +
-                        c.getString(c.getColumnIndex(MoviesContract.FavoriteEntry._ID)) +
-                        ", " + c.getString(c.getColumnIndex(MoviesContract.FavoriteEntry.COLUMN_TITLE)) +
-                        ", " + c.getString(c.getColumnIndex(MoviesContract.FavoriteEntry.COLUMN_RATING)));
-            } while (c.moveToNext());
-        }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mCursor.close();
     }
 }
