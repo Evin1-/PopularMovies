@@ -71,14 +71,17 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         Result result = mResults.get(position);
         String base_url = Constants.BASE_IMG_URL;
 
-        TextView txtTitle = viewHolder.txtRating;
-        txtTitle.setText(String.format("%.3f", result.getVoteAverage()));
+        TextView txtTitle = viewHolder.txtTitle;
+        txtTitle.setText(result.getTitle());
 
-        TextView txtPath = viewHolder.txtTitle;
-        txtPath.setText(result.getTitle());
+        TextView txtRating = viewHolder.txtRating;
+        txtRating.setText(String.format("%.3f", result.getVoteAverage()));
 
         TextView txtDescription = viewHolder.txtShortDescription;
         txtDescription.setText(result.getOverview());
+
+        TextView txtPopularity = viewHolder.txtPopularity;
+        txtPopularity.setText(String.format("%.2f", result.getPopularity()));
 
         final ImageView imgPath = viewHolder.imgPath;
         Picasso.with(mMainActivity)
@@ -95,9 +98,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
                         imgPath.setVisibility(View.GONE);
                     }
                 });
-
-        TextView txtRating = viewHolder.txtPopularity;
-        txtRating.setText(String.format("%.2f", result.getPopularity()));
 
         viewHolder.result = result;
 
