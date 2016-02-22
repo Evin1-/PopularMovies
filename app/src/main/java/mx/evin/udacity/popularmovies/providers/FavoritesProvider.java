@@ -3,7 +3,6 @@ package mx.evin.udacity.popularmovies.providers;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,19 +11,16 @@ import android.net.Uri;
 
 import mx.evin.udacity.popularmovies.database.MoviesContract;
 import mx.evin.udacity.popularmovies.database.MoviesContract.FavoriteEntry;
-
 import mx.evin.udacity.popularmovies.database.MoviesDbHelper;
 
 public class FavoritesProvider extends ContentProvider {
 
-    static final String PROVIDER_AUTHORITY = MoviesContract.PROVIDER_AUTHORITY;
-    static final String PROVIDER_TABLE = FavoriteEntry.TABLE_NAME;
-    static final String URL = "content://" + PROVIDER_AUTHORITY + "/" + PROVIDER_TABLE;
-    static final Uri CONTENT_URI = Uri.parse(URL);
+    public static final String PROVIDER_AUTHORITY = MoviesContract.PROVIDER_AUTHORITY;
+    public static final String PROVIDER_TABLE = FavoriteEntry.TABLE_NAME;
+    public static final String PROVIDER_URL = "content://" + PROVIDER_AUTHORITY + "/" + PROVIDER_TABLE;
+    public static final Uri CONTENT_URI = Uri.parse(PROVIDER_URL);
 
     private MoviesDbHelper mDbHelper;
-
-    private Context mContext;
 
     static final int MOVIES = 1;
     static final int MOVIE_ID = 2;
@@ -39,12 +35,12 @@ public class FavoritesProvider extends ContentProvider {
 
 
     public FavoritesProvider() {
-        mContext = getContext();
+
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Implement this to handle requests to delete one or more rows.
+        // TODO Implement this to handle requests to delete one or more rows.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -67,7 +63,7 @@ public class FavoritesProvider extends ContentProvider {
         long row = sqLiteDatabase.insert(PROVIDER_TABLE, null, values);
 
         Uri appendedUri = ContentUris.withAppendedId(CONTENT_URI, row);
-        mContext.getContentResolver().notifyChange(appendedUri, null);
+        getContext().getContentResolver().notifyChange(appendedUri, null);
 
         return appendedUri;
     }
@@ -95,7 +91,7 @@ public class FavoritesProvider extends ContentProvider {
         }
 
         Cursor cursor = qb.query(sqLiteDatabase, projection, selection, selectionArgs, null, null, sortOrder);
-        cursor.setNotificationUri(mContext.getContentResolver(), uri);
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         return cursor;
     }
