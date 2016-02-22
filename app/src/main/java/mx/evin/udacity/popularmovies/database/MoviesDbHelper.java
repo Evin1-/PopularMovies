@@ -11,7 +11,7 @@ import mx.evin.udacity.popularmovies.database.MoviesContract.FavoriteEntry;
  */
 public class MoviesDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     static final String DATABASE_NAME = "movies.db";
 
