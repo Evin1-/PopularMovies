@@ -23,6 +23,7 @@ public class MoviesContract {
         public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
         public static final String COLUMN_SYNOPSIS = "synopsis";
         public static final String COLUMN_RATING = "rating";
+        public static final String COLUMN_POPULARITY = "popularity";
         public static final String COLUMN_DATE = "release_date";
         public static final String COLUMN_MOVIE_ID = "movie_id";
 
@@ -35,6 +36,7 @@ public class MoviesContract {
             values.put(COLUMN_MOVIE_ID, movie.getId());
             values.put(COLUMN_SYNOPSIS, movie.getOverview());
             values.put(COLUMN_RATING, movie.getVoteAverage());
+            values.put(COLUMN_POPULARITY, movie.getPopularity());
             values.put(COLUMN_DATE, movie.getReleaseDate());
 
             return values;

@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/11/16 Add ProgressBar
         // TODO: 2/22/16 Implement SwipeRefreshLayout
+        // TODO: 2/22/16 Add on Internet available receiver
+        // TODO: 2/22/16 Check savedInstance when returning from Favorites
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
