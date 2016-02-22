@@ -10,14 +10,14 @@ import mx.evin.udacity.popularmovies.fragments.FavoritesFragment;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
 import mx.evin.udacity.popularmovies.utils.Constants;
 
-public class FavoritesActivity extends AppCompatActivity {
+public class FavoritesActivity extends AppCompatActivity implements FavoritesFragment.ActivityCallback {
 
+    private static final String TAG = "FavoritesActivityTAG_";
     private PlaceholderFragment mPlaceholderFragment;
     private FavoritesFragment mFavoritesFragment;
 
     private Result mResult;
     private ActionBar mActionBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,17 @@ public class FavoritesActivity extends AppCompatActivity {
         mFavoritesFragment.setRetainInstance(true);
 
         mActionBar = getSupportActionBar();
-        if (mActionBar != null){
+        if (mActionBar != null) {
             mActionBar.setSubtitle(R.string.subtitleFavorites);
         }
 
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(Constants.RESULT_TEMP_KEY)) {
                 mResult = savedInstanceState.getParcelable(Constants.RESULT_TEMP_KEY);
+                refreshPlaceholderFragment(mResult);
+            }
+        } else {
+            if (isTabletLayout()) {
                 refreshPlaceholderFragment(mResult);
             }
         }
@@ -77,5 +81,10 @@ public class FavoritesActivity extends AppCompatActivity {
         if (mPlaceholderFragment != null) {
             mPlaceholderFragment.refreshContent(result);
         }
+    }
+
+    @Override
+    public void onFinishLoading(Result result) {
+        mResult = result;
     }
 }

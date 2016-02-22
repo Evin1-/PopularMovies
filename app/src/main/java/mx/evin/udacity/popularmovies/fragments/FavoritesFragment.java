@@ -1,6 +1,7 @@
 package mx.evin.udacity.popularmovies.fragments;
 
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import mx.evin.udacity.popularmovies.FavoritesActivity;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.adapters.FavoritesAdapter;
+import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 
 /**
@@ -23,9 +25,21 @@ public class FavoritesFragment extends Fragment {
 
     private static final String TAG = "FavoritesFragmentTAG_";
     private Cursor mCursor;
+    private ActivityCallback mCallback;
 
     public FavoritesFragment() {
 
+    }
+
+
+    public interface ActivityCallback {
+        public void onFinishLoading(Result result);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallback = (ActivityCallback) context;
     }
 
 
@@ -49,6 +63,10 @@ public class FavoritesFragment extends Fragment {
     private void retrieveFavsData() {
         Uri movies = FavoritesProvider.PROVIDER_URI;
         mCursor = getActivity().getContentResolver().query(movies, null, null, null, null);
+        if (mCursor != null && mCursor.getCount() > 0){
+            mCursor.moveToFirst();
+            mCallback.onFinishLoading(Result.buildResult(mCursor));
+        }
     }
 
     @Override
