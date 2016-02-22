@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/favoritesFragment"
         class="mx.evin.udacity.popularmovies.fragments.FavoritesFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
