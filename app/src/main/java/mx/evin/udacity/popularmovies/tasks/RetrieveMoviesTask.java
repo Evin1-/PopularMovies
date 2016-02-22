@@ -21,7 +21,7 @@ import retrofit.http.Query;
  */
 public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
 
-    private static final String TAG = Constants.TAG_ASYNC;
+    private static final String TAG = "RetrieveTaskTAG_";
     private MainActivity mActivity;
     private ArrayList<Result> mResults;
 

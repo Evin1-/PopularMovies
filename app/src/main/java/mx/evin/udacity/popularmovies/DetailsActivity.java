@@ -9,12 +9,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
-import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private static final String TAG = Constants.TAG_DETAILS;
+    private static final String TAG = "DetailsActivityTAG_";
 
     private PlaceholderFragment mPlaceholderFragment;
 

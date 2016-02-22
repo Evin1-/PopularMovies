@@ -23,7 +23,7 @@ import mx.evin.udacity.popularmovies.utils.Constants;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
-    private static final String TAG = Constants.TAG_ADAPTER;
+    private static final String TAG = "MoviesAdapterTAG_";
     private final List<Result> mResults;
     private MainActivity mMainActivity;
 

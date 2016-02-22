@@ -27,7 +27,7 @@ import mx.evin.udacity.popularmovies.utils.NetworkMagic;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.ActivityCallback {
-    private static final String TAG = Constants.TAG_MAIN;
+    private static final String TAG = "MainActivityTAG_";
 
     private MainFragment mMainFragment;
     private PlaceholderFragment mPlaceholderFragment;
