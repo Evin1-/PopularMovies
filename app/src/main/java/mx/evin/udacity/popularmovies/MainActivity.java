@@ -1,6 +1,8 @@
 package mx.evin.udacity.popularmovies;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.fragments.MainFragment;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
+import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 import mx.evin.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.NetworkMagic;
@@ -93,11 +96,27 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
                 toggleOrderType(item);
                 return true;
             case R.id.menu_favs:
-                Intent intent = new Intent(this, FavoritesActivity.class);
-                startActivity(intent);
+                if (checkHasFavorites()) {
+                    Intent intent = new Intent(this, FavoritesActivity.class);
+                    startActivity(intent);
+                } else {
+                    SnackbarMagic.showSnackbar(mMainFrame, R.string.noFavoritesYet);
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private boolean checkHasFavorites() {
+        Uri uri = FavoritesProvider.PROVIDER_URI;
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+
+        boolean hasFavorites = cursor != null && cursor.getCount() > 0;
+        if (cursor != null){
+            cursor.close();
+        }
+
+        return hasFavorites;
     }
 
     @Override
