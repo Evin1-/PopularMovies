@@ -32,4 +32,5 @@
     <string name="detailsShareIconDescription">Share button in details fragment</string>
     <string name="detailsBackIconDescription">Go back details icon</string>
     <string name="detailsPlayIconDescription">Play trailer icon</string>
+    <string name="rvVideoImageDescription">Movie video description</string>
 </resources>

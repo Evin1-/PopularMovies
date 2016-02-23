@@ -1,16 +1,21 @@
 package mx.evin.udacity.popularmovies.adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.entities.VideoResult;
+import mx.evin.udacity.popularmovies.utils.YoutubeMagic;
 
 /**
  * Created by evin on 2/22/16.
@@ -21,11 +26,19 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
+        ImageView imageView;
+        String videoId;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.rvVideoTxt);
+            imageView = (ImageView) itemView.findViewById(R.id.rvVideoImage);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    YoutubeMagic.watchYoutubeVideo(videoId, mContext);
+                }
+            });
         }
     }
 
@@ -44,8 +57,14 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(VideosAdapter.ViewHolder holder, int position) {
-        VideoResult videoResult = mVideos.get(position);
-        holder.textView.setText(videoResult.getKey());
+        final String key = mVideos.get(position).getKey();
+
+        ImageView imageView = holder.imageView;
+        Picasso.with(mContext)
+                .load("http://img.youtube.com/vi/" + key + "/0.jpg")
+                .into(imageView);
+
+        holder.videoId = key;
     }
 
     @Override
