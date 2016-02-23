@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/11/16 Add ProgressBar
         // TODO: 2/22/16 Implement SwipeRefreshLayout
-        // TODO: 2/22/16 Add on Internet available receiver
-        // TODO: 2/22/16 Check savedInstance when returning from Favorites
         // TODO: 2/22/16 Add scrolling behavior
 
         super.onCreate(savedInstanceState);

@@ -45,7 +45,7 @@ public class MainFragment extends Fragment {
     }
 
     public interface ActivityCallback {
-        public void onEmptyResults();
+        void onEmptyResults();
     }
 
     @Override
@@ -84,7 +84,7 @@ public class MainFragment extends Fragment {
             mResults.clear();
             mResults.addAll(results);
             mAdapter.notifyDataSetChanged();
-        }else {
+        } else {
             mCallback.onEmptyResults();
         }
     }
@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (!NetworkMagic.isNetworkAvailable(getActivity())){
+        if (!NetworkMagic.isNetworkAvailable(getActivity())) {
             mNetworkReceiver = new NetworkReceiver(this);
             IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
             getActivity().registerReceiver(mNetworkReceiver, intentFilter);
@@ -108,7 +108,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (mNetworkReceiver != null){
+        if (mNetworkReceiver != null) {
             getActivity().unregisterReceiver(mNetworkReceiver);
         }
     }
@@ -117,7 +117,7 @@ public class MainFragment extends Fragment {
         return mCallback;
     }
 
-    public boolean isActuallyEmpty(){
+    public boolean isActuallyEmpty() {
         return mResults != null && mResults.size() > 0;
     }
 }

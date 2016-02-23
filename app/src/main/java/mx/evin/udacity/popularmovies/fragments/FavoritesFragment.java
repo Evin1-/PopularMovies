@@ -34,7 +34,7 @@ public class FavoritesFragment extends Fragment {
 
 
     public interface ActivityCallback {
-        public void onFinishLoading(Result result);
+        void onFinishLoading(Result result);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class FavoritesFragment extends Fragment {
     private void retrieveFavsData() {
         Uri movies = FavoritesProvider.PROVIDER_URI;
         mCursor = getActivity().getContentResolver().query(movies, null, null, null, null);
-        if (mCursor != null && mCursor.getCount() > 0){
+        if (mCursor != null && mCursor.getCount() > 0) {
             mCursor.moveToFirst();
             mCallback.onFinishLoading(Result.buildResult(mCursor));
         }

@@ -69,10 +69,10 @@ public class DetailsFragment extends Fragment {
     @OnClick(R.id.addToFavoritesBtn)
     public void onAddToFavoritesBtnClick() {
         if (getView() != null) {
-            if (isFavorite){
+            if (isFavorite) {
                 SnackbarMagic.showSnackbar(getView(), R.string.removedFromFavoritesSuccess);
                 removeFromFavorites();
-            }else {
+            } else {
                 SnackbarMagic.showSnackbar(getView(), R.string.addedToFavoritesSuccess);
                 addToFavorites();
             }
@@ -107,7 +107,7 @@ public class DetailsFragment extends Fragment {
 
     public void refreshDetails(Result movie) {
         if (movie == null) {
-            if (getView() != null){
+            if (getView() != null) {
                 SnackbarMagic.showSnackbar(getView().getRootView(), R.string.retrieveMovieFailedMessage);
             }
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
@@ -122,10 +122,10 @@ public class DetailsFragment extends Fragment {
     }
 
     private void modifyUIFavorite() {
-        if (isFavorite){
+        if (isFavorite) {
             mButtonFavorites.setText(R.string.removeFromFavorites);
             mImageIcon.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mButtonFavorites.setText(R.string.addToFavorites);
             mImageIcon.setVisibility(View.INVISIBLE);
         }
@@ -154,13 +154,13 @@ public class DetailsFragment extends Fragment {
     }
 
     private void checkIfFavorite() {
-        if (mMovie == null){
+        if (mMovie == null) {
             return;
         }
         Uri uri = Uri.withAppendedPath(FavoritesProvider.PROVIDER_URI, String.valueOf(mMovie.getId()));
         Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
 
-        if (cursor != null){
+        if (cursor != null) {
             isFavorite = cursor.getCount() > 0;
             cursor.close();
         }
