@@ -35,6 +35,7 @@ import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
  * A simple {@link DialogFragment} subclass.
  */
 public class DetailsFragment extends Fragment {
+    // TODO: 2/22/16 Add undo button when changing Favorites
 
     private static final String TAG = "DetailsFragmentTAG_";
 

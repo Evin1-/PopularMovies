@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import mx.evin.udacity.popularmovies.utils.NetworkMagic;
  */
 public class MainFragment extends Fragment {
 
+    private static final String TAG = "MainFragmentTAG_";
     @Bind(R.id.mainRecycler)
     RecyclerView mRecyclerView;
 
@@ -109,7 +111,12 @@ public class MainFragment extends Fragment {
     public void onPause() {
         super.onPause();
         if (mNetworkReceiver != null) {
-            getActivity().unregisterReceiver(mNetworkReceiver);
+            try {
+                getActivity().unregisterReceiver(mNetworkReceiver);
+            } catch (Exception e) {
+                Log.e(TAG, "onPause: " + e.toString());
+            }
+            mNetworkReceiver = null;
         }
     }
 
@@ -118,6 +125,6 @@ public class MainFragment extends Fragment {
     }
 
     public boolean isActuallyEmpty() {
-        return mResults != null && mResults.size() > 0;
+        return mResults == null || mResults.size() < 1;
     }
 }
