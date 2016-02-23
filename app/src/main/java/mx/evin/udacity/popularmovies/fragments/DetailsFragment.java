@@ -1,9 +1,9 @@
 package mx.evin.udacity.popularmovies.fragments;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,8 +50,6 @@ public class DetailsFragment extends Fragment {
     ImageView mImageIcon;
     @Bind(R.id.detailsFragmentPoster)
     ImageView mImageView;
-    @Bind(R.id.addToFavoritesBtn)
-    Button mButtonFavorites;
 
     private ActivityCallback mCallback;
 
@@ -63,14 +60,14 @@ public class DetailsFragment extends Fragment {
 
     }
 
-    public interface ActivityCallback{
+    public interface ActivityCallback {
         void onModifiedFavorites();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (getActivity() instanceof FavoritesActivity){
+        if (getActivity() instanceof FavoritesActivity) {
             mCallback = (ActivityCallback) context;
         }
     }
@@ -83,7 +80,16 @@ public class DetailsFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.addToFavoritesBtn)
+    @OnClick(R.id.detailsShareIcon)
+    public void onShareBtnClick() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "You should check this movie! " + mMovie.getTitle());
+        intent.setType("text/plain");
+        getActivity().startActivity(intent);
+    }
+
+    @OnClick(R.id.detailsFragmentIsFavoriteIcon)
     public void onAddToFavoritesBtnClick() {
         if (getView() != null) {
             if (isFavorite) {
@@ -105,7 +111,7 @@ public class DetailsFragment extends Fragment {
         final String columnMovieId = FavoriteEntry.COLUMN_MOVIE_ID + " = ?";
 
         int nRows = contentResolver.delete(FavoritesProvider.PROVIDER_URI, columnMovieId, selectionArgs);
-        if (nRows > 0 && mCallback != null){
+        if (nRows > 0 && mCallback != null) {
             mCallback.onModifiedFavorites();
         }
     }
@@ -115,18 +121,18 @@ public class DetailsFragment extends Fragment {
         final ContentValues values = FavoriteEntry.resolveMovie(mMovie);
 
         Uri uri = contentResolver.insert(FavoritesProvider.PROVIDER_URI, values);
-        if (uri != null && mCallback != null){
+        if (uri != null && mCallback != null) {
             mCallback.onModifiedFavorites();
         }
     }
 
-    @OnClick(R.id.viewOnYoutubeBtn)
-    public void viewOnYoutubeClick() {
-        Activity activity = getActivity();
-        if (getView() != null) {
-            SnackbarMagic.showSnackbar(getView(), R.string.openingYoutubeApp);
-        }
-    }
+//    @OnClick(R.id.viewOnYoutubeBtn)
+//    public void viewOnYoutubeClick() {
+//        Activity activity = getActivity();
+//        if (getView() != null) {
+//            SnackbarMagic.showSnackbar(getView(), R.string.openingYoutubeApp);
+//        }
+//    }
 
     public void refreshDetails(Result movie) {
         if (movie == null) {
@@ -146,11 +152,9 @@ public class DetailsFragment extends Fragment {
 
     private void modifyUIFavorite() {
         if (isFavorite) {
-            mButtonFavorites.setText(R.string.removeFromFavorites);
-            mImageIcon.setVisibility(View.VISIBLE);
+            mImageIcon.setImageResource(R.drawable.ic_favorite_white_24dp);
         } else {
-            mButtonFavorites.setText(R.string.addToFavorites);
-            mImageIcon.setVisibility(View.INVISIBLE);
+            mImageIcon.setImageResource(R.drawable.ic_favorite_border_white_24dp);
         }
     }
 

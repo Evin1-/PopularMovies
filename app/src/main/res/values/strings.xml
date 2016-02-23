@@ -29,4 +29,5 @@
     <string name="detailsIsFavoriteIconDescription">Is favorite description</string>
     <string name="addToFavorites">Add to Favorites</string>
     <string name="removeFromFavorites">Remove from favorites</string>
+    <string name="detailsShareIconDescription">Share button in details fragment</string>
 </resources>

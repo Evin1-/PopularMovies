@@ -22,4 +22,5 @@
 
     <dimen name="isFavoriteIconWidth">15dp</dimen>
     <dimen name="isFavoriteIconMargin">5dp</dimen>
+    <dimen name="detailsActionBarIconSize">20dp</dimen>
 </resources>

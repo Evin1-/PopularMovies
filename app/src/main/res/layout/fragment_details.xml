@@ -21,15 +21,32 @@
             android:textSize="@dimen/detailsFragmentTitleSize"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/detailsFragmentIsFavoriteIcon"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/isFavoriteIconWidth"
-            android:layout_margin="@dimen/isFavoriteIconMargin"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/recyclerInfoLinearMargin"
             android:layout_weight="1"
-            android:contentDescription="@string/detailsIsFavoriteIconDescription"
-            android:src="@drawable/ic_favorite_white_24dp"
-            android:tint="@color/colorAccent" />
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/detailsFragmentIsFavoriteIcon"
+                android:layout_width="@dimen/detailsActionBarIconSize"
+                android:layout_height="@dimen/detailsActionBarIconSize"
+                android:layout_marginEnd="@dimen/recyclerInfoLinearMargin"
+                android:layout_marginRight="@dimen/recyclerInfoLinearMargin"
+                android:contentDescription="@string/detailsIsFavoriteIconDescription"
+                android:src="@drawable/ic_favorite_border_white_24dp"
+                android:tint="@color/colorAccent" />
+
+            <ImageView
+                android:id="@+id/detailsShareIcon"
+                android:layout_width="@dimen/detailsActionBarIconSize"
+                android:layout_height="@dimen/detailsActionBarIconSize"
+                android:contentDescription="@string/detailsShareIconDescription"
+                android:src="@drawable/ic_share_white_24dp"
+                android:tint="@color/colorAccent" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -87,21 +104,5 @@
         android:text="@string/placeholderText"
         android:textColor="@color/colorText"
         android:textSize="@dimen/detailsFragmentPlotSize" />
-
-    <Button
-        android:id="@+id/addToFavoritesBtn"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|start"
-        android:text="@string/addToFavoritesBtn" />
-
-    <Button
-        android:id="@+id/viewOnYoutubeBtn"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|start"
-        android:text="@string/viewTrailerBtn" />
 
 </LinearLayout>
