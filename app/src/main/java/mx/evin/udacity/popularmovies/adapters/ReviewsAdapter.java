@@ -1,6 +1,8 @@
 package mx.evin.udacity.popularmovies.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +26,21 @@ public class ReviewsAdapter extends  RecyclerView.Adapter<ReviewsAdapter.ViewHol
         TextView textViewAuthor;
         TextView textViewContent;
         TextView textViewURL;
+        String reviewURL;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textViewAuthor = (TextView) itemView.findViewById(R.id.rvReviewAuthor);
             textViewContent = (TextView) itemView.findViewById(R.id.rvReviewContent);
             textViewURL = (TextView) itemView.findViewById(R.id.rvReviewURL);
+
+            textViewURL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(reviewURL));
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -49,6 +60,7 @@ public class ReviewsAdapter extends  RecyclerView.Adapter<ReviewsAdapter.ViewHol
     @Override
     public void onBindViewHolder(ReviewsAdapter.ViewHolder holder, int position) {
         ReviewResult reviewResult = mReviews.get(position);
+        final String reviewResultUrl = reviewResult.getUrl();
 
         TextView textViewAuthor = holder.textViewAuthor;
         textViewAuthor.setText(reviewResult.getAuthor());
@@ -57,7 +69,9 @@ public class ReviewsAdapter extends  RecyclerView.Adapter<ReviewsAdapter.ViewHol
         textViewContent.setText(reviewResult.getContent());
 
         TextView textViewURL = holder.textViewURL;
-        textViewURL.setText(reviewResult.getUrl());
+        textViewURL.setText(reviewResultUrl);
+
+        holder.reviewURL = reviewResultUrl;
     }
 
     @Override
