@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.fragments.DetailsFragment;
 import mx.evin.udacity.popularmovies.fragments.FavoritesFragment;
 import mx.evin.udacity.popularmovies.fragments.PlaceholderFragment;
 import mx.evin.udacity.popularmovies.utils.Constants;
 
-public class FavoritesActivity extends AppCompatActivity implements FavoritesFragment.ActivityCallback {
+public class FavoritesActivity extends AppCompatActivity implements FavoritesFragment.ActivityCallback, DetailsFragment.ActivityCallback{
 
     private static final String TAG = "FavoritesActivityTAG_";
     private PlaceholderFragment mPlaceholderFragment;
@@ -86,5 +88,10 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesFra
     @Override
     public void onFinishLoading(Result result) {
         mResult = result;
+    }
+
+    @Override
+    public void onModifiedFavorites() {
+        Log.d(TAG, "onModifiedFavorites: ");
     }
 }

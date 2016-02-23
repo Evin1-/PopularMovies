@@ -3,11 +3,13 @@ package mx.evin.udacity.popularmovies.fragments;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mx.evin.udacity.popularmovies.FavoritesActivity;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.database.MoviesContract.FavoriteEntry;
 import mx.evin.udacity.popularmovies.entities.Result;
@@ -51,11 +54,25 @@ public class DetailsFragment extends Fragment {
     @Bind(R.id.addToFavoritesBtn)
     Button mButtonFavorites;
 
+    private ActivityCallback mCallback;
+
     private Result mMovie;
     private boolean isFavorite = false;
 
     public DetailsFragment() {
 
+    }
+
+    public interface ActivityCallback{
+        void onModifiedFavorites();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (getActivity() instanceof FavoritesActivity){
+            mCallback = (ActivityCallback) context;
+        }
     }
 
     @Override
@@ -87,14 +104,20 @@ public class DetailsFragment extends Fragment {
         final String[] selectionArgs = {String.valueOf(mMovie.getId())};
         final String columnMovieId = FavoriteEntry.COLUMN_MOVIE_ID + " = ?";
 
-        contentResolver.delete(FavoritesProvider.PROVIDER_URI, columnMovieId, selectionArgs);
+        int nRows = contentResolver.delete(FavoritesProvider.PROVIDER_URI, columnMovieId, selectionArgs);
+        if (nRows > 0 && mCallback != null){
+            mCallback.onModifiedFavorites();
+        }
     }
 
     private void addToFavorites() {
         final ContentResolver contentResolver = getActivity().getContentResolver();
         final ContentValues values = FavoriteEntry.resolveMovie(mMovie);
 
-        contentResolver.insert(FavoritesProvider.PROVIDER_URI, values);
+        Uri uri = contentResolver.insert(FavoritesProvider.PROVIDER_URI, values);
+        if (uri != null && mCallback != null){
+            mCallback.onModifiedFavorites();
+        }
     }
 
     @OnClick(R.id.viewOnYoutubeBtn)
