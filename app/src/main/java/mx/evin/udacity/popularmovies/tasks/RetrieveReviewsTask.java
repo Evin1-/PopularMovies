@@ -22,7 +22,7 @@ public class RetrieveReviewsTask extends AsyncTask<Integer, Void, List<ReviewRes
 
     @Override
     protected List<ReviewResult> doInBackground(Integer... params) {
-        String movieId = (params.length < 1) ? String.valueOf(params[0]) : "293660";
+        String movieId = (params.length > 0) ? String.valueOf(params[0]) : "293660";
 
         MoviesRetrofit moviesRetrofit = new MoviesRetrofit();
 

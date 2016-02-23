@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-import mx.evin.udacity.popularmovies.entities.ReviewPage;
 import mx.evin.udacity.popularmovies.entities.VideoPage;
 import mx.evin.udacity.popularmovies.entities.VideoResult;
 import mx.evin.udacity.popularmovies.fragments.DetailsFragment;
@@ -23,7 +22,7 @@ public class RetrieveVideosTask extends AsyncTask<Integer, Void, List<VideoResul
 
     @Override
     protected List<VideoResult> doInBackground(Integer... params) {
-        String movieId = (params.length < 1) ? String.valueOf(params[0]) : "293660";
+        String movieId = (params.length > 0) ? String.valueOf(params[0]) : "293660";
 
         MoviesRetrofit moviesRetrofit = new MoviesRetrofit();
 
