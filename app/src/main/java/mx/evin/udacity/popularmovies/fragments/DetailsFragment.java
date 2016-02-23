@@ -1,6 +1,5 @@
 package mx.evin.udacity.popularmovies.fragments;
 
-import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -41,6 +40,7 @@ import mx.evin.udacity.popularmovies.tasks.RetrieveReviewsTask;
 import mx.evin.udacity.popularmovies.tasks.RetrieveVideosTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
+import mx.evin.udacity.popularmovies.utils.YoutubeMagic;
 
 
 /**
@@ -147,7 +147,7 @@ public class DetailsFragment extends Fragment {
     @OnClick(R.id.detailsPlayIcon)
     public void onPlayBtnClick() {
         if (mTrailer != null) {
-            watchYoutubeVideo(mTrailer);
+            YoutubeMagic.watchYoutubeVideo(mTrailer, getContext());
         }
     }
 
@@ -272,16 +272,6 @@ public class DetailsFragment extends Fragment {
         mTextViewRelease.setText(movie.getReleaseDate());
         mTextViewVote.setText(String.format("%.02f", movie.getVoteAverage()));
         mTextViewPlot.setText(movie.getOverview());
-    }
-
-    public void watchYoutubeVideo(String id) {
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-            startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
-            startActivity(intent);
-        }
     }
 
     private void startRefreshingReviews() {
