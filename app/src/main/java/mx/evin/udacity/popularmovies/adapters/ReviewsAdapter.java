@@ -21,11 +21,15 @@ public class ReviewsAdapter extends  RecyclerView.Adapter<ReviewsAdapter.ViewHol
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
+        TextView textViewAuthor;
+        TextView textViewContent;
+        TextView textViewURL;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.rvVideoTxt);
+            textViewAuthor = (TextView) itemView.findViewById(R.id.rvReviewAuthor);
+            textViewContent = (TextView) itemView.findViewById(R.id.rvReviewContent);
+            textViewURL = (TextView) itemView.findViewById(R.id.rvReviewURL);
         }
     }
 
@@ -45,7 +49,15 @@ public class ReviewsAdapter extends  RecyclerView.Adapter<ReviewsAdapter.ViewHol
     @Override
     public void onBindViewHolder(ReviewsAdapter.ViewHolder holder, int position) {
         ReviewResult reviewResult = mReviews.get(position);
-        holder.textView.setText(reviewResult.getContent());
+
+        TextView textViewAuthor = holder.textViewAuthor;
+        textViewAuthor.setText(reviewResult.getAuthor());
+
+        TextView textViewContent = holder.textViewContent;
+        textViewContent.setText(reviewResult.getContent());
+
+        TextView textViewURL = holder.textViewURL;
+        textViewURL.setText(reviewResult.getUrl());
     }
 
     @Override
