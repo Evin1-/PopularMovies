@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         // TODO: 2/11/16 Add ProgressBar
         // TODO: 2/22/16 Implement SwipeRefreshLayout
         // TODO: 2/22/16 Add scrolling behavior
+        // TODO: 2/22/16 Add support to RecycerView inside ScrollView
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

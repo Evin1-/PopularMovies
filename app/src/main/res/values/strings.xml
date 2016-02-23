@@ -30,4 +30,6 @@
     <string name="addToFavorites">Add to Favorites</string>
     <string name="removeFromFavorites">Remove from favorites</string>
     <string name="detailsShareIconDescription">Share button in details fragment</string>
+    <string name="detailsBackIconDescription">Go back details icon</string>
+    <string name="detailsPlayIconDescription">Play trailer icon</string>
 </resources>
