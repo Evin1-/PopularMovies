@@ -39,6 +39,7 @@ import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
 import mx.evin.udacity.popularmovies.tasks.RetrieveReviewsTask;
 import mx.evin.udacity.popularmovies.tasks.RetrieveVideosTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
+import mx.evin.udacity.popularmovies.utils.NetworkMagic;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 import mx.evin.udacity.popularmovies.utils.YoutubeMagic;
 
@@ -117,6 +118,13 @@ public class DetailsFragment extends Fragment {
 
         setupRecyclerVideos();
         setupRecyclerReviews();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkIfFavorite();
+        modifyUIFavorite();
     }
 
     @OnClick(R.id.detailsShareIcon)
@@ -215,8 +223,10 @@ public class DetailsFragment extends Fragment {
             modifyUIFavorite();
 
             refreshUI(movie);
-            startRefreshingVideos();
-            startRefreshingReviews();
+            if (NetworkMagic.isNetworkAvailable(getContext())){
+                startRefreshingVideos();
+                startRefreshingReviews();
+            }
         }
     }
 
