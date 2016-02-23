@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     }
 
     private void toggleOrderType(MenuItem item) {
-        if (!NetworkMagic.isNetworkAvailable(this)) {
+        if (!NetworkMagic.isNetworkAvailable(getApplicationContext())) {
             SnackbarMagic.showSnackbar(mMainFrame, R.string.internetNotAvailableMessage);
             return;
         }
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     }
 
     public void queryMovieAPI(String arg) {
-        if (NetworkMagic.isNetworkAvailable(this)) {
+        if (NetworkMagic.isNetworkAvailable(getApplicationContext())) {
             arg = (arg == null) ? "popularity" : arg;
             new RetrieveMoviesTask(this).execute(arg);
         } else {

@@ -21,7 +21,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (mMainFragment != null && NetworkMagic.isNetworkAvailable(mMainFragment.getActivity())){
+        if (mMainFragment != null && NetworkMagic.isNetworkAvailable(context.getApplicationContext())){
             if (mMainFragment.isActuallyEmpty()){
                 mMainFragment.getActivityCallback().onEmptyResults();
             }

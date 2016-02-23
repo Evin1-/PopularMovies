@@ -100,7 +100,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (!NetworkMagic.isNetworkAvailable(getActivity())) {
+        if (!NetworkMagic.isNetworkAvailable(getContext())) {
             mNetworkReceiver = new NetworkReceiver(this);
             IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
             getActivity().registerReceiver(mNetworkReceiver, intentFilter);
