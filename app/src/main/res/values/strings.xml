@@ -34,4 +34,6 @@
     <string name="detailsPlayIconDescription">Play trailer icon</string>
     <string name="rvVideoImageDescription">Movie video description</string>
     <string name="needInternetForYoutube">You need an Internet connection to watch the trailer!</string>
+    <string name="fragmentDetailsTrailersText">Trailers:</string>
+    <string name="detailsFragmentReviewsText">Reviews:</string>
 </resources>

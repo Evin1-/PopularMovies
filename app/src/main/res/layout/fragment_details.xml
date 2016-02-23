@@ -118,14 +118,24 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/heightHorizontalSeparator"
+            android:layout_marginBottom="@dimen/marginHorizontalSeparator"
+            android:layout_marginTop="@dimen/marginHorizontalSeparator"
             android:background="@color/colorDarkDarkGray" />
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="@dimen/internalFrameHeight"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginHorizontalSeparator"
+                android:layout_marginTop="@dimen/marginHorizontalSeparator"
+                android:text="@string/fragmentDetailsTrailersText"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/detailsFragmentRecyclerVideos"
@@ -134,18 +144,28 @@
 
             </android.support.v7.widget.RecyclerView>
 
-        </FrameLayout>
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/heightHorizontalSeparator"
+            android:layout_marginBottom="@dimen/marginHorizontalSeparator"
+            android:layout_marginTop="@dimen/marginHorizontalSeparator"
             android:background="@color/colorDarkDarkGray" />
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="@dimen/internalFrameHeight"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginHorizontalSeparator"
+                android:layout_marginTop="@dimen/marginHorizontalSeparator"
+                android:text="@string/detailsFragmentReviewsText"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/detailsFragmentRecyclerReviews"
@@ -154,7 +174,7 @@
 
             </android.support.v7.widget.RecyclerView>
 
-        </FrameLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

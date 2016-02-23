@@ -9,18 +9,23 @@
         android:id="@+id/rvReviewAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorLightGray" />
+        android:textAllCaps="true"
+        android:textColor="@color/colorLightGray"
+        android:textSize="@dimen/rvReviewAuthorTextSize"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/rvReviewContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorLightGray" />
+        android:textColor="@color/colorLightGray"
+        android:textSize="@dimen/rvReviewContentTextSize" />
 
     <TextView
         android:id="@+id/rvReviewURL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorLightGray" />
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/rvReviewURLTextSize" />
 
 </LinearLayout>
