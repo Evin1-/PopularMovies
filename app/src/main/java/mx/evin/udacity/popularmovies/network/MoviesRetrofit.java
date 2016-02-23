@@ -3,6 +3,8 @@ package mx.evin.udacity.popularmovies.network;
 import android.util.Log;
 
 import mx.evin.udacity.popularmovies.entities.Page;
+import mx.evin.udacity.popularmovies.entities.ReviewPage;
+import mx.evin.udacity.popularmovies.entities.VideoPage;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.Keys;
 import retrofit.Call;
@@ -15,17 +17,18 @@ import retrofit.Retrofit;
 public class MoviesRetrofit {
 
     private static final String TAG = "MoviesRetrofit";
+    private static final Retrofit retrofit;
+    private static final MovieDBService service;
 
-    public Page getMovies(String order) {
-
-        Retrofit retrofit = new Retrofit.Builder()
+    static {
+        retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        service = retrofit.create(MovieDBService.class);
+    }
 
-        MovieDBService service = retrofit.create(MovieDBService.class);
-
-
+    public Page getMovies(String order) {
         Call<Page> listCall = service.listMovies(order, Keys.MDB_API_KEY);
 
         Page results = null;
@@ -38,4 +41,33 @@ public class MoviesRetrofit {
 
         return results;
     }
+
+    public VideoPage getVideos(String movieId){
+        Call<VideoPage> listCall = service.listVideos(movieId, Keys.MDB_API_KEY);
+
+        VideoPage results = null;
+
+        try {
+            results = listCall.execute().body();
+        } catch (Exception e) {
+            Log.e(TAG, "Error: " + e.toString());
+        }
+
+        return results;
+    }
+
+    public ReviewPage getReviews(String movieId){
+        Call<ReviewPage> listCall = service.listReviews(movieId, Keys.MDB_API_KEY);
+
+        ReviewPage results = null;
+
+        try {
+            results = listCall.execute().body();
+        } catch (Exception e) {
+            Log.e(TAG, "Error: " + e.toString());
+        }
+
+        return results;
+    }
+
 }
