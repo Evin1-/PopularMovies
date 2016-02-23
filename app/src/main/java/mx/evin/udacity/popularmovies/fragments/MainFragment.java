@@ -2,6 +2,8 @@ package mx.evin.udacity.popularmovies.fragments;
 
 
 import android.content.Context;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,7 +21,9 @@ import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.adapters.MoviesAdapter;
 import mx.evin.udacity.popularmovies.decorators.SpacesItemDecoration;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.receivers.NetworkReceiver;
 import mx.evin.udacity.popularmovies.utils.Constants;
+import mx.evin.udacity.popularmovies.utils.NetworkMagic;
 
 
 /**
@@ -34,6 +38,7 @@ public class MainFragment extends Fragment {
     private ArrayList<Result> mResults;
 
     private ActivityCallback mCallback;
+    NetworkReceiver mNetworkReceiver;
 
     public MainFragment() {
 
@@ -88,5 +93,31 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList(Constants.RESULTS_KEY, mResults);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!NetworkMagic.isNetworkAvailable(getActivity())){
+            mNetworkReceiver = new NetworkReceiver(this);
+            IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+            getActivity().registerReceiver(mNetworkReceiver, intentFilter);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mNetworkReceiver != null){
+            getActivity().unregisterReceiver(mNetworkReceiver);
+        }
+    }
+
+    public ActivityCallback getActivityCallback() {
+        return mCallback;
+    }
+
+    public boolean isActuallyEmpty(){
+        return mResults != null && mResults.size() > 0;
     }
 }
