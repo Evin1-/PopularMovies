@@ -151,11 +151,6 @@ public class DetailsFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.detailsUpIcon)
-    public void onUpBtnClick() {
-        getActivity().onBackPressed();
-    }
-
     private void setupRecyclerReviews() {
         mAdapterReviews = new ReviewsAdapter(getContext(), mReviews);
         mRecyclerReviews.setAdapter(mAdapterReviews);

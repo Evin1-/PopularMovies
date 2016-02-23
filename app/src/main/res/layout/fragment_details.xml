@@ -57,14 +57,6 @@
                     android:src="@drawable/ic_play_arrow_white_24dp"
                     android:tint="@color/colorAccent" />
 
-                <ImageView
-                    android:id="@+id/detailsUpIcon"
-                    android:layout_width="@dimen/detailsActionBarIconSize"
-                    android:layout_height="@dimen/detailsActionBarIconSize"
-                    android:contentDescription="@string/detailsBackIconDescription"
-                    android:src="@drawable/ic_arrow_upward_white_24dp"
-                    android:tint="@color/colorAccent" />
-
             </LinearLayout>
 
         </LinearLayout>
