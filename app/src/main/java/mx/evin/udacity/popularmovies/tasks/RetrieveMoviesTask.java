@@ -39,7 +39,9 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
     protected Void doInBackground(String... params) {
         String order = (params.length < 1) ? "popularity.desc" : params[0] + ".desc";
 
-        Page results = MoviesRetrofit.getMovies(order);
+        MoviesRetrofit moviesRetrofit = new MoviesRetrofit();
+
+        Page results = moviesRetrofit.getMovies(order);
 
         for (Result result : results.getResults()) {
             publishProgress(result);

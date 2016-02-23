@@ -16,7 +16,7 @@ public class MoviesRetrofit {
 
     private static final String TAG = "MoviesRetrofit";
 
-    public static Page getMovies(String order) {
+    public Page getMovies(String order) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_API_URL)
