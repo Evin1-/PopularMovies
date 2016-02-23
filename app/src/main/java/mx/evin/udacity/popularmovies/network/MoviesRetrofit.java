@@ -17,19 +17,17 @@ import retrofit.Retrofit;
 public class MoviesRetrofit {
 
     private static final String TAG = "MoviesRetrofit";
-    private static final Retrofit retrofit;
-    private static final MovieDBService service;
 
-    static {
-        retrofit = new Retrofit.Builder()
+    private MovieDBService buildMoviesService() {
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        service = retrofit.create(MovieDBService.class);
+        return retrofit.create(MovieDBService.class);
     }
 
     public Page getMovies(String order) {
-        Call<Page> listCall = service.listMovies(order, Keys.MDB_API_KEY);
+        Call<Page> listCall = buildMoviesService().listMovies(order, Keys.MDB_API_KEY);
 
         Page results = null;
 
@@ -43,7 +41,7 @@ public class MoviesRetrofit {
     }
 
     public VideoPage getVideos(String movieId){
-        Call<VideoPage> listCall = service.listVideos(movieId, Keys.MDB_API_KEY);
+        Call<VideoPage> listCall = buildMoviesService().listVideos(movieId, Keys.MDB_API_KEY);
 
         VideoPage results = null;
 
@@ -57,7 +55,7 @@ public class MoviesRetrofit {
     }
 
     public ReviewPage getReviews(String movieId){
-        Call<ReviewPage> listCall = service.listReviews(movieId, Keys.MDB_API_KEY);
+        Call<ReviewPage> listCall = buildMoviesService().listReviews(movieId, Keys.MDB_API_KEY);
 
         ReviewPage results = null;
 
