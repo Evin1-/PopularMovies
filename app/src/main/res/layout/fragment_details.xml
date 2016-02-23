@@ -34,7 +34,7 @@
                 android:gravity="end">
 
                 <ImageView
-                    android:id="@+id/detailsFragmentIsFavoriteIcon"
+                    android:id="@+id/detailsIsFavoriteIcon"
                     android:layout_width="@dimen/detailsActionBarIconSize"
                     android:layout_height="@dimen/detailsActionBarIconSize"
                     android:contentDescription="@string/detailsIsFavoriteIconDescription"
@@ -58,7 +58,7 @@
                     android:tint="@color/colorAccent" />
 
                 <ImageView
-                    android:id="@+id/detailsBackIcon"
+                    android:id="@+id/detailsUpIcon"
                     android:layout_width="@dimen/detailsActionBarIconSize"
                     android:layout_height="@dimen/detailsActionBarIconSize"
                     android:contentDescription="@string/detailsBackIconDescription"

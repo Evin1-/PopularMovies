@@ -77,7 +77,7 @@ public class FavoritesFragment extends Fragment {
 
     private void retrieveFavData() {
         Uri movies = FavoritesProvider.PROVIDER_URI;
-        if (mCursor != null){
+        if (mCursor != null) {
             mCursor.close();
         }
         mCursor = getActivity().getContentResolver().query(movies, null, null, null, null);
@@ -92,7 +92,7 @@ public class FavoritesFragment extends Fragment {
         }
     }
 
-    public void refreshData(){
+    public void refreshData() {
         // TODO: 2/22/16 Refresh content with a Loader or SyncAdapter
         retrieveFavData();
         mAdapter = new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor);

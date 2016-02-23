@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +20,24 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mx.evin.udacity.popularmovies.FavoritesActivity;
 import mx.evin.udacity.popularmovies.R;
+import mx.evin.udacity.popularmovies.adapters.ReviewsAdapter;
+import mx.evin.udacity.popularmovies.adapters.VideosAdapter;
 import mx.evin.udacity.popularmovies.database.MoviesContract.FavoriteEntry;
+import mx.evin.udacity.popularmovies.decorators.FavSpacesItemDecoration;
 import mx.evin.udacity.popularmovies.entities.Result;
+import mx.evin.udacity.popularmovies.entities.ReviewResult;
+import mx.evin.udacity.popularmovies.entities.VideoResult;
 import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
+import mx.evin.udacity.popularmovies.tasks.RetrieveReviewsTask;
+import mx.evin.udacity.popularmovies.tasks.RetrieveVideosTask;
 import mx.evin.udacity.popularmovies.utils.Constants;
 import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
@@ -46,18 +58,44 @@ public class DetailsFragment extends Fragment {
     TextView mTextViewVote;
     @Bind(R.id.detailsFragmentPlot)
     TextView mTextViewPlot;
-    @Bind(R.id.detailsFragmentIsFavoriteIcon)
+    @Bind(R.id.detailsIsFavoriteIcon)
     ImageView mImageIcon;
     @Bind(R.id.detailsFragmentPoster)
     ImageView mImageView;
+    @Bind(R.id.detailsFragmentRecyclerReviews)
+    RecyclerView mRecyclerReviews;
+    @Bind(R.id.detailsFragmentRecyclerVideos)
+    RecyclerView mRecyclerVideos;
 
     private ActivityCallback mCallback;
 
     private Result mMovie;
     private boolean isFavorite = false;
 
+    private ArrayList<VideoResult> mVideos;
+    private VideosAdapter mAdapterVideos;
+
+    private ArrayList<ReviewResult> mReviews;
+    private ReviewsAdapter mAdapterReviews;
+
     public DetailsFragment() {
 
+    }
+
+    public void refreshReviews(List<ReviewResult> reviewResults) {
+        if (mReviews != null && mAdapterReviews != null){
+            mReviews.clear();
+            mReviews.addAll(reviewResults);
+            mAdapterReviews.notifyDataSetChanged();
+        }
+    }
+
+    public void refreshVideos(List<VideoResult> videoResults) {
+        if (mVideos != null && mAdapterVideos != null){
+            mVideos.clear();
+            mVideos.addAll(videoResults);
+            mAdapterVideos.notifyDataSetChanged();
+        }
     }
 
     public interface ActivityCallback {
@@ -73,11 +111,26 @@ public class DetailsFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mVideos = new ArrayList<>();
+        mReviews = new ArrayList<>();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setupRecyclerVideos();
+        setupRecyclerRevies();
     }
 
     @OnClick(R.id.detailsShareIcon)
@@ -89,7 +142,7 @@ public class DetailsFragment extends Fragment {
         getActivity().startActivity(intent);
     }
 
-    @OnClick(R.id.detailsFragmentIsFavoriteIcon)
+    @OnClick(R.id.detailsIsFavoriteIcon)
     public void onAddToFavoritesBtnClick() {
         if (getView() != null) {
             if (isFavorite) {
@@ -103,6 +156,25 @@ public class DetailsFragment extends Fragment {
 
         checkIfFavorite();
         modifyUIFavorite();
+    }
+
+    @OnClick(R.id.detailsUpIcon)
+    public void onUpBtnClick() {
+        getActivity().onBackPressed();
+    }
+
+    private void setupRecyclerRevies() {
+        mAdapterReviews = new ReviewsAdapter(getContext(), mReviews);
+        mRecyclerReviews.setAdapter(mAdapterReviews);
+        mRecyclerReviews.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerReviews.addItemDecoration(new FavSpacesItemDecoration(10));
+    }
+
+    private void setupRecyclerVideos() {
+        mAdapterVideos = new VideosAdapter(getContext(), mVideos);
+        mRecyclerVideos.setAdapter(mAdapterVideos);
+        mRecyclerVideos.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerVideos.addItemDecoration(new FavSpacesItemDecoration(10));
     }
 
     private void removeFromFavorites() {
@@ -126,14 +198,6 @@ public class DetailsFragment extends Fragment {
         }
     }
 
-//    @OnClick(R.id.viewOnYoutubeBtn)
-//    public void viewOnYoutubeClick() {
-//        Activity activity = getActivity();
-//        if (getView() != null) {
-//            SnackbarMagic.showSnackbar(getView(), R.string.openingYoutubeApp);
-//        }
-//    }
-
     public void refreshDetails(Result movie) {
         if (movie == null) {
             if (getView() != null) {
@@ -141,12 +205,12 @@ public class DetailsFragment extends Fragment {
             }
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         } else {
-
             mMovie = movie;
-
             checkIfFavorite();
             modifyUIFavorite();
             refreshUI(movie);
+            startRefreshingVideos();
+            startRefreshingReviews();
         }
     }
 
@@ -178,6 +242,14 @@ public class DetailsFragment extends Fragment {
         mTextViewRelease.setText(movie.getReleaseDate());
         mTextViewVote.setText(String.format("%.02f", movie.getVoteAverage()));
         mTextViewPlot.setText(movie.getOverview());
+    }
+
+    private void startRefreshingReviews() {
+        new RetrieveReviewsTask(this).execute(mMovie.getId());
+    }
+
+    private void startRefreshingVideos() {
+        new RetrieveVideosTask(this).execute(mMovie.getId());
     }
 
     private void checkIfFavorite() {

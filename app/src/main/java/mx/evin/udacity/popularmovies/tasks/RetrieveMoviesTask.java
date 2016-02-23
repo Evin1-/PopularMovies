@@ -1,25 +1,19 @@
 package mx.evin.udacity.popularmovies.tasks;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.ArrayList;
 
 import mx.evin.udacity.popularmovies.MainActivity;
 import mx.evin.udacity.popularmovies.entities.Page;
 import mx.evin.udacity.popularmovies.entities.Result;
-import mx.evin.udacity.popularmovies.network.MovieDBService;
 import mx.evin.udacity.popularmovies.network.MoviesRetrofit;
-import mx.evin.udacity.popularmovies.utils.Constants;
-import mx.evin.udacity.popularmovies.utils.Keys;
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
 
 /**
  * Created by evin on 1/3/16.
  */
 public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
+    // TODO: 2/22/16 Return List<Page> avoid onProgressUpdate
 
     private static final String TAG = "RetrieveTaskTAG_";
     private MainActivity mActivity;
@@ -28,11 +22,6 @@ public class RetrieveMoviesTask extends AsyncTask<String, Result, Void> {
     public RetrieveMoviesTask(MainActivity activity) {
         mActivity = activity;
         mResults = new ArrayList<>();
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
     }
 
     @Override
