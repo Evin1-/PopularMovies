@@ -87,11 +87,15 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesFra
 
     @Override
     public void onFinishLoading(Result result) {
-        mResult = result;
+        if (mResult == null){
+            mResult = result;
+        }
     }
 
     @Override
     public void onModifiedFavorites() {
-        Log.d(TAG, "onModifiedFavorites: ");
+        if (mFavoritesFragment != null && mFavoritesFragment.isAdded()){
+            mFavoritesFragment.refreshData();
+        }
     }
 }

@@ -12,12 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import mx.evin.udacity.popularmovies.FavoritesActivity;
 import mx.evin.udacity.popularmovies.R;
 import mx.evin.udacity.popularmovies.adapters.FavoritesAdapter;
 import mx.evin.udacity.popularmovies.decorators.FavSpacesItemDecoration;
 import mx.evin.udacity.popularmovies.entities.Result;
 import mx.evin.udacity.popularmovies.providers.FavoritesProvider;
+import mx.evin.udacity.popularmovies.utils.SnackbarMagic;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +30,10 @@ public class FavoritesFragment extends Fragment {
     private static final String TAG = "FavoritesFragmentTAG_";
     private Cursor mCursor;
     private ActivityCallback mCallback;
+
+    private FavoritesAdapter mAdapter;
+    @Bind(R.id.favsRecycler)
+    RecyclerView mRecyclerView;
 
     public FavoritesFragment() {
 
@@ -47,28 +54,41 @@ public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorites, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        retrieveFavData();
 
-        retrieveFavsData();
+        mAdapter = new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.favsRecycler);
-        recyclerView.setAdapter(new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new FavSpacesItemDecoration(10));
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new FavSpacesItemDecoration(10));
     }
 
-    private void retrieveFavsData() {
+    private void retrieveFavData() {
         Uri movies = FavoritesProvider.PROVIDER_URI;
         mCursor = getActivity().getContentResolver().query(movies, null, null, null, null);
         if (mCursor != null && mCursor.getCount() > 0) {
             mCursor.moveToFirst();
             mCallback.onFinishLoading(Result.buildResult(mCursor));
+        } else {
+            View view = getView();
+            if (view != null) {
+                SnackbarMagic.showSnackbar(view, R.string.noFavoritesYet);
+            }
         }
+    }
+
+    public void refreshData(){
+        retrieveFavData();
+        mAdapter = new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
