@@ -1,8 +1,8 @@
 package mx.evin.udacity.popularmovies.network;
 
+import mx.evin.udacity.popularmovies.entities.Page;
 import mx.evin.udacity.popularmovies.entities.ReviewPage;
 import mx.evin.udacity.popularmovies.entities.VideoPage;
-import mx.evin.udacity.popularmovies.entities.Page;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Path;

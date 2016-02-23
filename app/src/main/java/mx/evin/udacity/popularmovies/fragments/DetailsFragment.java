@@ -1,5 +1,6 @@
 package mx.evin.udacity.popularmovies.fragments;
 
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -70,6 +71,7 @@ public class DetailsFragment extends Fragment {
     private ActivityCallback mCallback;
 
     private Result mMovie;
+    private String mTrailer;
     private boolean isFavorite = false;
 
     private ArrayList<VideoResult> mVideos;
@@ -80,22 +82,6 @@ public class DetailsFragment extends Fragment {
 
     public DetailsFragment() {
 
-    }
-
-    public void refreshReviews(List<ReviewResult> reviewResults) {
-        if (mReviews != null && mAdapterReviews != null){
-            mReviews.clear();
-            mReviews.addAll(reviewResults);
-            mAdapterReviews.notifyDataSetChanged();
-        }
-    }
-
-    public void refreshVideos(List<VideoResult> videoResults) {
-        if (mVideos != null && mAdapterVideos != null){
-            mVideos.clear();
-            mVideos.addAll(videoResults);
-            mAdapterVideos.notifyDataSetChanged();
-        }
     }
 
     public interface ActivityCallback {
@@ -130,14 +116,14 @@ public class DetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setupRecyclerVideos();
-        setupRecyclerRevies();
+        setupRecyclerReviews();
     }
 
     @OnClick(R.id.detailsShareIcon)
     public void onShareBtnClick() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, "You should check this movie! " + mMovie.getTitle());
+        intent.putExtra(Intent.EXTRA_TEXT, buildShareMessage());
         intent.setType("text/plain");
         getActivity().startActivity(intent);
     }
@@ -158,12 +144,19 @@ public class DetailsFragment extends Fragment {
         modifyUIFavorite();
     }
 
+    @OnClick(R.id.detailsPlayIcon)
+    public void onPlayBtnClick() {
+        if (mTrailer != null) {
+            watchYoutubeVideo(mTrailer);
+        }
+    }
+
     @OnClick(R.id.detailsUpIcon)
     public void onUpBtnClick() {
         getActivity().onBackPressed();
     }
 
-    private void setupRecyclerRevies() {
+    private void setupRecyclerReviews() {
         mAdapterReviews = new ReviewsAdapter(getContext(), mReviews);
         mRecyclerReviews.setAdapter(mAdapterReviews);
         mRecyclerReviews.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -198,6 +191,22 @@ public class DetailsFragment extends Fragment {
         }
     }
 
+    public String buildShareMessage() {
+        StringBuilder message = new StringBuilder();
+        message.append("You should check this movie! ");
+        if (mMovie != null) {
+            message.append(mMovie.getTitle());
+        } else {
+            message.append("Yes");
+        }
+        message.append("! ");
+        if (mTrailer != null) {
+            message.append("https://youtu.be/");
+            message.append(mTrailer);
+        }
+        return message.toString();
+    }
+
     public void refreshDetails(Result movie) {
         if (movie == null) {
             if (getView() != null) {
@@ -206,11 +215,32 @@ public class DetailsFragment extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         } else {
             mMovie = movie;
+
             checkIfFavorite();
             modifyUIFavorite();
+
             refreshUI(movie);
             startRefreshingVideos();
             startRefreshingReviews();
+        }
+    }
+
+    public void refreshReviews(List<ReviewResult> reviewResults) {
+        if (mReviews != null && mAdapterReviews != null) {
+            mReviews.clear();
+            mReviews.addAll(reviewResults);
+            mAdapterReviews.notifyDataSetChanged();
+        }
+    }
+
+    public void refreshVideos(List<VideoResult> videoResults) {
+        if (videoResults != null && videoResults.size() > 0) {
+            mTrailer = videoResults.get(0).getKey();
+        }
+        if (videoResults != null && mVideos != null && mAdapterVideos != null) {
+            mVideos.clear();
+            mVideos.addAll(videoResults);
+            mAdapterVideos.notifyDataSetChanged();
         }
     }
 
@@ -242,6 +272,16 @@ public class DetailsFragment extends Fragment {
         mTextViewRelease.setText(movie.getReleaseDate());
         mTextViewVote.setText(String.format("%.02f", movie.getVoteAverage()));
         mTextViewPlot.setText(movie.getOverview());
+    }
+
+    public void watchYoutubeVideo(String id) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+            startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
+            startActivity(intent);
+        }
     }
 
     private void startRefreshingReviews() {
