@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,100 +9,147 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/detailsFragmentTitleTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="@string/placeholderText"
-            android:textColor="@color/colorAccentLight"
-            android:textSize="@dimen/detailsFragmentTitleSize"
-            android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/detailsFragmentPadding">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/recyclerInfoLinearMargin"
-            android:layout_weight="1"
-            android:gravity="end">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/detailsFragmentIsFavoriteIcon"
-                android:layout_width="@dimen/detailsActionBarIconSize"
-                android:layout_height="@dimen/detailsActionBarIconSize"
-                android:layout_marginEnd="@dimen/recyclerInfoLinearMargin"
-                android:layout_marginRight="@dimen/recyclerInfoLinearMargin"
-                android:contentDescription="@string/detailsIsFavoriteIconDescription"
-                android:src="@drawable/ic_favorite_border_white_24dp"
-                android:tint="@color/colorAccent" />
+            <TextView
+                android:id="@+id/detailsFragmentTitleTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/placeholderText"
+                android:textColor="@color/colorAccentLight"
+                android:textSize="@dimen/detailsFragmentTitleSize"
+                android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/detailsShareIcon"
-                android:layout_width="@dimen/detailsActionBarIconSize"
-                android:layout_height="@dimen/detailsActionBarIconSize"
-                android:contentDescription="@string/detailsShareIconDescription"
-                android:src="@drawable/ic_share_white_24dp"
-                android:tint="@color/colorAccent" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/recyclerInfoLinearMargin"
+                android:layout_weight="1"
+                android:gravity="end">
+
+                <ImageView
+                    android:id="@+id/detailsFragmentIsFavoriteIcon"
+                    android:layout_width="@dimen/detailsActionBarIconSize"
+                    android:layout_height="@dimen/detailsActionBarIconSize"
+                    android:layout_marginEnd="@dimen/recyclerInfoLinearMargin"
+                    android:layout_marginRight="@dimen/recyclerInfoLinearMargin"
+                    android:contentDescription="@string/detailsIsFavoriteIconDescription"
+                    android:src="@drawable/ic_favorite_border_white_24dp"
+                    android:tint="@color/colorAccent" />
+
+                <ImageView
+                    android:id="@+id/detailsShareIcon"
+                    android:layout_width="@dimen/detailsActionBarIconSize"
+                    android:layout_height="@dimen/detailsActionBarIconSize"
+                    android:contentDescription="@string/detailsShareIconDescription"
+                    android:src="@drawable/ic_share_white_24dp"
+                    android:tint="@color/colorAccent" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/detailsFragmentPoster"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/detailsPosterDescription"
-        android:scaleType="centerCrop" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/detailsFragmentReleaseTxt"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/detailsFragmentPoster"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/placeholderText"
-            android:textColor="@color/colorText"
-            android:textSize="@dimen/detailsFragmentDateSize"
-            android:textStyle="bold" />
+            android:contentDescription="@string/detailsPosterDescription"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/detailsFragmentVote"
+                android:id="@+id/detailsFragmentReleaseTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/placeholderText"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/detailsFragmentRateSize"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/detailsFragmentDateSize"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="@dimen/imageIconSize"
-                android:layout_height="@dimen/imageIconSize"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/imageIconMargin"
-                android:contentDescription="@string/detailsPosterDescription"
-                android:src="@drawable/ic_thumb_up_black_48dp"
-                android:tint="@color/colorAccent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/detailsFragmentVote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholderText"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/detailsFragmentRateSize"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/imageIconSize"
+                    android:layout_height="@dimen/imageIconSize"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/imageIconMargin"
+                    android:contentDescription="@string/detailsPosterDescription"
+                    android:src="@drawable/ic_thumb_up_black_48dp"
+                    android:tint="@color/colorAccent" />
+            </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/detailsFragmentPlot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholderText"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detailsFragmentPlotSize" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLightGray" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/detailsFragmentRecyclerVideos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLightGray" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/detailsFragmentRecyclerReviews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </FrameLayout>
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/detailsFragmentPlot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/placeholderText"
-        android:textColor="@color/colorText"
-        android:textSize="@dimen/detailsFragmentPlotSize" />
-
-</LinearLayout>
+</ScrollView>
