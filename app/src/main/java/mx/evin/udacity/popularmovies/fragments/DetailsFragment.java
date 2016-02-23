@@ -157,6 +157,9 @@ public class DetailsFragment extends Fragment {
         if (mTrailer != null) {
             YoutubeMagic.watchYoutubeVideo(mTrailer, getContext());
         }
+        if (!NetworkMagic.isNetworkAvailable(getContext())){
+            SnackbarMagic.showSnackbar(getView(), R.string.needInternetForYoutube);
+        }
     }
 
     private void setupRecyclerReviews() {
