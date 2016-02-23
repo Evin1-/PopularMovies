@@ -62,17 +62,24 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        retrieveFavData();
 
-        mAdapter = new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor);
+        refreshData();
 
-        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new FavSpacesItemDecoration(10));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();
+    }
+
     private void retrieveFavData() {
         Uri movies = FavoritesProvider.PROVIDER_URI;
+        if (mCursor != null){
+            mCursor.close();
+        }
         mCursor = getActivity().getContentResolver().query(movies, null, null, null, null);
         if (mCursor != null && mCursor.getCount() > 0) {
             mCursor.moveToFirst();
@@ -86,6 +93,7 @@ public class FavoritesFragment extends Fragment {
     }
 
     public void refreshData(){
+        // TODO: 2/22/16 Refresh content with a Loader or SyncAdapter
         retrieveFavData();
         mAdapter = new FavoritesAdapter((FavoritesActivity) getActivity(), mCursor);
         mRecyclerView.setAdapter(mAdapter);
