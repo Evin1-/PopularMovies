@@ -26,6 +26,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import com.loopcupcakes.udacity.popularmovies.FavoritesActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.adapters.ReviewsAdapter;
@@ -157,7 +158,7 @@ public class DetailsFragment extends Fragment {
         if (mTrailer != null) {
             YoutubeMagic.watchYoutubeVideo(mTrailer, getContext());
         }
-        if (!NetworkMagic.isNetworkAvailable(getContext())){
+        if (!NetworkMagic.isNetworkAvailable(getContext())) {
             SnackbarMagic.showSnackbar(getView(), R.string.needInternetForYoutube);
         }
     }
@@ -226,10 +227,8 @@ public class DetailsFragment extends Fragment {
             modifyUIFavorite();
 
             refreshUI(movie);
-            if (NetworkMagic.isNetworkAvailable(getContext())){
-                startRefreshingVideos();
-                startRefreshingReviews();
-            }
+            startRefreshingVideos();
+            startRefreshingReviews();
         }
     }
 
@@ -283,11 +282,17 @@ public class DetailsFragment extends Fragment {
     }
 
     private void startRefreshingReviews() {
-        new RetrieveReviewsTask(this).execute(mMovie.getId());
+        refreshReviews(new ArrayList<ReviewResult>());
+        if (NetworkMagic.isNetworkAvailable(getContext())) {
+            new RetrieveReviewsTask(this).execute(mMovie.getId());
+        }
     }
 
     private void startRefreshingVideos() {
-        new RetrieveVideosTask(this).execute(mMovie.getId());
+        refreshVideos(new ArrayList<VideoResult>());
+        if (NetworkMagic.isNetworkAvailable(getContext())) {
+            new RetrieveVideosTask(this).execute(mMovie.getId());
+        }
     }
 
     private void checkIfFavorite() {
