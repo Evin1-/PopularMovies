@@ -3,10 +3,12 @@ package com.loopcupcakes.udacity.popularmovies;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
@@ -28,6 +30,10 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        if (isTablet()) {
+            onBackPressed();
+        }
+
         ButterKnife.bind(this);
 
         ActionBar actionBar = getSupportActionBar();
@@ -47,6 +53,13 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isTablet() {
+        return getWidthInDp() > 600;
+    }
 
+    private float getWidthInDp() {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        return displayMetrics.widthPixels / displayMetrics.density;
+    }
 
 }
