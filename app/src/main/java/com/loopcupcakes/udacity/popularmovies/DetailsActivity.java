@@ -31,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         if (isTablet()) {
-            onBackPressed();
+            finish();
         }
 
         ButterKnife.bind(this);
