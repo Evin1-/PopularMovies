@@ -82,7 +82,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
                 String base_url = Constants.BASE_IMG_URL;
                 final ImageView imgPath = (ImageView) view.findViewById(R.id.rvItemPath);
-                Picasso.with(mFavoritesActivity)
+                Picasso.with(mFavoritesActivity.getApplicationContext())
                         .load(base_url + cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_BACKDROP_PATH)))
                         .placeholder(R.drawable.large_placeholder)
                         .into(imgPath, new Callback() {

@@ -84,7 +84,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         txtRating.setText(String.format("%.2f", result.getVoteAverage()));
 
         final ImageView imgPath = viewHolder.imgPath;
-        Picasso.with(mMainActivity)
+        Picasso.with(mMainActivity.getApplicationContext())
                 .load(base_url + result.getBackdropPath())
                 .placeholder(R.drawable.large_placeholder)
                 .into(imgPath, new Callback() {

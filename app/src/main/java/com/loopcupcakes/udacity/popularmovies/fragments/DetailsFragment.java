@@ -260,7 +260,7 @@ public class DetailsFragment extends Fragment {
     }
 
     public void refreshUI(Result movie) {
-        Picasso.with(getContext())
+        Picasso.with(getActivity().getApplicationContext())
                 .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
                 .placeholder(R.drawable.large_placeholder)
                 .into(mImageView, new Callback() {

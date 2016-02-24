@@ -58,7 +58,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
         final String key = mVideos.get(position).getKey();
 
         ImageView imageView = holder.imageView;
-        Picasso.with(mContext)
+        Picasso.with(mContext.getApplicationContext())
                 .load("http://img.youtube.com/vi/" + key + "/0.jpg")
                 .into(imageView);
 

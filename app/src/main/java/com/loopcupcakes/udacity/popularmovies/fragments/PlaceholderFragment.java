@@ -59,7 +59,7 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void drawBackgroundImage() {
-        Picasso.with(getContext())
+        Picasso.with(getActivity().getApplicationContext())
                 .load(Constants.BASE_IMG_URL + mResult.getPosterPath())
                 .placeholder(R.drawable.large_placeholder)
                 .into(mImageView, new Callback() {
