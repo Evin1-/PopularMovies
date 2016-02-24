@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        class="mx.evin.udacity.popularmovies.fragments.FavoritesFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.FavoritesFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_favorites" />

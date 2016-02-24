@@ -4,11 +4,11 @@
     android:id="@+id/detailsFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.evin.udacity.popularmovies.DetailsActivity">
+    tools:context="com.loopcupcakes.udacity.popularmovies.DetailsActivity">
 
     <fragment
         android:id="@+id/placeholderFragment"
-        class="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

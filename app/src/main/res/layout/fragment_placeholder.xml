@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment">
+    tools:context="com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment">
 
     <ImageView
         android:id="@+id/detailsBackgroundImage"
@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        class="mx.evin.udacity.popularmovies.fragments.DetailsFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.DetailsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_details" />

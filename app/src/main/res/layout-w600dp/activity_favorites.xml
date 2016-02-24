@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        class="mx.evin.udacity.popularmovies.fragments.FavoritesFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.FavoritesFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/placeholderFragment"
-        class="mx.evin.udacity.popularmovies.fragments.PlaceholderFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

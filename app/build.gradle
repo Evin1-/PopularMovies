@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "mx.evin.udacity.popularmovies"
+        applicationId "com.loopcupcakes.udacity.popularmovies"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
