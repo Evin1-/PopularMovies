@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -81,7 +82,7 @@ public class MainFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void refreshRecycler(ArrayList<Result> results) {
+    public void refreshRecycler(List<Result> results) {
         if (results != null && results.size() > 0 && mResults != null && mAdapter != null) {
             mResults.clear();
             mResults.addAll(results);

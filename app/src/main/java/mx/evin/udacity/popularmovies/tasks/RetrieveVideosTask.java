@@ -28,12 +28,21 @@ public class RetrieveVideosTask extends AsyncTask<Integer, Void, List<VideoResul
 
         VideoPage videoPage = moviesRetrofit.getVideos(movieId);
 
-        return videoPage.getVideoResults();
+        return (videoPage!= null) ? videoPage.getVideoResults() : null;
     }
 
     @Override
     protected void onPostExecute(List<VideoResult> videoResults) {
         super.onPostExecute(videoResults);
-        mDetailsFragment.refreshVideos(videoResults);
+
+        if (!isCancelled() && mDetailsFragment != null){
+            mDetailsFragment.refreshVideos(videoResults);
+        }
+
+        clearReferences();
+    }
+
+    private void clearReferences() {
+        mDetailsFragment = null;
     }
 }

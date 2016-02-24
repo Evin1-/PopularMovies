@@ -28,12 +28,21 @@ public class RetrieveReviewsTask extends AsyncTask<Integer, Void, List<ReviewRes
 
         ReviewPage reviewPage = moviesRetrofit.getReviews(movieId);
 
-        return reviewPage.getReviewResults();
+        return (reviewPage != null) ? reviewPage.getReviewResults() : null;
     }
 
     @Override
     protected void onPostExecute(List<ReviewResult> reviewResults) {
         super.onPostExecute(reviewResults);
-        mDetailsFragment.refreshReviews(reviewResults);
+
+        if (!isCancelled() && mDetailsFragment != null){
+            mDetailsFragment.refreshReviews(reviewResults);
+        }
+
+        clearReferences();
+    }
+
+    private void clearReferences() {
+        mDetailsFragment = null;
     }
 }

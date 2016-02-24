@@ -11,7 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         }
     }
 
-    public void setResults(ArrayList<Result> results) {
+    public void setResults(List<Result> results) {
         if (mMainFragment != null) {
             mMainFragment.refreshRecycler(results);
         }
