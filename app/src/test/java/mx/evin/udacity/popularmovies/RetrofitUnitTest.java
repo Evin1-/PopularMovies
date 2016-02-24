@@ -1,14 +1,14 @@
-package mx.evin.udacity.popularmovies;
+package com.loopcupcakes.udacity.popularmovies;
 
 import org.junit.Test;
 
-import mx.evin.udacity.popularmovies.entities.Page;
-import mx.evin.udacity.popularmovies.entities.Result;
-import mx.evin.udacity.popularmovies.entities.ReviewPage;
-import mx.evin.udacity.popularmovies.entities.ReviewResult;
-import mx.evin.udacity.popularmovies.entities.VideoPage;
-import mx.evin.udacity.popularmovies.entities.VideoResult;
-import mx.evin.udacity.popularmovies.network.MoviesRetrofit;
+import com.loopcupcakes.udacity.popularmovies.entities.Page;
+import com.loopcupcakes.udacity.popularmovies.entities.Result;
+import com.loopcupcakes.udacity.popularmovies.entities.ReviewPage;
+import com.loopcupcakes.udacity.popularmovies.entities.ReviewResult;
+import com.loopcupcakes.udacity.popularmovies.entities.VideoPage;
+import com.loopcupcakes.udacity.popularmovies.entities.VideoResult;
+import com.loopcupcakes.udacity.popularmovies.network.MoviesRetrofit;
 
 import static org.junit.Assert.assertTrue;
 

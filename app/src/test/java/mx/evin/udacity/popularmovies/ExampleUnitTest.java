@@ -1,4 +1,4 @@
-package mx.evin.udacity.popularmovies;
+package com.loopcupcakes.udacity.popularmovies;
 
 import org.junit.Test;
 
