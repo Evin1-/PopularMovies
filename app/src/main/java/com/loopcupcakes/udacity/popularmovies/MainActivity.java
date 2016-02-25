@@ -12,10 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.fragments.MainFragment;
 import com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment;
@@ -24,6 +20,11 @@ import com.loopcupcakes.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
 import com.loopcupcakes.udacity.popularmovies.utils.NetworkMagic;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
+
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.ActivityCallback {
     private static final String TAG = "MainActivityTAG_";
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO: 2/22/16 Add scrolling behavior
         // TODO: 2/22/16 Add support to RecyclerView inside ScrollView
         // TODO: 2/23/16 Add navigationDrawer
 

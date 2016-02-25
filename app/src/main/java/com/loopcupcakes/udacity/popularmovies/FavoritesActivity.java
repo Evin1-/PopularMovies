@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.fragments.DetailsFragment;
 import com.loopcupcakes.udacity.popularmovies.fragments.FavoritesFragment;
 import com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class FavoritesActivity extends AppCompatActivity implements FavoritesFragment.ActivityCallback, DetailsFragment.ActivityCallback {
 
@@ -20,16 +24,22 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesFra
     private Result mResult;
     private ActionBar mActionBar;
 
+    @Bind(R.id.mainFavoritesToolbar)
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
+
+        ButterKnife.bind(this);
 
         mFavoritesFragment = (FavoritesFragment) getSupportFragmentManager().findFragmentById(R.id.favoritesFragment);
         mPlaceholderFragment = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.placeholderFragment);
 
         mFavoritesFragment.setRetainInstance(true);
 
+        setSupportActionBar(mToolbar);
         mActionBar = getSupportActionBar();
         if (mActionBar != null) {
             mActionBar.setSubtitle(R.string.subtitleFavorites);
