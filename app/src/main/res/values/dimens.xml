@@ -32,4 +32,7 @@
     <dimen name="rvReviewURLTextSize">10sp</dimen>
 
     <dimen name="mainFragmentProgressMarginTop">-5dp</dimen>
+
+    <dimen name="fragmentAboutPadding">20dp</dimen>
+    <dimen name="fragmentAboutTitleSizeFont">15sp</dimen>
 </resources>

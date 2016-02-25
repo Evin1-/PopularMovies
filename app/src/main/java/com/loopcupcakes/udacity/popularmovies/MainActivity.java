@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
+import com.loopcupcakes.udacity.popularmovies.fragments.AboutFragment;
 import com.loopcupcakes.udacity.popularmovies.fragments.MainFragment;
 import com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment;
 import com.loopcupcakes.udacity.popularmovies.providers.FavoritesProvider;
@@ -33,6 +35,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.ActivityCallback {
     private static final String TAG = "MainActivityTAG_";
+    private static final String ABOUT_FRAGMENT_KEY = "about_fragment_key";
 
     private MainFragment mMainFragment;
     private PlaceholderFragment mPlaceholderFragment;
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
 
                 switch (item.getItemId()) {
                     case R.id.nav_about:
-//                        showAbout();
+                        showAbout();
                         break;
                     case R.id.nav_rate:
                         ShareAppMagic.rateApp(getApplicationContext());
@@ -164,6 +167,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
                 return true;
             }
         });
+    }
+
+    private void showAbout() {
+        AboutFragment aboutFragment = new AboutFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        aboutFragment.show(fragmentManager, ABOUT_FRAGMENT_KEY);
     }
 
     private boolean checkHasFavorites() {
