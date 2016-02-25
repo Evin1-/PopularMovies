@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         // TODO: 2/24/16 Fix camelcase resource names
         // TODO: 2/24/16 Remove color links reviews
         // TODO: 2/24/16 Add preferences Activity
+        // TODO: 2/24/16 Add push notifications
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -161,7 +162,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
                     case R.id.nav_share:
                         ShareAppMagic.shareApp(getApplicationContext());
                         break;
-                    default: case R.id.nav_home:
+                    default:
+                    case R.id.nav_home:
                 }
 
                 mDrawer.closeDrawer(GravityCompat.START);

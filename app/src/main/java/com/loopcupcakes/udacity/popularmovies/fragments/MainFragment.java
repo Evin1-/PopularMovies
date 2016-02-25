@@ -130,7 +130,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void run() {
                         hideProgress();
-                        if (mSwipeRefreshLayout != null){
+                        if (mSwipeRefreshLayout != null) {
                             mSwipeRefreshLayout.setRefreshing(false);
                         }
                     }

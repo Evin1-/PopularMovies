@@ -65,7 +65,7 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesFra
     private void setupActionBar() {
         setSupportActionBar(mToolbar);
         mActionBar = getSupportActionBar();
-        if (mActionBar != null){
+        if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setHomeButtonEnabled(true);
             mActionBar.setSubtitle(R.string.subtitleFavorites);
