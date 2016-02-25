@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/22/16 Add support to RecyclerView inside ScrollView
-        // TODO: 2/23/16 Add navigationDrawer
-        // TODO: 2/24/16 Add about fragment
         // TODO: 2/24/16 Remove Constants file
 
         super.onCreate(savedInstanceState);
