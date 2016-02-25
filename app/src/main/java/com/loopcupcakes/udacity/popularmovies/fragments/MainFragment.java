@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,8 @@ public class MainFragment extends Fragment {
     RecyclerView mRecyclerView;
     @Bind(R.id.mainFragmentSwipe)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @Bind(R.id.mainFragmentProgress)
+    ProgressBar mProgressBar;
 
     private MoviesAdapter mAdapter;
     private ArrayList<Result> mResults;
@@ -82,37 +85,6 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void initializeSwipeRefresh() {
-        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
-    }
-
-    private void initializeRecycler() {
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(10));
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mAdapter = new MoviesAdapter((MainActivity) getActivity(), mResults);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    public void refreshRecycler(List<Result> results) {
-        if (results != null && results.size() > 0 && mResults != null && mAdapter != null) {
-            mResults.clear();
-            mResults.addAll(results);
-            mAdapter.notifyDataSetChanged();
-        } else {
-            mCallback.onEmptyResults();
-        }
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList(Constants.RESULTS_KEY, mResults);
@@ -140,6 +112,47 @@ public class MainFragment extends Fragment {
             }
             mNetworkReceiver = null;
         }
+    }
+
+    private void initializeSwipeRefresh() {
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                hideProgress();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void initializeRecycler() {
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(10));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mAdapter = new MoviesAdapter((MainActivity) getActivity(), mResults);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void refreshRecycler(List<Result> results) {
+        if (results != null && results.size() > 0 && mResults != null && mAdapter != null) {
+            mResults.clear();
+            mResults.addAll(results);
+            mAdapter.notifyDataSetChanged();
+            hideProgress();
+        } else {
+            mCallback.onEmptyResults();
+        }
+    }
+
+    public void showProgress() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgress() {
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     public ActivityCallback getActivityCallback() {

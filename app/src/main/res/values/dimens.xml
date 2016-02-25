@@ -30,4 +30,6 @@
     <dimen name="rvReviewAuthorTextSize">12sp</dimen>
     <dimen name="rvReviewContentTextSize">9sp</dimen>
     <dimen name="rvReviewURLTextSize">10sp</dimen>
+
+    <dimen name="mainFragmentProgressMarginTop">-5dp</dimen>
 </resources>
