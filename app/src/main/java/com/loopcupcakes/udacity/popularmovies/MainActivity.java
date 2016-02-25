@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         // TODO: 2/24/16 Remove Constants file
         // TODO: 2/24/16 Fix camelcase resource names
         // TODO: 2/24/16 Remove color links reviews
+        // TODO: 2/24/16 Add preferences Activity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
