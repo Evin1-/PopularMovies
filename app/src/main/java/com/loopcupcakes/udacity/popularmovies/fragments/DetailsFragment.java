@@ -17,16 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 import com.loopcupcakes.udacity.popularmovies.FavoritesActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.adapters.ReviewsAdapter;
@@ -43,6 +33,15 @@ import com.loopcupcakes.udacity.popularmovies.utils.Constants;
 import com.loopcupcakes.udacity.popularmovies.utils.NetworkMagic;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
 import com.loopcupcakes.udacity.popularmovies.utils.YoutubeMagic;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**

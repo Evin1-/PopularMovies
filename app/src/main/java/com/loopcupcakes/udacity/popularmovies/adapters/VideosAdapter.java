@@ -7,13 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.entities.VideoResult;
 import com.loopcupcakes.udacity.popularmovies.utils.YoutubeMagic;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 /**
  * Created by evin on 2/22/16.

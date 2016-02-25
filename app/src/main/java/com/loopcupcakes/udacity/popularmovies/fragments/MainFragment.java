@@ -16,12 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 import com.loopcupcakes.udacity.popularmovies.MainActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.adapters.MoviesAdapter;
@@ -31,6 +25,12 @@ import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.receivers.NetworkReceiver;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
 import com.loopcupcakes.udacity.popularmovies.utils.NetworkMagic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**

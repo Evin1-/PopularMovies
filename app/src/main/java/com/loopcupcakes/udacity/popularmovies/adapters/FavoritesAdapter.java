@@ -10,14 +10,13 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
 import com.loopcupcakes.udacity.popularmovies.FavoritesActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.database.MoviesContract.FavoriteEntry;
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by evin on 2/22/16.

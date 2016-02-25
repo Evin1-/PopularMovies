@@ -2,12 +2,12 @@ package com.loopcupcakes.udacity.popularmovies.tasks;
 
 import android.os.AsyncTask;
 
-import java.util.List;
-
 import com.loopcupcakes.udacity.popularmovies.MainActivity;
 import com.loopcupcakes.udacity.popularmovies.entities.Page;
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.network.MoviesRetrofit;
+
+import java.util.List;
 
 /**
  * Created by evin on 1/3/16.

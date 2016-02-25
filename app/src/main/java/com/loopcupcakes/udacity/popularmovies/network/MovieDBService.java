@@ -3,6 +3,7 @@ package com.loopcupcakes.udacity.popularmovies.network;
 import com.loopcupcakes.udacity.popularmovies.entities.Page;
 import com.loopcupcakes.udacity.popularmovies.entities.ReviewPage;
 import com.loopcupcakes.udacity.popularmovies.entities.VideoPage;
+
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Path;

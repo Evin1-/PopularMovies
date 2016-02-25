@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import com.loopcupcakes.udacity.popularmovies.FavoritesActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.adapters.FavoritesAdapter;
@@ -21,6 +19,9 @@ import com.loopcupcakes.udacity.popularmovies.decorators.FavSpacesItemDecoration
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.providers.FavoritesProvider;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class DetailsActivity extends AppCompatActivity {
 
