@@ -39,11 +39,7 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesFra
 
         mFavoritesFragment.setRetainInstance(true);
 
-        setSupportActionBar(mToolbar);
-        mActionBar = getSupportActionBar();
-        if (mActionBar != null) {
-            mActionBar.setSubtitle(R.string.subtitleFavorites);
-        }
+        setupActionBar();
 
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(Constants.RESULT_TEMP_KEY)) {
@@ -63,6 +59,17 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesFra
             outState.putParcelable(Constants.RESULT_TEMP_KEY, mResult);
         }
         super.onSaveInstanceState(outState);
+    }
+
+
+    private void setupActionBar() {
+        setSupportActionBar(mToolbar);
+        mActionBar = getSupportActionBar();
+        if (mActionBar != null){
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setHomeButtonEnabled(true);
+            mActionBar.setSubtitle(R.string.subtitleFavorites);
+        }
     }
 
     private boolean isTabletLayout() {

@@ -10,6 +10,7 @@
         android:id="@+id/placeholderFragment"
         class="com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_placeholder" />
 
 </FrameLayout>

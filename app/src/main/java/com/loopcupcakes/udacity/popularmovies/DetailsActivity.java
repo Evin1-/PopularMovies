@@ -35,8 +35,9 @@ public class DetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
+        if (actionBar != null){
             actionBar.hide();
+        }
 
         Bundle b = getIntent().getExtras();
         Result movie = b.getParcelable(MOVIE_PARCELABLE_TAG);
