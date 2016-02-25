@@ -35,4 +35,8 @@
 
     <dimen name="fragmentAboutPadding">20dp</dimen>
     <dimen name="fragmentAboutTitleSizeFont">15sp</dimen>
+
+    <dimen name="navHeaderImageMarginTop">25dp</dimen>
+    <dimen name="navHeaderImageSize">20dp</dimen>
+    <dimen name="navHeaderContentPadding">16dp</dimen>
 </resources>

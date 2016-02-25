@@ -60,4 +60,6 @@
     <string name="checkoutAppMessage">"Check out this cool app! "</string>
     <string name="tellFriendMessage">"Tell a friend about "</string>
 
+    <string name="nav_header_subtitle">Menu</string>
+    <string name="navHeaderImageDescription">Nav header image description</string>
 </resources>

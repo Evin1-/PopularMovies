@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/22/16 Add support to RecyclerView inside ScrollView
         // TODO: 2/24/16 Remove Constants file
+        // TODO: 2/24/16 Fix camelcase resource names
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
