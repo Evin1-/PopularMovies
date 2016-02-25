@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,11 +38,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
 
     @Bind(R.id.mainFrame)
     ViewGroup mMainFrame;
+    @Bind(R.id.mainActivityToolbar)
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO: 2/11/16 Add ProgressBar
-        // TODO: 2/22/16 Implement SwipeRefreshLayout
         // TODO: 2/22/16 Add scrolling behavior
         // TODO: 2/22/16 Add support to RecyclerView inside ScrollView
         // TODO: 2/23/16 Add navigationDrawer
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         ButterKnife.bind(this);
 
         mOrderType = "popularity";
+        setSupportActionBar(mToolbar);
         mActionBar = getSupportActionBar();
 
         mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragment);
