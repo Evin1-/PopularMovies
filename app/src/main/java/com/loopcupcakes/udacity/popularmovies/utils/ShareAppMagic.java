@@ -15,7 +15,7 @@ public class ShareAppMagic {
 
     private static final String APP_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=";
     private static final String MORE_APPS_BY_DEVELOPER_URL = "https://play.google.com/store/apps/developer?id=Loop+Cupcakes";
-    private static final String FACEBOOK_PAGE_ID = "1702080766716349";
+    private static final String FACEBOOK_PAGE_ID = "1176363579048471";
     private static final String FACEBOOK_APP_PACKAGE = "com.facebook.katana";
 
     private static final String MARKETPLACE_PREFIX = "market://details?id=";
