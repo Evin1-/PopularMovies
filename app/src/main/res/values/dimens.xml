@@ -22,7 +22,10 @@
 
     <dimen name="isFavoriteIconWidth">15dp</dimen>
     <dimen name="isFavoriteIconMargin">5dp</dimen>
-    <dimen name="detailsActionBarIconSize">20dp</dimen>
+
+    <dimen name="detailsActionBarIconSize">24dp</dimen>
+    <dimen name="detailsActionBarIconMargin">5dp</dimen>
+
     <dimen name="marginHorizontalSeparator">5dp</dimen>
     <dimen name="heightHorizontalSeparator">1dp</dimen>
     <dimen name="internalFrameHeight">300dp</dimen>

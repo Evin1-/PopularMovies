@@ -151,16 +151,6 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         modifyUIFavorite();
     }
 
-    @OnClick(R.id.detailsPlayIcon)
-    public void onPlayBtnClick() {
-        if (mTrailer != null) {
-            YoutubeMagic.watchYoutubeVideo(mTrailer, getContext());
-        }
-        if (!NetworkMagic.isNetworkAvailable(getContext())) {
-            SnackbarMagic.showSnackbar(getView(), R.string.needInternetForYoutube);
-        }
-    }
-
     @Override
     public void onClick(View v) {
         onAddToFavoritesBtnClick();
