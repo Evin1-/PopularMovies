@@ -39,4 +39,6 @@
     <string name="subtitleRating">Rating</string>
     <string name="subtitlePopularity">Popularity</string>
     <string name="undoFavorites">Undo</string>
+    <string name="navigation_drawer_open">Opening drawer</string>
+    <string name="navigation_drawer_close">Closing drawer</string>
 </resources>

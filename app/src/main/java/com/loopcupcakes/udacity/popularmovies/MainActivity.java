@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -41,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     ViewGroup mMainFrame;
     @Bind(R.id.mainActivityToolbar)
     Toolbar mToolbar;
+    @Bind(R.id.mainDrawerLayout)
+    DrawerLayout mDrawer;
+    @Bind(R.id.mainNavigationView)
+    NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,16 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         }
 
         refreshActionBar();
+        setupDrawer();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -109,16 +127,48 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         }
     }
 
+    private void setupDrawer() {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_camera) {
+                    // Handle the camera action
+                } else if (id == R.id.nav_gallery) {
+
+                } else if (id == R.id.nav_slideshow) {
+
+                } else if (id == R.id.nav_manage) {
+
+                } else if (id == R.id.nav_share) {
+
+                } else if (id == R.id.nav_send) {
+
+                }
+
+                mDrawer.closeDrawer(GravityCompat.START);
+
+                return true;
+            }
+        });
+    }
+
     private boolean checkHasFavorites() {
         Uri uri = Uri.withAppendedPath(FavoritesProvider.PROVIDER_URI, "count");
         boolean hasFavorites;
 
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        if (cursor != null){
+        if (cursor != null) {
             cursor.moveToFirst();
             hasFavorites = cursor.getInt(0) > 0;
             cursor.close();
-        }else {
+        } else {
             return false;
         }
 
@@ -163,8 +213,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         if (mActionBar != null) {
             mActionBar.setSubtitle(getString(R.string.subtitleOrderedPrefix) +
                     (mOrderType.equals("popularity")
-                    ? getString(R.string.subtitleRating)
-                    : getString(R.string.subtitlePopularity)));
+                            ? getString(R.string.subtitleRating)
+                            : getString(R.string.subtitlePopularity)));
             mActionBar.invalidateOptionsMenu();
         }
     }
