@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         // TODO: 2/22/16 Add support to RecyclerView inside ScrollView
         // TODO: 2/24/16 Remove Constants file
         // TODO: 2/24/16 Fix camelcase resource names
+        // TODO: 2/24/16 Remove color links reviews
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -229,8 +230,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
         if (mActionBar != null) {
             mActionBar.setSubtitle(getString(R.string.subtitleOrderedPrefix) +
                     (mOrderType.equals("popularity")
-                            ? getString(R.string.subtitleRating)
-                            : getString(R.string.subtitlePopularity)));
+                            ? getString(R.string.subtitlePopularity)
+                            : getString(R.string.subtitleRating)));
             mActionBar.invalidateOptionsMenu();
         }
     }
