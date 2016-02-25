@@ -38,4 +38,5 @@
     <string name="detailsFragmentReviewsText">Reviews:</string>
     <string name="subtitleRating">Rating</string>
     <string name="subtitlePopularity">Popularity</string>
+    <string name="undoFavorites">Undo</string>
 </resources>

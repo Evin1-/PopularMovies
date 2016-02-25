@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,8 +48,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link DialogFragment} subclass.
  */
-public class DetailsFragment extends Fragment {
-    // TODO: 2/22/16 Add undo button when changing Favorites
+public class DetailsFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "DetailsFragmentTAG_";
 
@@ -140,14 +140,13 @@ public class DetailsFragment extends Fragment {
     public void onAddToFavoritesBtnClick() {
         if (getView() != null) {
             if (isFavorite) {
-                SnackbarMagic.showSnackbar(getView(), R.string.removedFromFavoritesSuccess);
                 removeFromFavorites();
             } else {
-                SnackbarMagic.showSnackbar(getView(), R.string.addedToFavoritesSuccess);
                 addToFavorites();
             }
         }
 
+        showSnackBar();
         checkIfFavorite();
         modifyUIFavorite();
     }
@@ -160,6 +159,11 @@ public class DetailsFragment extends Fragment {
         if (!NetworkMagic.isNetworkAvailable(getContext())) {
             SnackbarMagic.showSnackbar(getView(), R.string.needInternetForYoutube);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        onAddToFavoritesBtnClick();
     }
 
     private void setupRecyclerReviews() {
@@ -284,6 +288,16 @@ public class DetailsFragment extends Fragment {
         refreshReviews(new ArrayList<ReviewResult>());
         if (NetworkMagic.isNetworkAvailable(getContext())) {
             new RetrieveReviewsTask(this).execute(mMovie.getId());
+        }
+    }
+
+    private void showSnackBar() {
+        int message = (!isFavorite) ? R.string.addedToFavoritesSuccess : R.string.removedFromFavoritesSuccess;
+        View view = getView();
+        if (view != null) {
+            Snackbar snackbar = Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT);
+            snackbar.setAction(R.string.undoFavorites, this);
+            snackbar.show();
         }
     }
 
