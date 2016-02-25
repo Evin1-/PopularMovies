@@ -23,6 +23,7 @@ import com.loopcupcakes.udacity.popularmovies.providers.FavoritesProvider;
 import com.loopcupcakes.udacity.popularmovies.tasks.RetrieveMoviesTask;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
 import com.loopcupcakes.udacity.popularmovies.utils.NetworkMagic;
+import com.loopcupcakes.udacity.popularmovies.utils.ShareAppMagic;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
 
 import java.util.List;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 2/22/16 Add support to RecyclerView inside ScrollView
         // TODO: 2/23/16 Add navigationDrawer
+        // TODO: 2/24/16 Add about fragment
+        // TODO: 2/24/16 Remove Constants file
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -138,22 +141,26 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
             public boolean onNavigationItemSelected(MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.nav_camera) {
-                    // Handle the camera action
-                } else if (id == R.id.nav_gallery) {
-
-                } else if (id == R.id.nav_slideshow) {
-
-                } else if (id == R.id.nav_manage) {
-
-                } else if (id == R.id.nav_share) {
-
-                } else if (id == R.id.nav_send) {
-
+                switch (item.getItemId()) {
+                    case R.id.nav_about:
+//                        showAbout();
+                        break;
+                    case R.id.nav_rate:
+                        ShareAppMagic.rateApp(getApplicationContext());
+                        break;
+                    case R.id.nav_like:
+                        ShareAppMagic.likeApp(getApplicationContext());
+                        break;
+                    case R.id.nav_more:
+                        ShareAppMagic.openMoreApps(getApplicationContext());
+                        break;
+                    case R.id.nav_share:
+                        ShareAppMagic.shareApp(getApplicationContext());
+                        break;
+                    default: case R.id.nav_home:
                 }
 
                 mDrawer.closeDrawer(GravityCompat.START);
-
                 return true;
             }
         });

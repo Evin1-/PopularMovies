@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/marginHorizontalSeparator"
                 android:layout_marginTop="@dimen/marginHorizontalSeparator"
-                android:text="@string/fragmentDetailsTrailersText"
+                android:text="@string/detailsFragmentTrailersText"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 

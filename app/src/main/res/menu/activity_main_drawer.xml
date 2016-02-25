@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_home"
+            android:checked="true"
+            android:icon="@drawable/ic_home_black_48dp"
+            android:title="@string/nav_home" />
+
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/app_name">
         <menu>
+
+            <item
+                android:id="@+id/nav_like"
+                android:icon="@drawable/ic_thumb_up_black_48dp"
+                android:title="@string/nav_like" />
+
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_rate_review_black_48dp"
+                android:title="@string/nav_rate" />
+
             <item
                 android:id="@+id/nav_share"
-                android:title="Share" />
+                android:icon="@drawable/ic_share_black_48dp"
+                android:title="@string/nav_share" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/f_about_author">
+        <menu>
+
             <item
-                android:id="@+id/nav_send"
-                android:title="Send" />
+                android:id="@+id/nav_more"
+                android:icon="@drawable/ic_more_black_48dp"
+                android:title="@string/nav_more" />
+
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_airline_seat_flat_black_48dp"
+                android:title="@string/nav_about" />
+
         </menu>
     </item>
 

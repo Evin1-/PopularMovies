@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Popular Movies</string>
+    <string name="app_name" translatable="false">Popular Movies</string>
 
     <string name="menuTogglePopularity">Order by popularity</string>
     <string name="menuToggleRating">Order by rating</string>
@@ -18,6 +18,8 @@
 
     <string name="subtitleOrderedPrefix">"Ordered by "</string>
     <string name="subtitleFavorites">Favorites</string>
+    <string name="subtitleRating">Rating</string>
+    <string name="subtitlePopularity">Popularity</string>
 
     <string name="addedToFavoritesSuccess">Added to favorites</string>
     <string name="removedFromFavoritesSuccess">Removed from favorites</string>
@@ -26,19 +28,36 @@
     <string name="openingYoutubeApp">Opening Video App</string>
     <string name="menuFavs">Show favorites</string>
     <string name="noFavoritesYet">You have no favorites yet!</string>
-    <string name="detailsIsFavoriteIconDescription">Is favorite description</string>
+
     <string name="addToFavorites">Add to Favorites</string>
     <string name="removeFromFavorites">Remove from favorites</string>
+
+    <string name="detailsIsFavoriteIconDescription">Is favorite description</string>
     <string name="detailsShareIconDescription">Share button in details fragment</string>
     <string name="detailsBackIconDescription">Go back details icon</string>
     <string name="detailsPlayIconDescription">Play trailer icon</string>
+
     <string name="rvVideoImageDescription">Movie video description</string>
+
     <string name="needInternetForYoutube">You need an Internet connection to watch the trailer!</string>
-    <string name="fragmentDetailsTrailersText">Trailers:</string>
+
+    <string name="detailsFragmentTrailersText">Trailers:</string>
     <string name="detailsFragmentReviewsText">Reviews:</string>
-    <string name="subtitleRating">Rating</string>
-    <string name="subtitlePopularity">Popularity</string>
     <string name="undoFavorites">Undo</string>
+
     <string name="navigation_drawer_open">Opening drawer</string>
     <string name="navigation_drawer_close">Closing drawer</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_about">About</string>
+    <string name="nav_rate">Rate app</string>
+    <string name="nav_like">Like app</string>
+    <string name="nav_more">More apps</string>
+    <string name="nav_share">Share app</string>
+
+    <string name="f_about_author" translatable="false">Loop Cupcakes</string>
+    <string name="f_about_date" translatable="false">January 2016</string>
+    <string name="checkoutAppMessage">"Check out this cool app! "</string>
+    <string name="tellFriendMessage">"Tell a friend about "</string>
+
 </resources>
