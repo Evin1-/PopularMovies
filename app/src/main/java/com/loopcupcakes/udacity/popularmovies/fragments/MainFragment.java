@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import com.loopcupcakes.udacity.popularmovies.MainActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.adapters.MoviesAdapter;
+import com.loopcupcakes.udacity.popularmovies.animations.Animator;
 import com.loopcupcakes.udacity.popularmovies.decorators.SpacesItemDecoration;
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.receivers.NetworkReceiver;
@@ -152,7 +153,8 @@ public class MainFragment extends Fragment {
     }
 
     public void hideProgress() {
-        mProgressBar.setVisibility(View.INVISIBLE);
+        Animator animator = new Animator();
+        animator.fadeOut(mProgressBar, 1000);
     }
 
     public ActivityCallback getActivityCallback() {
