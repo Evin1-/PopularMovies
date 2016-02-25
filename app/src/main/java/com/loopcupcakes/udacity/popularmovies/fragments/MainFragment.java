@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 import com.loopcupcakes.udacity.popularmovies.MainActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.adapters.MoviesAdapter;
@@ -36,6 +38,8 @@ public class MainFragment extends Fragment {
     private static final String TAG = "MainFragmentTAG_";
     @Bind(R.id.mainRecycler)
     RecyclerView mRecyclerView;
+    @Bind(R.id.mainFragmentSwipe)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private MoviesAdapter mAdapter;
     private ArrayList<Result> mResults;
@@ -69,10 +73,27 @@ public class MainFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mResults = new ArrayList<>();
+
         initializeRecycler();
+        initializeSwipeRefresh();
+
         if (savedInstanceState != null) {
             refreshRecycler(savedInstanceState.<Result>getParcelableArrayList(Constants.RESULTS_KEY));
         }
+    }
+
+    private void initializeSwipeRefresh() {
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private void initializeRecycler() {
