@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -124,8 +125,16 @@ public class MainFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                hideProgress();
-                mSwipeRefreshLayout.setRefreshing(false);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideProgress();
+                        if (mSwipeRefreshLayout != null){
+                            mSwipeRefreshLayout.setRefreshing(false);
+                        }
+                    }
+                }, 500);
             }
         });
     }
