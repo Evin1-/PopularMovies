@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_main">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.MainFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/placeholderFragment"
+        class="com.loopcupcakes.udacity.popularmovies.fragments.PlaceholderFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_placeholder" />
+
+</LinearLayout>

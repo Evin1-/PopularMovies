@@ -7,20 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/mainFrame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
-
-        <fragment
-            android:id="@+id/mainFragment"
-            class="com.loopcupcakes.udacity.popularmovies.fragments.MainFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/fragment_main" />
-
-    </FrameLayout>
+    <include layout="@layout/content_main" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
