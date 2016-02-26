@@ -256,17 +256,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         Picasso.with(getActivity().getApplicationContext())
                 .load(Constants.BASE_IMG_URL + movie.getBackdropPath())
                 .placeholder(R.drawable.large_placeholder)
-                .into(mImageView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-
-                    }
-
-                    @Override
-                    public void onError() {
-                        mImageView.setVisibility(View.INVISIBLE);
-                    }
-                });
+                .into(mImageView);
 
         mTextViewTitle.setText(movie.getTitle());
         mTextViewRelease.setText(movie.getReleaseDate());

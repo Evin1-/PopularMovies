@@ -84,17 +84,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
                 Picasso.with(mFavoritesActivity.getApplicationContext())
                         .load(base_url + cursor.getString(cursor.getColumnIndex(FavoriteEntry.COLUMN_BACKDROP_PATH)))
                         .placeholder(R.drawable.large_placeholder)
-                        .into(imgPath, new Callback() {
-                            @Override
-                            public void onSuccess() {
-
-                            }
-
-                            @Override
-                            public void onError() {
-                                imgPath.setVisibility(View.GONE);
-                            }
-                        });
+                        .into(imgPath);
             }
         };
     }

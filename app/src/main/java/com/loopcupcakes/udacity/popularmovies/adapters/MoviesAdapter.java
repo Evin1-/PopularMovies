@@ -86,17 +86,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         Picasso.with(mMainActivity.getApplicationContext())
                 .load(base_url + result.getBackdropPath())
                 .placeholder(R.drawable.large_placeholder)
-                .into(imgPath, new Callback() {
-                    @Override
-                    public void onSuccess() {
-
-                    }
-
-                    @Override
-                    public void onError() {
-                        imgPath.setVisibility(View.GONE);
-                    }
-                });
+                .into(imgPath);
 
         viewHolder.result = result;
 

@@ -62,16 +62,6 @@ public class PlaceholderFragment extends Fragment {
         Picasso.with(getActivity().getApplicationContext())
                 .load(Constants.BASE_IMG_URL + mResult.getPosterPath())
                 .placeholder(R.drawable.large_placeholder)
-                .into(mImageView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-
-                    }
-
-                    @Override
-                    public void onError() {
-                        mImageView.setVisibility(View.INVISIBLE);
-                    }
-                });
+                .into(mImageView);
     }
 }
