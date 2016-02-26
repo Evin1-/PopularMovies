@@ -158,7 +158,9 @@ public class MainFragment extends Fragment {
     }
 
     public void showProgress() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        if (mProgressBar != null){
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
     }
 
     public void hideProgress() {

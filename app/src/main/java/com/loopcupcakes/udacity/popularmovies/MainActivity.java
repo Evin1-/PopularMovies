@@ -240,7 +240,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     }
 
     public void queryMovieAPI(String arg) {
-        mMainFragment.showProgress();
+        if (mMainFragment != null){
+            mMainFragment.showProgress();
+        }
         if (NetworkMagic.isNetworkAvailable(getApplicationContext())) {
             arg = (arg == null) ? "popularity" : arg;
             new RetrieveMoviesTask(this).execute(arg);
