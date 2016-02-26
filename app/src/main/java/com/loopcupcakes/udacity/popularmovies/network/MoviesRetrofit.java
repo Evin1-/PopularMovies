@@ -16,9 +16,10 @@ import retrofit.Retrofit;
  * Created by evin on 2/22/16.
  */
 public class MoviesRetrofit {
+    // TODO: 2/26/16 Firebase the DATE_GTE
 
     private static final String TAG = "MoviesRetrofit";
-    private static final String DATE_GTE = "2015-01-01";
+    private static final String DATE_GTE = "2015-10-01";
 
     private MovieDBService buildMoviesService() {
         Retrofit retrofit = new Retrofit.Builder()
