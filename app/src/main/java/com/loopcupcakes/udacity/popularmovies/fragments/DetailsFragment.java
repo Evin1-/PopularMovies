@@ -226,7 +226,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     }
 
     public void refreshReviews(List<ReviewResult> reviewResults) {
-        if (mReviews != null && mAdapterReviews != null) {
+        if (mReviews != null && mAdapterReviews != null && reviewResults != null) {
             mReviews.clear();
             mReviews.addAll(reviewResults);
             mAdapterReviews.notifyDataSetChanged();
