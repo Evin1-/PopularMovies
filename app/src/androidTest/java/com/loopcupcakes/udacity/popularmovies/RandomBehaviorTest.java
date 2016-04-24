@@ -34,8 +34,8 @@ public class RandomBehaviorTest {
 
         pressBack();
 
-        clickOnRandomItem(R.id.mainRecycler);
-        onView(withId(R.id.detailsPlayIcon)).perform(click());
+//        clickOnRandomItem(R.id.mainRecycler);
+//        onView(withId(R.id.detailsPlayIcon)).perform(click());
     }
 
     private void clickOnRandomItem(int viewId) {

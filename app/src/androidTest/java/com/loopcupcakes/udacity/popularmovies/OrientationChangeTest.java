@@ -37,10 +37,10 @@ public class OrientationChangeTest {
 
         pressBack();
 
-        clickOnRandomItem(R.id.mainRecycler);
-        onView(withId(R.id.detailsPlayIcon)).perform(click());
-
-        pressBack();
+//        clickOnRandomItem(R.id.mainRecycler);
+//        onView(withId(R.id.detailsPlayIcon)).perform(click());
+//
+//        pressBack();
 
         changeOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
