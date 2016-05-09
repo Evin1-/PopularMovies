@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/menu_toggle"
-        android:icon="@drawable/ic_reorder_white_24dp"
+        android:icon="@drawable/ic_trending_up_white_24dp"
         android:title="@string/menuToggleRating"
         app:showAsAction="ifRoom" />
 
