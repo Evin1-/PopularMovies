@@ -6,6 +6,7 @@ import com.loopcupcakes.udacity.popularmovies.entities.Page;
 import com.loopcupcakes.udacity.popularmovies.entities.ReviewPage;
 import com.loopcupcakes.udacity.popularmovies.entities.VideoPage;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
+import com.loopcupcakes.udacity.popularmovies.utils.DatesMagic;
 import com.loopcupcakes.udacity.popularmovies.utils.Keys;
 
 import retrofit.Call;
@@ -19,7 +20,7 @@ public class MoviesRetrofit {
     // TODO: 2/26/16 Firebase the DATE_GTE
 
     private static final String TAG = "MoviesRetrofit";
-    private static final String DATE_GTE = "2016-01-01";
+    private static final String DATE_GTE = DatesMagic.generateDate(3);
 
     private MovieDBService buildMoviesService() {
         Retrofit retrofit = new Retrofit.Builder()
