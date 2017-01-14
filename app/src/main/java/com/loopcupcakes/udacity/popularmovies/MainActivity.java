@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     private static final String TAG = "MainActivityTAG_";
     private static final String ABOUT_FRAGMENT_KEY = "about_fragment_key";
 
-    private static final long TIME_AD_DELAY = 1000 * 5;
+    private static final long TIME_AD_DELAY = 1000 * 1;
 
     private MainFragment mMainFragment;
     private PlaceholderFragment mPlaceholderFragment;
