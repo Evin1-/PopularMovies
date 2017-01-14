@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.fragments.AboutFragment;
 import com.loopcupcakes.udacity.popularmovies.fragments.MainFragment;
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     private static final String TAG = "MainActivityTAG_";
     private static final String ABOUT_FRAGMENT_KEY = "about_fragment_key";
 
+    private static final long TIME_AD_DELAY = 1000 * 5;
+
     private MainFragment mMainFragment;
     private PlaceholderFragment mPlaceholderFragment;
 
@@ -44,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     private Result mResult;
 
     private String mOrderType;
+
+    private InterstitialAd mInterstitialAd;
+    private Handler handler;
 
     @Bind(R.id.mainFrame)
     ViewGroup mMainFrame;
@@ -68,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
 
         ButterKnife.bind(this);
 
+        setupInterstitial();
+
         mOrderType = "popularity";
         setSupportActionBar(mToolbar);
         mActionBar = getSupportActionBar();
@@ -89,6 +100,21 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
 
         refreshActionBar();
         setupDrawer();
+
+        requestNewInterstitial();
+
+        handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    handler.postDelayed(this, TIME_AD_DELAY);
+                }
+            }
+        }, TIME_AD_DELAY);
     }
 
     @Override
@@ -133,6 +159,26 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        mInterstitialAd.loadAd(adRequest);
+    }
+
+    private void setupInterstitial() {
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.intersitial_ad_unit_id));
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+
+            }
+        });
+
+
     }
 
     private void setupDrawer() {
@@ -240,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Acti
     }
 
     public void queryMovieAPI(String arg) {
-        if (mMainFragment != null){
+        if (mMainFragment != null) {
             mMainFragment.showProgress();
         }
         if (NetworkMagic.isNetworkAvailable(getApplicationContext())) {
