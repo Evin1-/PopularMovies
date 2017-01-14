@@ -15,7 +15,6 @@ import com.loopcupcakes.udacity.popularmovies.MainActivity;
 import com.loopcupcakes.udacity.popularmovies.R;
 import com.loopcupcakes.udacity.popularmovies.entities.Result;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

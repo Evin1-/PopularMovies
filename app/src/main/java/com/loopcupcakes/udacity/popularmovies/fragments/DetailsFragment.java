@@ -33,8 +33,6 @@ import com.loopcupcakes.udacity.popularmovies.tasks.RetrieveVideosTask;
 import com.loopcupcakes.udacity.popularmovies.utils.Constants;
 import com.loopcupcakes.udacity.popularmovies.utils.NetworkMagic;
 import com.loopcupcakes.udacity.popularmovies.utils.SnackbarMagic;
-import com.loopcupcakes.udacity.popularmovies.utils.YoutubeMagic;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
